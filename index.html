@@ -778,6 +778,6 @@ wl.textContent=all?"Torna alla ghiera":"Mostra tutto l'elenco";
 document.body.classList.add("js-wheel");upd();
 })();
 </script>
-<script>try{if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js").catch(function(){})}catch(e){}</script>
+<script>try{if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(function(r){r.update()}).catch(function(){});var _r=false;navigator.serviceWorker.addEventListener("controllerchange",function(){if(_r)return;_r=true;location.reload()})}catch(e){}</script>
 </body>
 </html>
