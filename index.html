@@ -691,6 +691,15 @@ body.tbmin .tabbar{grid-template-columns:minmax(0,1fr)!important;padding:5px!imp
 .blk{transition:opacity .35s ease,transform .5s cubic-bezier(.3,1.5,.5,1),visibility 0s linear .35s,bottom .45s ease,height .45s ease}
 body.tbmin .blk{bottom:calc(12px + env(safe-area-inset-bottom,0px)*.45)!important}
 html.sa body.tbmin .blk{height:calc(var(--apph) - 62px - env(safe-area-inset-top,0px) - 12px - env(safe-area-inset-bottom,0px)*.45)!important}
+.subh{margin:22px 0 10px;font-size:1.1rem;letter-spacing:-.01em}
+.snacks{display:flex;flex-direction:column;gap:10px}
+.snk{display:flex;gap:12px;padding:12px 14px;border-radius:16px;background:var(--surf);border:1px solid color-mix(in srgb,var(--ink) 9%,transparent);transition:transform .2s}
+.snk:active{transform:scale(.98)}
+.snk .se{font-size:1.7rem;line-height:1}
+.snk b a{color:var(--ink);text-decoration:none}
+.snk .sz{display:block;color:var(--c3);font-weight:700;font-size:.78rem;margin-top:2px}
+.snk p{margin:6px 0;font-size:.9rem}
+.snk small{color:var(--mute);font-size:.8rem}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
@@ -1005,6 +1014,9 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </div>
 <p class="meta">Valutazioni e orari di mercoledì da Google Maps; i prezzi sono indicativi, da guide e recensioni. Colazione e cena restano sotto i 15 € a persona, la paella costa di più.</p>
 
+<h3 class="subh">🥪 Spuntini lungo il percorso</h3>
+<div class="snacks"><div class="snk"><span class="se">🥂</span><div><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Paixano%20Reina%20Cristina%207%20Barcelona">Can Paixano</a></b><small class="sz">Tra Born e Barceloneta · dopo El Born</small><p>Panino caldo con salsiccia o chorizo e un calice di cava rosato, in piedi al bancone. Circa 8 € a testa.</p><small>4,6 ★ · mer 12:00–22:00</small> <a class="go sm" href="https://www.google.com/maps/dir/?api=1&destination=Can%20Paixano%20Reina%20Cristina%207%20Barcelona&travelmode=walking" target="_blank" rel="noopener">↗︎ Portami lì</a></div></div><div class="snk"><span class="se">🥟</span><div><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bar%20Bodega%20Can%20Ros%20Roger%20de%20Flor%20303%20Barcelona">Bar Bodega Can Ros</a></b><small class="sz">Vicino alla Sagrada Família</small><p>Frittelle di baccalà, tortilla di carciofi e il famoso panino con le polpette. Bar di quartiere dal 1971, fascia economica.</p><small>4,4 ★ · mer 8:00–23:00</small> <a class="go sm" href="https://www.google.com/maps/dir/?api=1&destination=Bar%20Bodega%20Can%20Ros%20Roger%20de%20Flor%20303%20Barcelona&travelmode=walking" target="_blank" rel="noopener">↗︎ Portami lì</a></div></div><div class="snk"><span class="se">🦑</span><div><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Codina%20Torrent%20de%20l%27Olla%2020%20Barcelona">Can Codina</a></b><small class="sz">Gràcia · 10 minuti da Passeig de Gràcia</small><p>Crocchette al nero di seppia, patatas bravas e acciughe, con birre artigianali. Con due tapas resti sotto i 15 €.</p><small>4,3 ★ · mer 12:00–24:00</small> <a class="go sm" href="https://www.google.com/maps/dir/?api=1&destination=Can%20Codina%20Torrent%20de%20l%27Olla%2020%20Barcelona&travelmode=walking" target="_blank" rel="noopener">↗︎ Portami lì</a></div></div><div class="snk"><span class="se">🥖</span><div><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Vilar%C3%B3%20Comte%20Borrell%2061%20Barcelona">Can Vilaró</a></b><small class="sz">Sant Antoni · se fate colazione lì</small><p>Al bancone di marmo: panini caldi e piattini catalani della tradizione, con il vino della casa. Fascia di prezzo più bassa.</p><small>4,4 ★ · mer 8:30–15:30</small> <a class="go sm" href="https://www.google.com/maps/dir/?api=1&destination=Can%20Vilar%C3%B3%20Comte%20Borrell%2061%20Barcelona&travelmode=transit" target="_blank" rel="noopener">↗︎ Portami lì</a></div></div><div class="snk"><span class="se">🍫</span><div><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Xurreria%20Can%20Vernet%20Comte%20Borrell%20294%20Barcelona">Xurreria Can Vernet</a></b><small class="sz">Fuori percorso · Eixample, verso l'Hospital Clínic</small><p>Churros appena fritti, anche ripieni e anche senza glutine. Solo se avete tempo: è fuori dal giro.</p><small>4,3 ★ · mer 8:00–13:30 e 16:00–20:30</small> <a class="go sm" href="https://www.google.com/maps/dir/?api=1&destination=Xurreria%20Can%20Vernet%20Comte%20Borrell%20294%20Barcelona&travelmode=transit" target="_blank" rel="noopener">↗︎ Portami lì</a></div></div></div>
+<p class="meta">Stessi criteri dei pasti: «Can» nel nome, almeno 4 stelle, aperti mercoledì, sotto i 15 € a persona. Valutazioni e orari da Google Maps.</p>
 </section>
 <section class="blk" id="consigli">
 <h2 class="sec">Consigli per zona</h2>
