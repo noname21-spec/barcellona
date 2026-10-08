@@ -662,6 +662,35 @@ html.sa .map.fs{bottom:auto;height:var(--apph)}
 .go{letter-spacing:.01em}
 .tabbar span{letter-spacing:.01em}
 footer{text-align:center;margin:30px 0 8px;opacity:.7}
+
+/* barra delle schede più grande, condensabile */
+:root{--tb:78px}
+.tabbar{left:auto!important;right:max(10px,calc((100% - 580px)/2))!important;transform:none!important;width:min(580px,calc(100% - 20px));border-radius:28px!important;padding:7px!important;transition:width .5s cubic-bezier(.3,1.25,.5,1),border-radius .5s ease,box-shadow .4s ease,height .4s ease}
+.tabbar label{gap:4px;font-size:.74rem!important;border-radius:21px}
+.tabbar label::before{border-radius:21px!important}
+.tabbar .em{font-size:1.65rem!important}
+body.tbmin .tabbar{width:var(--tb);border-radius:50%!important;grid-template-columns:1fr!important;cursor:pointer;box-shadow:0 12px 30px color-mix(in srgb,var(--c3) 30%,rgba(0,0,0,.15))!important}
+body.tbmin:has(#t-itinerario:checked) .tabbar label:not([for=t-itinerario]),body.tbmin:has(#t-mappa:checked) .tabbar label:not([for=t-mappa]),body.tbmin:has(#t-mangiare:checked) .tabbar label:not([for=t-mangiare]),body.tbmin:has(#t-costi:checked) .tabbar label:not([for=t-costi]),body.tbmin:has(#t-assaggiare:checked) .tabbar label:not([for=t-assaggiare]),body.tbmin:has(#t-consigli:checked) .tabbar label:not([for=t-consigli]){display:none!important}
+body.tbmin .tabbar label span{display:none}
+body.tbmin .tabbar label::before{border-radius:50%!important;inset:0!important}
+body.tbmin .tabbar label::after{display:none}
+body.tbmin .tabbar label .em{animation:none!important;transform:none!important;font-size:1.9rem!important}
+.tbdots{position:absolute;top:6px;right:6px;width:18px;height:18px;border-radius:50%;background:var(--paper);color:var(--c3);font:900 .7rem/18px Manrope,system-ui,sans-serif;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.2);opacity:0;transform:scale(.4);transition:opacity .3s,transform .4s cubic-bezier(.3,1.6,.5,1);pointer-events:none}
+body.tbmin .tbdots{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.tabbar{transition:none}}
+.tabbar{grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:2px!important}
+:root{--tb:74px}
+.tabbar label{min-width:0;font-size:.68rem!important;gap:3px;padding:0 1px}
+.tabbar label span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.tabbar .em{font-size:1.5rem!important}
+.tabbar label::before{inset:2px!important}
+.tabbar>.tbdots{position:absolute!important;top:4px;right:4px;font-style:normal}
+body.tbmin .tabbar label{width:100%;height:100%;align-self:stretch;justify-self:stretch}
+body.tbmin .tabbar label::before{inset:3px!important;border-radius:50%!important;transform:none!important;animation:none!important;opacity:1!important}
+body.tbmin .tabbar{grid-template-columns:minmax(0,1fr)!important;padding:5px!important}
+.blk{transition:opacity .35s ease,transform .5s cubic-bezier(.3,1.5,.5,1),visibility 0s linear .35s,bottom .45s ease,height .45s ease}
+body.tbmin .blk{bottom:calc(12px + env(safe-area-inset-bottom,0px)*.45)!important}
+html.sa body.tbmin .blk{height:calc(var(--apph) - 62px - env(safe-area-inset-top,0px) - 12px - env(safe-area-inset-bottom,0px)*.45)!important}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
@@ -1041,7 +1070,7 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </main>
 <div class="appbar"><span class="appt">Barcellona <b>· 28 ottobre</b></span></div>
 <label for="dm" class="iosw" title="Modalità chiara/scura"><span class="trk"><b class="ic sun" aria-hidden="true">☀️</b><b class="ic moon" aria-hidden="true">🌙</b><i class="knob"></i></span><span class="vh">Modalità scura</span></label>
-<nav class="tabbar" aria-label="Sezioni"><label for="t-itinerario"><b class="em em-spin" aria-hidden="true">🕗</b><span>Giorno</span></label><label for="t-mappa"><b class="em em-unfold" aria-hidden="true">🗺️</b><span>Mappa</span></label><label for="t-mangiare"><b class="em em-bob" aria-hidden="true">🥘</b><span>Mangiare</span></label><label for="t-costi"><b class="em em-flip" aria-hidden="true">💶</b><span>Costi</span></label><label for="t-assaggiare"><b class="em em-jiggle" aria-hidden="true">🍮</b><span>Assaggi</span></label><label for="t-consigli"><b class="em em-glow" aria-hidden="true">💡</b><span>Consigli</span></label></nav>
+<nav class="tabbar" aria-label="Sezioni"><label for="t-itinerario"><b class="em em-spin" aria-hidden="true">🕗</b><span>Giorno</span></label><label for="t-mappa"><b class="em em-unfold" aria-hidden="true">🗺️</b><span>Mappa</span></label><label for="t-mangiare"><b class="em em-bob" aria-hidden="true">🥘</b><span>Mangiare</span></label><label for="t-costi"><b class="em em-flip" aria-hidden="true">💶</b><span>Costi</span></label><label for="t-assaggiare"><b class="em em-jiggle" aria-hidden="true">🍮</b><span>Assaggi</span></label><label for="t-consigli"><b class="em em-glow" aria-hidden="true">💡</b><span>Consigli</span></label><i class="tbdots" aria-hidden="true">⋯</i></nav>
 <script>
 (function(){
 document.documentElement.classList.add("js");
@@ -1352,6 +1381,20 @@ function save(){V[k]=k.indexOf("num")>0?i.value.toUpperCase():i.value;if(k.index
 function saveAll(){ins.forEach(function(i){V[i.dataset.v]=i.dataset.v.indexOf("num")>0?i.value.toUpperCase():i.value});try{localStorage.setItem("bcn-voli",JSON.stringify(V))}catch(e){}}
 addEventListener("pagehide",saveAll);document.addEventListener("visibilitychange",function(){if(document.hidden)saveAll()});
 links();window.BCNVOLI=V;window.dispatchEvent(new Event("voli"));
+})();
+</script>
+<script>
+(function(){
+var bar=document.querySelector(".tabbar");if(!bar)return;
+var body=document.body,last={},tm;
+function setMin(on){body.classList.toggle("tbmin",on)}
+[].forEach.call(document.querySelectorAll(".blk"),function(b){
+b.addEventListener("scroll",function(){var y=b.scrollTop,d=y-(last[b.id]||0);last[b.id]=y;
+if(y<40){setMin(false);return}
+if(d>6)setMin(true);else if(d<-10)setMin(false);},{passive:true});
+});
+bar.addEventListener("click",function(e){if(body.classList.contains("tbmin")){e.preventDefault();e.stopPropagation();setMin(false)}},true);
+[].forEach.call(document.querySelectorAll(".tabr"),function(r){r.addEventListener("change",function(){setMin(false)})});
 })();
 </script>
 </body>
