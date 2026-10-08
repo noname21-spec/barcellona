@@ -640,6 +640,28 @@ html.sa .map.fs{bottom:auto;height:var(--apph)}
 .voli input[type=time]::-webkit-date-and-time-value{text-align:left;margin:0;min-height:1.2em}
 .voli input[type=time]::-webkit-calendar-picker-indicator{margin-left:auto;opacity:.55}
 .voli input[type=time]:invalid,.voli input[type=time]:placeholder-shown{color:var(--mute)}
+
+/* casella della lista, disegnata senza pseudo-elementi */
+.checklist input.ckin{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none;animation:none!important}
+.checklist label{position:relative}
+.checklist .bx{flex:none;width:26px;height:26px;border-radius:50%;border:2px solid color-mix(in srgb,var(--ink) 22%,transparent);display:grid;place-items:center;transition:background .25s,border-color .25s;box-sizing:border-box}
+.checklist .bx svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:20;stroke-dashoffset:20;transition:stroke-dashoffset .35s ease .05s}
+.checklist input.ckin:checked+.bx{background:linear-gradient(135deg,var(--c3),var(--c2));border-color:transparent;animation:jelly .5s cubic-bezier(.3,1.6,.5,1)}
+.checklist input.ckin:checked+.bx svg{stroke-dashoffset:0}
+.checklist input.ckin:focus-visible+.bx{outline:2px solid var(--c2);outline-offset:2px}
+.checklist input.ckin:checked~.tx{color:var(--mute);text-decoration:line-through;text-decoration-color:var(--c2)}
+.ckbar{height:6px;border-radius:3px;background:color-mix(in srgb,var(--ink) 8%,transparent);overflow:hidden;margin:2px 0 8px}
+.ckbar i{display:block;height:100%;width:0;border-radius:3px;background:linear-gradient(90deg,var(--c3),var(--c2));transition:width .45s cubic-bezier(.3,1.3,.5,1)}
+/* voli: codici aeroporti */
+.voli legend{display:flex;align-items:center;gap:6px;color:var(--mute)!important}
+.iata{font:800 .78rem Manrope,system-ui,sans-serif;letter-spacing:.04em;color:#fff;background:linear-gradient(135deg,var(--c3),var(--c2));padding:2px 7px;border-radius:7px}
+.voli .pl{font-style:normal;color:var(--c3);font-size:.9rem}
+/* rifiniture */
+.blk h2.sec{letter-spacing:-.02em}
+.eat h3,.checklist h3,.spese h3,.vh2 b{letter-spacing:-.01em}
+.go{letter-spacing:.01em}
+.tabbar span{letter-spacing:.01em}
+footer{text-align:center;margin:30px 0 8px;opacity:.7}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
@@ -691,13 +713,13 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <div class="voli" id="voli">
 <div class="vh2"><b>✈️ I vostri voli</b><small id="vsave"></small></div>
 <div class="vgrid">
-<fieldset><legend>Andata · Bologna → Barcellona</legend>
+<fieldset><legend><span class="iata">BLQ</span><i class="pl">✈︎</i><span class="iata">BCN</span> Andata</legend>
 <label><span>Numero volo</span><input type="text" data-v="a_num" placeholder="es. FR1234" autocapitalize="characters" maxlength="10"></label>
 <label><span>Apertura imbarco</span><input type="time" data-v="a_imb"></label>
 <label><span>Partenza</span><input type="time" data-v="a_dep"></label>
 <a class="vst" data-f="a_num" target="_blank" rel="noopener" hidden>Stato del volo ↗︎</a>
 </fieldset>
-<fieldset><legend>Ritorno · Barcellona → Bologna</legend>
+<fieldset><legend><span class="iata">BCN</span><i class="pl">✈︎</i><span class="iata">BLQ</span> Ritorno</legend>
 <label><span>Numero volo</span><input type="text" data-v="r_num" placeholder="es. FR1235" autocapitalize="characters" maxlength="10"></label>
 <label><span>Apertura imbarco</span><input type="time" data-v="r_imb" placeholder="20:40"></label>
 <label><span>Partenza</span><input type="time" data-v="r_dep" value="21:20"></label>
@@ -957,7 +979,7 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </section>
 <section class="blk" id="consigli">
 <h2 class="sec">Consigli per zona</h2>
-<div class="checklist"><h3>✅ Prima di partire <small id="ckn"></small></h3><ul><li><label><input type="checkbox" data-k="0"><span>Carta d'identità o passaporto</span></label></li><li><label><input type="checkbox" data-k="1"><span>Carte d'imbarco di andata e ritorno</span></label></li><li><label><input type="checkbox" data-k="2"><span>Borraccia vuota (da riempire alle fontanelle)</span></label></li><li><label><input type="checkbox" data-k="3"><span>App Fonts BCN installata</span></label></li><li><label><input type="checkbox" data-k="4"><span>Power bank e cavo</span></label></li><li><label><input type="checkbox" data-k="5"><span>Un po' di contanti</span></label></li><li><label><input type="checkbox" data-k="6"><span>Scarpe comode</span></label></li><li><label><input type="checkbox" data-k="7"><span>Felpa leggera (per la Cattedrale e la sera)</span></label></li><li><label><input type="checkbox" data-k="8"><span>Aprire l'app con internet prima di partire, per averla offline</span></label></li></ul></div>
+<div class="checklist"><h3>✅ Prima di partire <small id="ckn"></small></h3><div class="ckbar"><i id="ckbar"></i></div><ul><li><label><input class="ckin" type="checkbox" data-k="0"><span class="bx" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 12.5l3.6 3.6L17.5 8.5"/></svg></span><span class="tx">Carta d'identità o passaporto</span></label></li><li><label><input class="ckin" type="checkbox" data-k="1"><span class="bx" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 12.5l3.6 3.6L17.5 8.5"/></svg></span><span class="tx">Carte d'imbarco di andata e ritorno</span></label></li><li><label><input class="ckin" type="checkbox" data-k="2"><span class="bx" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 12.5l3.6 3.6L17.5 8.5"/></svg></span><span class="tx">Borraccia vuota (da riempire alle fontanelle)</span></label></li><li><label><input class="ckin" type="checkbox" data-k="3"><span class="bx" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 12.5l3.6 3.6L17.5 8.5"/></svg></span><span class="tx">App Fonts BCN installata</span></label></li><li><label><input class="ckin" type="checkbox" data-k="4"><span class="bx" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 12.5l3.6 3.6L17.5 8.5"/></svg></span><span class="tx">Power bank e cavo</span></label></li><li><label><input class="ckin" type="checkbox" data-k="5"><span class="bx" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 12.5l3.6 3.6L17.5 8.5"/></svg></span><span class="tx">Un po' di contanti</span></label></li><li><label><input class="ckin" type="checkbox" data-k="6"><span class="bx" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 12.5l3.6 3.6L17.5 8.5"/></svg></span><span class="tx">Scarpe comode</span></label></li><li><label><input class="ckin" type="checkbox" data-k="7"><span class="bx" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 12.5l3.6 3.6L17.5 8.5"/></svg></span><span class="tx">Felpa leggera (per la Cattedrale e la sera)</span></label></li><li><label><input class="ckin" type="checkbox" data-k="8"><span class="bx" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 12.5l3.6 3.6L17.5 8.5"/></svg></span><span class="tx">Aprire l'app con internet prima di partire, per averla offline</span></label></li></ul></div>
 
 <div class="zones">
 <details open><summary>✈️ Aeroporto e metro</summary><ul>
@@ -1278,7 +1300,7 @@ function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorag
 /* lista */
 var cks=[].slice.call(document.querySelectorAll(".checklist input")),ckn=document.getElementById("ckn");
 var saved={};try{saved=JSON.parse(ls("bcn-check")||"{}")}catch(e){}
-function cnt(){var n=cks.filter(function(c){return c.checked}).length;ckn.textContent=n+"/"+cks.length+(n===cks.length?" 🎉":"")}
+function cnt(){var n=cks.filter(function(c){return c.checked}).length;ckn.textContent=n+"/"+cks.length+(n===cks.length?" 🎉":"");var b=document.getElementById("ckbar");if(b)b.style.width=(n/cks.length*100)+"%"}
 cks.forEach(function(c){c.checked=!!saved[c.dataset.k];c.addEventListener("change",function(){saved[c.dataset.k]=c.checked;ls("bcn-check",JSON.stringify(saved));cnt()})});cnt();
 /* spese */
 var ins=[].slice.call(document.querySelectorAll(".sgrid input")),st=document.getElementById("stot"),sb=document.getElementById("sbar"),sd=document.getElementById("sdiff"),EST=133;
@@ -1325,7 +1347,10 @@ var V={};try{V=JSON.parse(localStorage.getItem("bcn-voli")||"{}")}catch(e){}
 var ins=[].slice.call(document.querySelectorAll(".voli input")),sv=document.getElementById("vsave"),t;
 function links(){[].forEach.call(document.querySelectorAll(".vst"),function(a){var c=(V[a.dataset.f]||"").replace(/\s+/g,"").toLowerCase();a.hidden=!c;if(c)a.href="https://www.flightradar24.com/data/flights/"+encodeURIComponent(c)})}
 ins.forEach(function(i){var k=i.dataset.v;if(V[k]!=null)i.value=V[k];else if(i.value)V[k]=i.value;
-i.addEventListener("input",function(){V[k]=k.indexOf("num")>0?i.value.toUpperCase():i.value;if(k.indexOf("num")>0)i.value=V[k];try{localStorage.setItem("bcn-voli",JSON.stringify(V))}catch(e){}sv.textContent="Salvato ✓";clearTimeout(t);t=setTimeout(function(){sv.textContent=""},1500);links();window.dispatchEvent(new Event("voli"))})});
+function save(){V[k]=k.indexOf("num")>0?i.value.toUpperCase():i.value;if(k.indexOf("num")>0&&i.value!==V[k])i.value=V[k];try{localStorage.setItem("bcn-voli",JSON.stringify(V))}catch(e){}sv.textContent="Salvato ✓";clearTimeout(t);t=setTimeout(function(){sv.textContent=""},1500);links();window.dispatchEvent(new Event("voli"))}
+["input","change","blur"].forEach(function(ev){i.addEventListener(ev,save)})});
+function saveAll(){ins.forEach(function(i){V[i.dataset.v]=i.dataset.v.indexOf("num")>0?i.value.toUpperCase():i.value});try{localStorage.setItem("bcn-voli",JSON.stringify(V))}catch(e){}}
+addEventListener("pagehide",saveAll);document.addEventListener("visibilitychange",function(){if(document.hidden)saveAll()});
 links();window.BCNVOLI=V;window.dispatchEvent(new Event("voli"));
 })();
 </script>
