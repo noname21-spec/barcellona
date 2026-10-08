@@ -8,11 +8,12 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Barcellona">
-<meta name="theme-color" content="#d7261e">
+<meta name="theme-color" content="#0b4ea2">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=3">
+<link rel="icon" type="image/png" href="icon-192.png?v=3">
 <script>try{var d=new Date().toISOString().slice(0,10);if(localStorage.getItem("bcn-splash")===d)document.documentElement.classList.add("nosplash");else localStorage.setItem("bcn-splash",d)}catch(e){}try{var t=localStorage.getItem("bcn-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<script>(function(){try{var sa=navigator.standalone===true||matchMedia("(display-mode: standalone)").matches;if(!sa)return;var r=document.documentElement;r.classList.add("sa");function f(){var p=innerHeight>=innerWidth,sh=p?Math.max(screen.height,screen.width):Math.min(screen.height,screen.width);var h=Math.max(innerHeight,document.documentElement.clientHeight||0);if(sh>h&&sh-h<80)h=sh;r.style.setProperty("--apph",h+"px")}f();addEventListener("resize",f);addEventListener("orientationchange",function(){setTimeout(f,300)})}catch(e){}})();</script>
 <title>Barcellona in un giorno – 28 ottobre 2026</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
@@ -535,11 +536,86 @@ tr.tot td:not(:first-child){font-size:1.1rem!important;color:var(--c3)}
 .payer:active{transform:scale(.92)}
 .split{margin-top:4px;padding:9px 12px;border-radius:12px;background:color-mix(in srgb,var(--c4) 16%,transparent);font-weight:700;font-size:.92rem}
 .split:empty{display:none}
+
+/* ===== colori Barça: blu e granata ===== */
+:root{--c1:#004d98;--c2:#a50044;--c3:#0b4ea2;--c4:#6a2c8c;--c5:#3a3fb0;--pin:#0b4ea2;--blue:#0b4ea2;--food:#a50044;--bg:#f2f4fb;--land:#e8ebf5;--ink:#10142a;--mute:#5b6080;--line:#d3d7e8;--paper:#ffffff;--surf:#ffffff;--surf2:#eef1fa;--glass:rgba(255,255,255,.55);--glassb:rgba(255,255,255,.8)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--c1:#4d8fe8;--c2:#e0507f;--c3:#5b9bf0;--c4:#9b6bd8;--c5:#7f7fe6;--pin:#5b9bf0;--blue:#9cc2ff;--food:#e0507f;--bg:#0a0d1c;--land:#12152a;--ink:#eef0ff;--mute:#a9aecb;--line:#2a2f4d;--paper:#141832;--glass:rgba(255,255,255,.06);--glassb:rgba(255,255,255,.12);--surf:#151a33;--surf2:#1c2244}}
+:root[data-theme="dark"],:root:has(#dm:checked){--c1:#4d8fe8;--c2:#e0507f;--c3:#5b9bf0;--c4:#9b6bd8;--c5:#7f7fe6;--pin:#5b9bf0;--blue:#9cc2ff;--food:#e0507f;--bg:#0a0d1c;--land:#12152a;--ink:#eef0ff;--mute:#a9aecb;--line:#2a2f4d;--paper:#141832;--glass:rgba(255,255,255,.06);--glassb:rgba(255,255,255,.12);--surf:#151a33;--surf2:#1c2244}
+body::before{background:radial-gradient(48% 36% at 8% 6%,color-mix(in srgb,var(--c3) 24%,transparent),transparent 70%),radial-gradient(44% 36% at 94% 90%,color-mix(in srgb,var(--c2) 22%,transparent),transparent 70%),radial-gradient(36% 28% at 90% 16%,color-mix(in srgb,var(--c4) 16%,transparent),transparent 70%)!important}
+.bar i:nth-child(odd){background:var(--c3)!important}.bar i:nth-child(even){background:var(--c2)!important}
+.hero h1{background:linear-gradient(100deg,var(--c3),var(--c4) 55%,var(--c2))!important;-webkit-background-clip:text!important;background-clip:text!important}
+.blk h2.sec::after{background:linear-gradient(90deg,var(--c3),var(--c2))}
+.tabbar label::after{box-shadow:0 -24px 0 var(--c3),21px -12px 0 var(--c2),21px 12px 0 var(--c4),0 24px 0 var(--c3),-21px 12px 0 var(--c2),-21px -12px 0 var(--c4),12px -21px 0 #edbb00,-12px 21px 0 #edbb00}
+.wheelwrap::after{border-top-color:var(--c3);border-bottom-color:var(--c2)}
+.sbar i{background:linear-gradient(90deg,var(--c3),var(--c4))}
+.sbar i.over{background:linear-gradient(90deg,var(--c4),var(--c2))}
+.split{background:color-mix(in srgb,var(--c3) 10%,transparent)}
+.payer.b{background:color-mix(in srgb,var(--c2) 16%,transparent)}
+.say{background:color-mix(in srgb,var(--c3) 8%,transparent)}
+.say small{color:var(--c2)}
+.go.sm{background:color-mix(in srgb,var(--c3) 12%,transparent);color:var(--c3)!important}
+.live{border-color:color-mix(in srgb,var(--c3) 30%,transparent)}
+.live.calm .dot{background:var(--c4)}
+.live.alert{border-color:var(--c2);background:color-mix(in srgb,var(--c2) 10%,var(--surf))}
+.live.alert .lt b{color:var(--c2)}
+.live .dot{background:var(--c2)}
+.zones details[open]{border-color:color-mix(in srgb,var(--c3) 40%,transparent)!important}
+.zones summary::after{color:var(--c3)}
+.checklist small{color:var(--c3)}
+.dc small{color:var(--c2)}
+.step .t{color:var(--c3)}.air .t{color:var(--c2)}.walk .t{color:var(--c4)}
+.food .t{background:linear-gradient(135deg,var(--c3),var(--c2))!important;color:#fff!important}
+/* ===== sagoma dettagliata ===== */
+.sky{opacity:1!important;fill:none!important;margin:20px auto 4px!important;max-width:620px!important}
+.sky,.spsky{overflow:visible}
+.sky .sk-main *{fill:url(#skyg)}.spsky .sk-main *{fill:url(#skyg2)}
+.sky .sk-palm path{fill:url(#skyg);stroke:url(#skyg)}.spsky .sk-palm path{fill:url(#skyg2);stroke:url(#skyg2)}
+.sky .sk-palm path[fill=none],.spsky .sk-palm path[fill=none]{fill:none!important}
+.sky .sk-ground{fill:url(#skyg)}.spsky .sk-ground{fill:url(#skyg2)}
+.sk-back *{fill:var(--c4);opacity:.16}
+.sk-back circle{fill:var(--c2);opacity:.22}
+.sk-lines path{fill:none;stroke:var(--bg);stroke-width:.8;opacity:.55;stroke-linecap:round}
+.sk-sea path{fill:none;stroke:var(--c3);stroke-width:1.5;opacity:.45;stroke-linecap:round}
+.sky .sk-sea path{animation:wave 4s ease-in-out infinite alternate}
+.sky .sk-sea path+path{animation-delay:-2s}
+@keyframes wave{from{transform:translateX(-6px)}to{transform:translateX(6px)}}
+.sky .sk-palm{transform-box:fill-box;transform-origin:50% 100%;animation:sway 5s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-2deg)}to{transform:rotate(2deg)}}
+.sp-in{width:min(86vw,380px)!important}
+.sp-t{background:linear-gradient(100deg,var(--c3),var(--c2))!important;-webkit-background-clip:text!important;background-clip:text!important}
+/* ===== barra superiore nitida ===== */
+.appbar{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:none!important;isolation:isolate}
+.appbar::before{content:"";position:absolute;inset:0;z-index:-1;background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%)}
+.appt{background:none!important;-webkit-text-fill-color:currentColor!important;color:var(--c3)!important;font-weight:800;letter-spacing:-.01em}
+.appt b{color:var(--c2);font-weight:800}
+/* ===== web app su iPhone: altezza reale dello schermo ===== */
+html.sa,html.sa body{height:var(--apph)!important;min-height:var(--apph)!important}
+html.sa main{bottom:auto!important;height:var(--apph)}
+html.sa body::before,html.sa #splash{bottom:auto!important;height:var(--apph)}
+html.sa .tabbar{bottom:auto!important;top:calc(var(--apph) - var(--tb) - 10px - env(safe-area-inset-bottom,0px)*.45)}
+html.sa .blk{bottom:auto!important;height:calc(var(--apph) - 62px - env(safe-area-inset-top,0px) - var(--tb) - 22px - env(safe-area-inset-bottom,0px)*.45)}
+html.sa .map.fs{bottom:auto;height:var(--apph)}
+.spsky .sk-main{animation:none!important}
+.spsky .sk-main>g{transform-box:fill-box;transform-origin:50% 100%;animation:spRise .6s cubic-bezier(.3,1.5,.5,1) both;animation-delay:calc(var(--k,0)*90ms)}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
 <body>
-<div id="splash" aria-hidden="true"><div class="sp-in"><svg class="spsky" viewBox="0 0 400 80" aria-hidden="true"><defs><linearGradient id="skyg2" x1="0" x2="1"><stop offset="0" stop-color="#d7261e"/><stop offset="1" stop-color="#f5b800"/></linearGradient></defs><polygon points="22,80 22,40 29,8 36,40 36,80" style="--k:1"/><polygon points="40,80 40,30 48,0 56,30 56,80" style="--k:2"/><polygon points="60,80 60,38 67,10 74,38 74,80" style="--k:3"/><polygon points="78,80 78,34 85,4 92,34 92,80" style="--k:4"/><polygon points="96,80 96,44 103,16 110,44 110,80" style="--k:5"/><rect x="26" y="50" width="80" height="30" style="--k:6"/><path d="M200,80V60q40-30 80,0V80z" style="--k:7"/><rect x="316" y="26" width="26" height="54" rx="13" style="--k:8"/><rect x="352" y="52" width="8" height="28" style="--k:9"/><path d="M366,80V64l8-10 8 10v16z" style="--k:10"/><rect x="0" y="76" width="400" height="4" style="--k:11"/></svg><div class="sp-t">Barcellona</div><div class="sp-s">in un giorno · 28 ottobre</div></div></div>
+<div id="splash" aria-hidden="true"><div class="sp-in"><svg class="spsky" viewBox="0 0 400 124" aria-hidden="true"><defs><linearGradient id="skyg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--c3)"/><stop offset="1" style="stop-color:var(--c2)"/></linearGradient></defs>
+<g class="sk-back" style="--k:0"><circle cx="318" cy="38" r="17"/><path d="M0 106 Q34 74 66 70 Q84 68 98 78 Q130 98 170 92 Q210 86 250 98 L250 106 Z"/><path d="M60 70 v-8 h3 v-6 l1.5 -4 1.5 4 v6 h3 v8 z"/></g>
+<g class="sk-main">
+<g style="--k:1"><path d="M70 106 V82 Q70 78 74 78 H112 V106 Z"/><path d="M74 78 L76 44 Q78 36 80 44 L82 78Z M84 78 L87 34 Q89 26 91 34 L94 78Z M96 78 L99 30 Q101 22 103 30 L106 78Z M107 78 L109 42 Q111 34 113 42 L115 78Z"/><circle cx="78" cy="40" r="2.2"/><circle cx="89" cy="30" r="2.4"/><circle cx="101" cy="26" r="2.4"/><circle cx="111" cy="38" r="2.2"/></g>
+<g style="--k:2"><path d="M112 106 V74 H150 V106 Z"/><path d="M118 74 L124 14 Q126 8 128 14 L134 74Z"/><path d="M125.2 8 v-6 h1.6 v6z M123 4 h6 v1.6 h-6z"/><path d="M137 74 L141 36 Q143 30 145 36 L149 74Z"/><circle cx="143" cy="32" r="2.3"/></g>
+<g style="--k:3"><path d="M166 106 V82 H200 V106 H192 V95 A9 9 0 0 0 174 95 V106 Z"/><path d="M163 78 H203 V82 H163Z M170 74 h26 v4 h-26z"/></g>
+<g style="--k:4"><path d="M213 104 h8 v-8 h-2 V54 h-4 v42 h-2z"/><circle cx="217" cy="50" r="3"/><path d="M218 49 l6 -5 1 1 -6 5z"/><path d="M208 106 h18 v-3 h-18z"/></g>
+<g style="--k:5"><path d="M236 106 V64 Q236 28 251 28 Q266 28 266 64 V106 Z"/></g>
+<g style="--k:6"><path d="M346 106 L364 44 Q378 70 374 106 Z"/></g>
+</g>
+<g class="sk-lines"><path d="M241 46 Q251 36 261 46 M238 56 H264 M237 66 H265 M236 76 H266 M236 86 H266 M236 96 H266 M244 34 V106 M251 28 V106 M258 34 V106"/><path d="M76 86 v8 M84 86 v8 M92 86 v8 M100 86 v8 M118 84 v10 M126 84 v10 M134 84 v10 M142 84 v10"/><path d="M351 96 L366 52 M356 100 L368 64"/></g>
+<g class="sk-palm" style="--k:7"><path d="M292 106 Q290 86 296 70" fill="none" stroke-width="2.2"/><path d="M296 70 q-10 -2 -16 6 q8 -8 16 -6 q-2 -10 -10 -14 q8 2 10 14 q4 -10 14 -10 q-10 2 -14 10 q10 0 14 8 q-8 -6 -14 -8z"/><path d="M308 106 Q307 92 311 80" fill="none" stroke-width="1.8"/><path d="M311 80 q-8 -1 -12 5 q6 -6 12 -5 q-1 -8 -8 -11 q7 2 8 11 q3 -8 11 -8 q-8 2 -11 8 q8 0 11 6 q-6 -5 -11 -6z"/></g>
+<rect class="sk-ground" x="0" y="105" width="400" height="2.5" rx="1.2" style="--k:8"/>
+<g class="sk-sea" style="--k:9"><path d="M270 113 q7 -4 14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0"/><path d="M282 120 q7 -4 14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0"/></g>
+</svg><div class="sp-t">Barcellona</div><div class="sp-s">in un giorno · 28 ottobre</div></div></div>
 <input class="tabr" type="radio" name="tab" id="t-itinerario" checked><input class="tabr" type="radio" name="tab" id="t-mappa"><input class="tabr" type="radio" name="tab" id="t-mangiare"><input class="tabr" type="radio" name="tab" id="t-costi"><input class="tabr" type="radio" name="tab" id="t-assaggiare"><input class="tabr" type="radio" name="tab" id="t-consigli">
 <input class="dmin" type="checkbox" id="dm" aria-label="Modalità scura">
 <main>
@@ -552,7 +628,21 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <i style="flex:90;background:var(--c2)"></i><i style="flex:225;background:var(--c5)"></i><i style="flex:75;background:var(--c4)"></i><i style="flex:135;background:var(--c1)"></i><i style="flex:90;background:var(--c3)"></i><i style="flex:200;background:var(--c2)"></i>
 </div>
 <div class="ends"><span>7:45 atterraggio</span><span>21:20 decollo</span></div>
-<svg class="sky" viewBox="0 0 400 80" aria-hidden="true"><defs><linearGradient id="skyg" x1="0" x2="1"><stop offset="0" stop-color="#d7261e"/><stop offset="1" stop-color="#f5b800"/></linearGradient></defs><polygon points="22,80 22,40 29,8 36,40 36,80"/><polygon points="40,80 40,30 48,0 56,30 56,80"/><polygon points="60,80 60,38 67,10 74,38 74,80"/><polygon points="78,80 78,34 85,4 92,34 92,80"/><polygon points="96,80 96,44 103,16 110,44 110,80"/><rect x="26" y="50" width="80" height="30"/><path d="M200,80V60q40-30 80,0V80z"/><rect x="316" y="26" width="26" height="54" rx="13"/><rect x="352" y="52" width="8" height="28"/><path d="M366,80V64l8-10 8 10v16z"/><rect x="0" y="76" width="400" height="4"/></svg>
+<svg class="sky" viewBox="0 0 400 124" aria-hidden="true"><defs><linearGradient id="skyg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--c3)"/><stop offset="1" style="stop-color:var(--c2)"/></linearGradient></defs>
+<g class="sk-back" style="--k:0"><circle cx="318" cy="38" r="17"/><path d="M0 106 Q34 74 66 70 Q84 68 98 78 Q130 98 170 92 Q210 86 250 98 L250 106 Z"/><path d="M60 70 v-8 h3 v-6 l1.5 -4 1.5 4 v6 h3 v8 z"/></g>
+<g class="sk-main">
+<g style="--k:1"><path d="M70 106 V82 Q70 78 74 78 H112 V106 Z"/><path d="M74 78 L76 44 Q78 36 80 44 L82 78Z M84 78 L87 34 Q89 26 91 34 L94 78Z M96 78 L99 30 Q101 22 103 30 L106 78Z M107 78 L109 42 Q111 34 113 42 L115 78Z"/><circle cx="78" cy="40" r="2.2"/><circle cx="89" cy="30" r="2.4"/><circle cx="101" cy="26" r="2.4"/><circle cx="111" cy="38" r="2.2"/></g>
+<g style="--k:2"><path d="M112 106 V74 H150 V106 Z"/><path d="M118 74 L124 14 Q126 8 128 14 L134 74Z"/><path d="M125.2 8 v-6 h1.6 v6z M123 4 h6 v1.6 h-6z"/><path d="M137 74 L141 36 Q143 30 145 36 L149 74Z"/><circle cx="143" cy="32" r="2.3"/></g>
+<g style="--k:3"><path d="M166 106 V82 H200 V106 H192 V95 A9 9 0 0 0 174 95 V106 Z"/><path d="M163 78 H203 V82 H163Z M170 74 h26 v4 h-26z"/></g>
+<g style="--k:4"><path d="M213 104 h8 v-8 h-2 V54 h-4 v42 h-2z"/><circle cx="217" cy="50" r="3"/><path d="M218 49 l6 -5 1 1 -6 5z"/><path d="M208 106 h18 v-3 h-18z"/></g>
+<g style="--k:5"><path d="M236 106 V64 Q236 28 251 28 Q266 28 266 64 V106 Z"/></g>
+<g style="--k:6"><path d="M346 106 L364 44 Q378 70 374 106 Z"/></g>
+</g>
+<g class="sk-lines"><path d="M241 46 Q251 36 261 46 M238 56 H264 M237 66 H265 M236 76 H266 M236 86 H266 M236 96 H266 M244 34 V106 M251 28 V106 M258 34 V106"/><path d="M76 86 v8 M84 86 v8 M92 86 v8 M100 86 v8 M118 84 v10 M126 84 v10 M134 84 v10 M142 84 v10"/><path d="M351 96 L366 52 M356 100 L368 64"/></g>
+<g class="sk-palm" style="--k:7"><path d="M292 106 Q290 86 296 70" fill="none" stroke-width="2.2"/><path d="M296 70 q-10 -2 -16 6 q8 -8 16 -6 q-2 -10 -10 -14 q8 2 10 14 q4 -10 14 -10 q-10 2 -14 10 q10 0 14 8 q-8 -6 -14 -8z"/><path d="M308 106 Q307 92 311 80" fill="none" stroke-width="1.8"/><path d="M311 80 q-8 -1 -12 5 q6 -6 12 -5 q-1 -8 -8 -11 q7 2 8 11 q3 -8 11 -8 q-8 2 -11 8 q8 0 11 6 q-6 -5 -11 -6z"/></g>
+<rect class="sk-ground" x="0" y="105" width="400" height="2.5" rx="1.2" style="--k:8"/>
+<g class="sk-sea" style="--k:9"><path d="M270 113 q7 -4 14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0"/><path d="M282 120 q7 -4 14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0"/></g>
+</svg>
 </header>
 <div id="live" class="live" hidden></div>
 <div id="meteo" class="meteo"><span class="mi">🌤️</span><div><b>Meteo a fine ottobre</b><span>Di solito 20–21° di giorno e 14–15° la sera, con qualche giornata di pioggia. Le previsioni vere compaiono qui circa due settimane prima.</span></div></div>
@@ -856,7 +946,7 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <footer>Itinerario per due persone, 28/10/2026.</footer>
 </section>
 </main>
-<div class="appbar"><span class="appt">Barcellona · 28 ottobre</span></div>
+<div class="appbar"><span class="appt">Barcellona <b>· 28 ottobre</b></span></div>
 <label for="dm" class="iosw" title="Modalità chiara/scura"><span class="trk"><b class="ic sun" aria-hidden="true">☀️</b><b class="ic moon" aria-hidden="true">🌙</b><i class="knob"></i></span><span class="vh">Modalità scura</span></label>
 <nav class="tabbar" aria-label="Sezioni"><label for="t-itinerario"><b class="em em-spin" aria-hidden="true">🕗</b><span>Giorno</span></label><label for="t-mappa"><b class="em em-unfold" aria-hidden="true">🗺️</b><span>Mappa</span></label><label for="t-mangiare"><b class="em em-bob" aria-hidden="true">🥘</b><span>Mangiare</span></label><label for="t-costi"><b class="em em-flip" aria-hidden="true">💶</b><span>Costi</span></label><label for="t-assaggiare"><b class="em em-jiggle" aria-hidden="true">🍮</b><span>Assaggi</span></label><label for="t-consigli"><b class="em em-glow" aria-hidden="true">💡</b><span>Consigli</span></label></nav>
 <script>
@@ -1036,7 +1126,7 @@ document.body.classList.add("js-wheel");upd();
 (function(){
 var cb=document.getElementById("dm"),root=document.documentElement,mq=matchMedia("(prefers-color-scheme: dark)"),meta=document.querySelector('meta[name="theme-color"]');
 function cur(){var t=root.getAttribute("data-theme");return t?t==="dark":mq.matches}
-function sync(){cb.checked=cur();if(meta)meta.setAttribute("content",cb.checked?"#1a0f0c":"#d7261e")}
+function sync(){cb.checked=cur();if(meta)meta.setAttribute("content",cb.checked?"#0a0d1c":"#0b4ea2")}
 cb.addEventListener("change",function(){var t=cb.checked?"dark":"light";root.setAttribute("data-theme",t);try{localStorage.setItem("bcn-theme",t)}catch(e){}sync()});
 try{mq.addEventListener("change",function(){if(!root.getAttribute("data-theme"))sync()})}catch(e){}
 sync();
