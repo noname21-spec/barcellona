@@ -401,10 +401,73 @@ body:has(.dmin:focus-visible) .iosw .trk{outline:2px solid var(--c2);outline-off
 .blk{top:calc(58px + env(safe-area-inset-top,0px))!important}
 .tabbar{bottom:calc(env(safe-area-inset-bottom,0px)*.3 + 4px)!important}
 .blk{bottom:calc(var(--tb) + 14px + env(safe-area-inset-bottom,0px)*.3)!important}
+
+/* panot de flor */
+:root{--panot:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2256%22%20height%3D%2256%22%20viewBox%3D%220%200%2056%2056%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%221.4%22%3E%3Crect%20x%3D%22.7%22%20y%3D%22.7%22%20width%3D%2254.6%22%20height%3D%2254.6%22/%3E%3Cpath%20d%3D%22M28%2014c5%205%205%209%200%2014-5-5-5-9%200-14zM28%2042c-5-5-5-9%200-14%205%205%205%209%200%2014zM14%2028c5-5%209-5%2014%200-5%205-9%205-14%200zM42%2028c-5%205-9%205-14%200%205-5%209-5%2014%200z%22/%3E%3Ccircle%20cx%3D%2228%22%20cy%3D%2228%22%20r%3D%223%22/%3E%3Cpath%20d%3D%22M0%209a9%209%200%200%200%209-9M47%200a9%209%200%200%200%209%209M56%2047a9%209%200%200%200-9%209M9%2056a9%209%200%200%200-9-9%22/%3E%3Cpath%20d%3D%22M0%2018a18%2018%200%200%200%2018-18M38%200a18%2018%200%200%200%2018%2018M56%2038a18%2018%200%200%200-18%2018M18%2056a18%2018%200%200%200-18-18%22%20stroke-dasharray%3D%222%203%22/%3E%3C/g%3E%3C/svg%3E")}
+.hero{position:relative;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:-18px -18px 0;z-index:-1;background-image:var(--panot);background-size:42px;opacity:.07;-webkit-mask-image:linear-gradient(180deg,#000 30%,transparent);mask-image:linear-gradient(180deg,#000 30%,transparent);border-radius:20px 20px 0 0}
+:root[data-theme="dark"] .hero::before,:root:has(#dm:checked) .hero::before{filter:invert(1);opacity:.09}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero::before{filter:invert(1);opacity:.09}}
+.blk h2.sec::after{width:56px;height:6px;border-radius:3px}
+/* splash */
+#splash{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:var(--bg);animation:spOut .55s 1.75s ease forwards;pointer-events:none}
+#splash::before{content:"";position:absolute;inset:0;background-image:var(--panot);background-size:48px;opacity:.06;animation:spPan 2.4s linear both}
+:root[data-theme="dark"] #splash::before,:root:has(#dm:checked) #splash::before{filter:invert(1)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #splash::before{filter:invert(1)}}
+.sp-in{position:relative;text-align:center;width:min(78vw,340px)}
+.spsky{width:100%;height:auto;fill:url(#skyg2);overflow:visible}
+.spsky>*{transform-box:fill-box;transform-origin:50% 100%;animation:spRise .55s cubic-bezier(.3,1.5,.5,1) both;animation-delay:calc(var(--k,0)*70ms)}
+.sp-t{margin-top:14px;font:800 2.2rem/1 Manrope,system-ui,sans-serif;letter-spacing:-.03em;background:linear-gradient(100deg,var(--c3),var(--c2));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:spText .6s .75s cubic-bezier(.3,1.5,.5,1) both}
+.sp-s{margin-top:6px;color:var(--mute);font:600 .95rem Manrope,system-ui,sans-serif;animation:spText .6s .95s ease both}
+@keyframes spRise{from{transform:scaleY(0);opacity:0}to{transform:none;opacity:1}}
+@keyframes spText{from{opacity:0;transform:translateY(12px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes spOut{to{opacity:0;visibility:hidden;transform:scale(1.06)}}
+@keyframes spPan{from{background-position:0 0}to{background-position:48px 48px}}
+@media (prefers-reduced-motion:reduce){#splash{display:none}}
+/* banner dal vivo */
+.live{display:flex;gap:12px;align-items:center;margin:0 0 16px;padding:12px 14px;border-radius:16px;background:var(--surf);border:1px solid color-mix(in srgb,var(--c2) 35%,transparent);animation:popIn .6s cubic-bezier(.3,1.5,.5,1) both}
+.live[hidden]{display:none}
+.live .dot{flex:none;width:12px;height:12px;border-radius:50%;background:var(--c3);box-shadow:0 0 0 0 color-mix(in srgb,var(--c3) 60%,transparent);animation:pulse 1.8s ease-out infinite}
+.live .lt{display:flex;flex-direction:column;gap:2px;font-size:.92rem;line-height:1.35}
+.live .lt b{font-size:1rem}
+.live .lt span{color:var(--mute)}
+.live.alert{border-color:var(--c3);background:color-mix(in srgb,var(--c3) 12%,var(--surf))}
+.live.alert .lt b{color:var(--c3)}
+.live.calm .dot{background:var(--c4);animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--c3) 55%,transparent)}100%{box-shadow:0 0 0 12px transparent}}
+.step.now{position:relative}
+.step.now .body{box-shadow:inset 3px 0 0 var(--c3);padding-left:10px;border-radius:4px}
+.wi.now .wn::after{content:"ora";margin-left:8px;padding:1px 7px;border-radius:999px;background:var(--c3);color:#fff;font:700 .68rem Manrope,system-ui,sans-serif;vertical-align:2px}
+/* grafico costi */
+.donut{position:relative;width:min(220px,62vw);margin:4px auto 10px}
+.donut svg{display:block;width:100%;height:auto;transform:rotate(-90deg)}
+.arc-bg{fill:none;stroke:color-mix(in srgb,var(--ink) 8%,transparent);stroke-width:14}
+.arc{fill:none;stroke-width:14;stroke-linecap:round;stroke-dasharray:0 100;stroke-dashoffset:var(--off)}
+body:has(#t-costi:checked) .arc{animation:arcIn 1s cubic-bezier(.3,1.2,.5,1) both;animation-delay:calc(.25s + var(--i)*.22s)}
+html:not(.js) .arc,.arc.done{stroke-dasharray:var(--len) 100}
+@keyframes arcIn{from{stroke-dasharray:0 100}to{stroke-dasharray:var(--len) 100}}
+.dc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.dc b{font:800 1.6rem/1 Manrope,system-ui,sans-serif;letter-spacing:-.02em}
+.dc span{color:var(--mute);font-size:.85rem;margin-top:4px}
+.dc small{color:var(--c3);font-weight:700;font-size:.8rem;margin-top:2px}
+.dleg{list-style:none;margin:0 0 18px;padding:0;display:flex;justify-content:center;flex-wrap:wrap;gap:8px 16px;font-size:.88rem}
+.dleg li{display:flex;align-items:center;gap:6px}
+.dleg i{width:10px;height:10px;border-radius:3px}
+.dleg span{color:var(--mute)}
+/* meno vetro: superfici piene all'interno dei pannelli */
+:root{--surf:#fffaf6;--surf2:#fdf0e6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--surf:#231915;--surf2:#2b1e19}}
+:root[data-theme="dark"],:root:has(#dm:checked){--surf:#231915;--surf2:#2b1e19}
+.eat,#mgrid .eat,.blk .dish div,.zones details,.zones details[open],.wheelwrap,table,.blk .tips{background:var(--surf)!important;border:1px solid color-mix(in srgb,var(--ink) 9%,transparent)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.zones details[open]{border-color:color-mix(in srgb,var(--c2) 45%,transparent)!important}
+tr.grp td{background:var(--surf2)!important}
+.wheelwrap::before{display:none}
+.blk{-webkit-backdrop-filter:blur(26px) saturate(150%);backdrop-filter:blur(26px) saturate(150%)}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
 <body>
+<div id="splash" aria-hidden="true"><div class="sp-in"><svg class="spsky" viewBox="0 0 400 80" aria-hidden="true"><defs><linearGradient id="skyg2" x1="0" x2="1"><stop offset="0" stop-color="#d7261e"/><stop offset="1" stop-color="#f5b800"/></linearGradient></defs><polygon points="22,80 22,40 29,8 36,40 36,80" style="--k:1"/><polygon points="40,80 40,30 48,0 56,30 56,80" style="--k:2"/><polygon points="60,80 60,38 67,10 74,38 74,80" style="--k:3"/><polygon points="78,80 78,34 85,4 92,34 92,80" style="--k:4"/><polygon points="96,80 96,44 103,16 110,44 110,80" style="--k:5"/><rect x="26" y="50" width="80" height="30" style="--k:6"/><path d="M200,80V60q40-30 80,0V80z" style="--k:7"/><rect x="316" y="26" width="26" height="54" rx="13" style="--k:8"/><rect x="352" y="52" width="8" height="28" style="--k:9"/><path d="M366,80V64l8-10 8 10v16z" style="--k:10"/><rect x="0" y="76" width="400" height="4" style="--k:11"/></svg><div class="sp-t">Barcellona</div><div class="sp-s">in un giorno · 28 ottobre</div></div></div>
 <input class="tabr" type="radio" name="tab" id="t-itinerario" checked><input class="tabr" type="radio" name="tab" id="t-mappa"><input class="tabr" type="radio" name="tab" id="t-mangiare"><input class="tabr" type="radio" name="tab" id="t-costi"><input class="tabr" type="radio" name="tab" id="t-assaggiare"><input class="tabr" type="radio" name="tab" id="t-consigli">
 <input class="dmin" type="checkbox" id="dm" aria-label="Modalità scura">
 <main>
@@ -419,6 +482,7 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <div class="ends"><span>7:45 atterraggio</span><span>21:20 decollo</span></div>
 <svg class="sky" viewBox="0 0 400 80" aria-hidden="true"><defs><linearGradient id="skyg" x1="0" x2="1"><stop offset="0" stop-color="#d7261e"/><stop offset="1" stop-color="#f5b800"/></linearGradient></defs><polygon points="22,80 22,40 29,8 36,40 36,80"/><polygon points="40,80 40,30 48,0 56,30 56,80"/><polygon points="60,80 60,38 67,10 74,38 74,80"/><polygon points="78,80 78,34 85,4 92,34 92,80"/><polygon points="96,80 96,44 103,16 110,44 110,80"/><rect x="26" y="50" width="80" height="30"/><path d="M200,80V60q40-30 80,0V80z"/><rect x="316" y="26" width="26" height="54" rx="13"/><rect x="352" y="52" width="8" height="28"/><path d="M366,80V64l8-10 8 10v16z"/><rect x="0" y="76" width="400" height="4"/></svg>
 </header>
+<div id="live" class="live" hidden></div>
 <h2 class="sec">Itinerario</h2>
 <ol>
 <li class="step air"><div class="t">7:45</div><div class="body">
@@ -609,6 +673,7 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </section>
 <section class="blk" id="costi">
 <h2 class="sec">Costi stimati</h2>
+<div class="donut"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="46" class="arc-bg"/><circle class="arc" cx="60" cy="60" r="46" pathLength="100" stroke="var(--c3)" style="--len:25.12;--off:0.00;--i:0"/><circle class="arc" cx="60" cy="60" r="46" pathLength="100" stroke="var(--c4)" style="--len:6.32;--off:-26.32;--i:1"/><circle class="arc" cx="60" cy="60" r="46" pathLength="100" stroke="var(--c2)" style="--len:64.97;--off:-33.83;--i:2"/></svg><div class="dc"><b>66,50 €</b><span>a persona</span><small>133 € in due</small></div></div><ul class="dleg"><li><i style="background:var(--c3)"></i><span>Trasporti</span><b>17,50 €</b></li><li><i style="background:var(--c4)"></i><span>Attrazioni</span><b>5 €</b></li><li><i style="background:var(--c2)"></i><span>Cibo</span><b>44 €</b></li></ul>
 <table>
 <tr><th>Voce</th><th>A persona</th><th>In due</th></tr>
 <tr class="grp"><td colspan="3">Trasporti</td></tr>
@@ -874,6 +939,62 @@ function sync(){cb.checked=cur();if(meta)meta.setAttribute("content",cb.checked?
 cb.addEventListener("change",function(){var t=cb.checked?"dark":"light";root.setAttribute("data-theme",t);try{localStorage.setItem("bcn-theme",t)}catch(e){}sync()});
 try{mq.addEventListener("change",function(){if(!root.getAttribute("data-theme"))sync()})}catch(e){}
 sync();
+})();
+</script>
+<script>
+setTimeout(function(){var sp=document.getElementById("splash");if(sp)sp.style.display="none"},3200);
+(function(){
+var steps=[].slice.call(document.querySelectorAll("#itinerario .step")),live=document.getElementById("live");
+if(!steps.length||!live)return;
+var T=steps.map(function(li){var t=li.querySelector(".t").textContent.trim().split(":");return {m:+t[0]*60+ +t[1],t:li.querySelector(".t").textContent.trim(),n:li.querySelector("h2").textContent.trim(),li:li}});
+var DEP=17*60+45,last=-1,first=true;
+function now(){
+var f=new Intl.DateTimeFormat("it-IT",{timeZone:"Europe/Madrid",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date()),o={};
+f.forEach(function(p){o[p.type]=p.value});return {d:o.year+"-"+o.month+"-"+o.day,m:(+o.hour%24)*60+ +o.minute};
+}
+function fm(x){var h=Math.floor(x/60),m=x%60;return h?(h+" h"+(m?" "+m+" min":"")):m+" min"}
+function set(cls,b,sp){live.className="live "+cls;live.innerHTML='<i class="dot"></i><div class="lt"><b></b><span></span></div>';live.querySelector("b").textContent=b;live.querySelector("span").textContent=sp;live.hidden=false}
+function tick(){
+var n=now(),day="2026-10-28";
+if(n.d<day){var d=Math.round((Date.UTC(2026,9,28)-Date.UTC(+n.d.slice(0,4),+n.d.slice(5,7)-1,+n.d.slice(8,10)))/864e5);set("calm",d===1?"Domani si parte! ✈️":"Mancano "+d+" giorni al viaggio","Atterraggio a El Prat alle 7:45. Ricorda il biglietto Aeroport.");return}
+if(n.d>day){set("calm","Com'è andata a Barcellona? 🇪🇸","L'itinerario resta qui come ricordo.");return}
+var i=-1;T.forEach(function(s,k){if(n.m>=s.m)i=k});
+steps.forEach(function(li,k){li.classList.toggle("now",k===i)});
+[].forEach.call(document.querySelectorAll(".wi"),function(w,k){w.classList.toggle("now",k===i)});
+if(i!==last){last=i;var wi=document.querySelectorAll(".wi")[Math.max(0,i)];if(wi&&first){first=false;try{wi.click()}catch(e){}}}
+if(n.m>=DEP+70){set("calm","Buon volo! ✈️","Il decollo è alle 21:20.");return}
+if(n.m>=DEP){set("alert","È ora di andare in aeroporto","Metro L3 da Catalunya, poi L9 Sud. Decollo alle 21:20.");return}
+if(DEP-n.m<=60){set("alert","Parti per l'aeroporto tra "+fm(DEP-n.m),"Da Plaça Catalunya alle 17:45: L3 fino a Zona Universitària, poi L9 Sud.");return}
+var nx=T[i+1];
+if(i<0){set("","Prima tappa: "+T[0].n,"Alle "+T[0].t+", tra "+fm(T[0].m-n.m));return}
+set("","Ora: "+T[i].n,nx?"Prossima: "+nx.n+" tra "+fm(nx.m-n.m):"");
+}
+tick();setInterval(tick,30000);
+})();
+(function(){
+var svg=document.querySelector(".stage>svg"),tab=document.getElementById("t-mappa");if(!svg||!tab||!svg.animate)return;
+var groups=[].slice.call(svg.querySelectorAll("g")).filter(function(g){return g.querySelector(":scope>polyline.ln")});
+function draw(){
+var rw=svg.getBoundingClientRect().width;if(!rw)return;
+var vb=svg.viewBox.baseVal,u=vb.width/rw;
+groups.forEach(function(g,gi){
+[].forEach.call(g.querySelectorAll("polyline.ln"),function(pl){
+var dashed=pl.getAttribute("stroke-dasharray"),delay=200+gi*260;
+if(dashed){pl.animate([{opacity:0},{opacity:1}],{duration:500,delay:delay,fill:"backwards",easing:"ease-out"});return}
+var L=pl.getTotalLength(),w=parseFloat(pl.getAttribute("stroke-width"))||5;
+pl.setAttribute("vector-effect","none");pl.style.strokeWidth=(w*u)+"px";pl.style.strokeDasharray=L+" "+L;
+var a=pl.animate([{strokeDashoffset:L},{strokeDashoffset:0}],{duration:700,delay:delay,fill:"backwards",easing:"cubic-bezier(.5,0,.3,1)"});
+a.onfinish=function(){pl.setAttribute("vector-effect","non-scaling-stroke");pl.style.strokeWidth="";pl.style.strokeDasharray=""};
+});
+});
+}
+tab.addEventListener("change",function(){if(tab.checked)setTimeout(draw,120)});
+if(tab.checked)setTimeout(draw,300);
+})();
+(function(){
+var arcs=document.querySelectorAll(".arc");
+document.getElementById("t-costi").addEventListener("change",function(){[].forEach.call(arcs,function(a){a.classList.remove("done")})});
+[].forEach.call(arcs,function(a){a.addEventListener("animationend",function(){a.classList.add("done")})});
 })();
 </script>
 </body>
