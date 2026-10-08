@@ -633,6 +633,13 @@ html.sa .map.fs{bottom:auto;height:var(--apph)}
 .voli input:focus{outline:2px solid var(--c2);outline-offset:1px}
 .vst{grid-column:1/-1;justify-self:start;font-size:.82rem;font-weight:700;color:var(--c3);text-decoration:none}
 .vst[hidden]{display:none}
+.voli fieldset{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;align-items:end}
+.voli label{min-width:0}
+.voli input{display:block;box-sizing:border-box;height:44px;line-height:normal;margin:0}
+.voli input[type=time]{-webkit-appearance:none;appearance:none;width:100%;max-width:100%;min-width:0;text-align:left;padding:0 10px;display:flex;align-items:center}
+.voli input[type=time]::-webkit-date-and-time-value{text-align:left;margin:0;min-height:1.2em}
+.voli input[type=time]::-webkit-calendar-picker-indicator{margin-left:auto;opacity:.55}
+.voli input[type=time]:invalid,.voli input[type=time]:placeholder-shown{color:var(--mute)}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
