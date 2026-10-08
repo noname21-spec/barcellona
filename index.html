@@ -307,6 +307,16 @@ body:has(#t-itinerario:checked) #itinerario>*,body:has(#t-mappa:checked) #mappa>
 .blk>*:nth-child(2){animation-delay:.06s!important}.blk>*:nth-child(3){animation-delay:.12s!important}.blk>*:nth-child(4){animation-delay:.18s!important}.blk>*:nth-child(5){animation-delay:.24s!important}.blk>*:nth-child(n+6){animation-delay:.3s!important}
 @keyframes panIn{0%{opacity:0;transform:translateY(14px);filter:blur(4px)}100%{opacity:1;transform:none;filter:none}}
 @media (prefers-reduced-motion:reduce){.tabbar label::before,.tabbar label::after,.tabbar span,.blk>*{animation:none!important}}
+.zones{display:flex;flex-direction:column;gap:10px}
+.zones details{border-radius:14px;background:color-mix(in srgb,var(--c3) 8%,transparent);border:1px solid color-mix(in srgb,var(--c3) 22%,transparent);overflow:hidden;transition:background .3s}
+.zones details[open]{background:color-mix(in srgb,var(--c3) 12%,transparent);border-color:color-mix(in srgb,var(--c2) 35%,transparent)}
+.zones summary{cursor:pointer;list-style:none;padding:12px 16px;font-weight:700;display:flex;align-items:center;justify-content:space-between}
+.zones summary::-webkit-details-marker{display:none}
+.zones summary::after{content:"+";font-size:1.2rem;color:var(--c2);transition:transform .3s}
+.zones details[open] summary::after{transform:rotate(45deg)}
+.zones ul{margin:0;padding:0 16px 12px 34px}
+.zones li{margin:7px 0}
+.zones details[open] ul{animation:fadeUp .35s ease both}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
@@ -337,6 +347,7 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <p>Appena usciti dalla metro a Plaça Catalunya, a pochi passi.</p>
 <div class="eat"><h3>Dove mangiare</h3><ul>
 <li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona">Can Plaça</a></b> – 4,7 ★. Su Rambla de Catalunya, il viale elegante parallelo alla Rambla turistica, a un passo da Plaça Catalunya. Mercoledì apre alle 7:30. Per stare sotto i 15 € resta su caffè e dolce o bocadillo: il listino non l'ho visto.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Vilar%C3%B3%20Comte%20Borrell%2061%20Barcelona">Can Vilaró</a></b> – 4,4 ★. Bar di mercato a Sant Antoni, fascia di prezzo più bassa: colazione catalana al bancone di marmo, anche «di forchetta». Mercoledì 8:30–15:30. Circa 15 minuti a piedi da Plaça Catalunya.</li>
 </ul></div>
 </div></li>
 
@@ -358,6 +369,7 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Restaurant%20Can%20Ros%20Barceloneta%20Barcelona">Can Ros</a></b> – 4,4 ★. Locale di quartiere a Barceloneta specializzato in risi: l'arròs negre costa circa 17,50 € a testa, la paella di pesce poco di più. Mercoledì 13:00–15:30. Dal Born sono circa 15 minuti a piedi.</li>
 <li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Sol%C3%A9%20Sant%20Carles%204%20Barcelona">Can Solé</a></b> – 4,3 ★. Aperto dal 1903, tra i risi più rinomati della zona. Costa di più: circa 25–35 € a testa per la paella di pesce. Mercoledì 13:00–16:00.</li>
 <li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona">Can Plaça</a></b> – 4,7 ★. Se non vuoi spostarti: sta a Plaça Catalunya e le recensioni lodano la paella di pesce. Non ho trovato il prezzo.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Maj%C3%B3%20Barceloneta%20Barcelona">Can Majó</a></b> – 4,4 ★. Paella e fideuà sul lungomare di Barceloneta, con terrazza sul mare. Più caro: i piatti principali sono intorno ai 21 €. Mercoledì 13:00–22:30.</li>
 </ul></div>
 </div></li>
 
@@ -378,6 +390,8 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <p>Mangia qui, non in aeroporto: i prezzi sono più bassi e il cibo migliore. Tieni un occhio sull'orologio.</p>
 <div class="eat"><h3>Dove mangiare</h3><ul>
 <li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bar%20Bodega%20Can%20Ros%20Roger%20de%20Flor%20303%20Barcelona">Bar Bodega Can Ros</a></b> – 4,4 ★. Tapas e panini da quartiere a Gràcia, fascia economica (meno di 20 € a testa per il Comune di Barcellona). Con un panino e una tapa dovresti stare sotto i 15 €, ma non ho visto il listino. Per tornare in centro: metro L4 da Joanic fino a Urquinaona, poi pochi minuti a piedi fino a Plaça Catalunya. Mercoledì aperto tutto il giorno.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Codina%20Torrent%20de%20l%27Olla%2020%20Barcelona">Can Codina</a></b> – 4,3 ★. Bar di tapas a Gràcia aperto dal 1931, tavoli di marmo e birre artigianali. Fascia media: con due o tre tapas resti intorno ai 15 €. Mercoledì 12:00–24:00. Circa 10 minuti a piedi da Passeig de Gràcia.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Paixano%20Reina%20Cristina%207%20Barcelona">Can Paixano</a></b> – 4,6 ★. Il bar del cava, in piedi: panino e un paio di calici con circa 8 €. Mercoledì 12:00–22:00. È vicino al Born: da Passeig de Gràcia ci vogliono circa 15 minuti in metro (L4 fino a Barceloneta).</li>
 </ul></div>
 </div></li>
 
@@ -450,6 +464,10 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <g class="pin fd det" tabindex="0" role="button" aria-label="Can Ros" data-i="8"><circle cx="947" cy="448" r="22"/><text x="947" y="456">P</text></g>
 <g class="pin fd det" tabindex="0" role="button" aria-label="Can Solé" data-i="9"><circle cx="938" cy="430" r="22"/><text x="938" y="438">P</text></g>
 <g class="pin fd det" tabindex="0" role="button" aria-label="Bar Bodega Can Ros" data-i="10"><circle cx="739" cy="143" r="22"/><text x="739" y="151">D</text></g>
+<g class="pin fd det" tabindex="0" role="button" aria-label="Can Vilaró" data-i="11"><circle cx="718" cy="441" r="22"/><text x="718" y="449">C</text></g>
+<g class="pin fd det" tabindex="0" role="button" aria-label="Can Majó" data-i="12"><circle cx="957" cy="443" r="22"/><text x="957" y="451">P</text></g>
+<g class="pin fd det" tabindex="0" role="button" aria-label="Can Codina" data-i="13"><circle cx="712" cy="209" r="22"/><text x="712" y="217">D</text></g>
+<g class="pin fd det" tabindex="0" role="button" aria-label="Can Paixano" data-i="14"><circle cx="897" cy="398" r="22"/><text x="897" y="406">D</text></g>
 </svg>
 <div class="mc mc-tl"><button id="tg" class="sw" type="button" role="switch" aria-checked="false" aria-label="Mostra i locali dove mangiare"><i></i><span>Locali</span></button></div>
 <div class="mc mc-tr">
@@ -489,14 +507,18 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <div id="mgrid">
 <div class="eat"><h3>9:15 · Colazione in centro</h3><ul>
 <li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona">Can Plaça</a></b> – 4,7 ★. Su Rambla de Catalunya, il viale elegante parallelo alla Rambla turistica, a un passo da Plaça Catalunya. Mercoledì apre alle 7:30. Per stare sotto i 15 € resta su caffè e dolce o bocadillo: il listino non l'ho visto.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Vilar%C3%B3%20Comte%20Borrell%2061%20Barcelona">Can Vilaró</a></b> – 4,4 ★. Bar di mercato a Sant Antoni, fascia di prezzo più bassa: colazione catalana al bancone di marmo, anche «di forchetta». Mercoledì 8:30–15:30. Circa 15 minuti a piedi da Plaça Catalunya.</li>
 </ul></div>
 <div class="eat"><h3>13:00 · Pranzo con paella</h3><ul>
 <li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Restaurant%20Can%20Ros%20Barceloneta%20Barcelona">Can Ros</a></b> – 4,4 ★. Locale di quartiere a Barceloneta specializzato in risi: l'arròs negre costa circa 17,50 € a testa, la paella di pesce poco di più. Mercoledì 13:00–15:30. Dal Born sono circa 15 minuti a piedi.</li>
 <li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Sol%C3%A9%20Sant%20Carles%204%20Barcelona">Can Solé</a></b> – 4,3 ★. Aperto dal 1903, tra i risi più rinomati della zona. Costa di più: circa 25–35 € a testa per la paella di pesce. Mercoledì 13:00–16:00.</li>
 <li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona">Can Plaça</a></b> – 4,7 ★. Se non vuoi spostarti: sta a Plaça Catalunya e le recensioni lodano la paella di pesce. Non ho trovato il prezzo.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Maj%C3%B3%20Barceloneta%20Barcelona">Can Majó</a></b> – 4,4 ★. Paella e fideuà sul lungomare di Barceloneta, con terrazza sul mare. Più caro: i piatti principali sono intorno ai 21 €. Mercoledì 13:00–22:30.</li>
 </ul></div>
 <div class="eat"><h3>17:00 · Cena anticipata</h3><ul>
 <li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bar%20Bodega%20Can%20Ros%20Roger%20de%20Flor%20303%20Barcelona">Bar Bodega Can Ros</a></b> – 4,4 ★. Tapas e panini da quartiere a Gràcia, fascia economica (meno di 20 € a testa per il Comune di Barcellona). Con un panino e una tapa dovresti stare sotto i 15 €, ma non ho visto il listino. Per tornare in centro: metro L4 da Joanic fino a Urquinaona, poi pochi minuti a piedi fino a Plaça Catalunya. Mercoledì aperto tutto il giorno.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Codina%20Torrent%20de%20l%27Olla%2020%20Barcelona">Can Codina</a></b> – 4,3 ★. Bar di tapas a Gràcia aperto dal 1931, tavoli di marmo e birre artigianali. Fascia media: con due o tre tapas resti intorno ai 15 €. Mercoledì 12:00–24:00. Circa 10 minuti a piedi da Passeig de Gràcia.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Paixano%20Reina%20Cristina%207%20Barcelona">Can Paixano</a></b> – 4,6 ★. Il bar del cava, in piedi: panino e un paio di calici con circa 8 €. Mercoledì 12:00–22:00. È vicino al Born: da Passeig de Gràcia ci vogliono circa 15 minuti in metro (L4 fino a Barceloneta).</li>
 </ul></div>
 </div>
 </section>
@@ -522,21 +544,64 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <section class="blk" id="assaggiare">
 <h2 class="sec">Da assaggiare</h2>
 <div class="dish">
-<div><b>Paella e risi</b><span class="dd">per almeno due persone, ordinala subito</span><ul class="pl"><li><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Restaurant%20Can%20Ros%20Barceloneta%20Barcelona">Can Ros</a><small>4,4 ★ · Barceloneta · arròs negre da circa 17,50 €</small></li><li><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Sol%C3%A9%20Sant%20Carles%204%20Barcelona">Can Solé</a><small>4,3 ★ · Barceloneta · circa 25–35 €</small></li><li><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona">Can Plaça</a><small>4,7 ★ · Plaça Catalunya</small></li></ul></div>
+<div><b>Paella e risi</b><span class="dd">per almeno due persone, ordinala subito</span><ul class="pl"><li><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Restaurant%20Can%20Ros%20Barceloneta%20Barcelona">Can Ros</a><small>4,4 ★ · Barceloneta · arròs negre da circa 17,50 €</small></li><li><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Sol%C3%A9%20Sant%20Carles%204%20Barcelona">Can Solé</a><small>4,3 ★ · Barceloneta · circa 25–35 €</small></li><li><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Maj%C3%B3%20Barceloneta%20Barcelona">Can Majó</a><small>4,4 ★ · Barceloneta, sul mare · piatti intorno ai 21 €</small></li><li><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona">Can Plaça</a><small>4,7 ★ · Plaça Catalunya</small></li></ul></div>
 <div><b>Pa amb tomàquet</b><span class="dd">pane con pomodoro e olio</span><ul class="pl"><li><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bar%20Bodega%20Can%20Ros%20Roger%20de%20Flor%20303%20Barcelona">Bar Bodega Can Ros</a><small>4,4 ★ · Gràcia · fascia economica</small></li></ul></div>
-<div><b>Tortilla di carciofi e polpette</b><span class="dd">anche nel panino</span><ul class="pl"><li><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bar%20Bodega%20Can%20Ros%20Roger%20de%20Flor%20303%20Barcelona">Bar Bodega Can Ros</a><small>4,4 ★ · Gràcia</small></li></ul></div>
+<div><b>Tortilla di carciofi e polpette</b><span class="dd">anche nel panino</span><ul class="pl"><li><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Codina%20Torrent%20de%20l%27Olla%2020%20Barcelona">Can Codina</a><small>4,3 ★ · Gràcia · tapas dal 1931</small></li><li><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bar%20Bodega%20Can%20Ros%20Roger%20de%20Flor%20303%20Barcelona">Bar Bodega Can Ros</a><small>4,4 ★ · Gràcia</small></li></ul></div>
 </div>
 <p class="meta">Valutazioni e orari di mercoledì da Google Maps; i prezzi sono indicativi, da guide e recensioni. Colazione e cena restano sotto i 15 € a persona, la paella costa di più.</p>
 
 </section>
 <section class="blk" id="consigli">
-<h2 class="sec">Prima di partire</h2>
-<ul class="tips">
-<li>Prenota la Sagrada Família per la fascia delle 15:00.</li>
-<li>Italia e Spagna hanno lo stesso fuso: nessuna modifica all'orologio.</li>
-<li>Attenzione ai borseggiatori su Rambla, metro e Sagrada Família.</li>
-<li>Controlla orari di apertura e prezzi dei locali qualche giorno prima: possono cambiare.</li>
-</ul>
+<h2 class="sec">Consigli per zona</h2>
+<div class="zones">
+<details open><summary>✈️ Aeroporto e metro</summary><ul>
+<li>Il biglietto per la L9 Sud è il «Bitllet Aeroport»: lo compri alle macchinette della stazione in aeroporto. Il T-casual non vale per uscire dalle stazioni dell'aeroporto.</li>
+<li>Al ritorno, l'aeroporto chiede il biglietto anche all'uscita dalla metro: tienilo a portata di mano.</li>
+<li>Controlla da quale terminal parte il volo: la L9 Sud ferma prima al T2, poi al T1.</li>
+<li>💧 Passa i controlli con la borraccia vuota e riempila in città: è più economico delle bottigliette in aeroporto.</li>
+</ul></details>
+<details><summary>🏛️ Plaça Catalunya e Rambla</summary><ul>
+<li>💧 In cima alla Rambla c'è la Font de Canaletes: la tradizione dice che chi ne beve torna a Barcellona.</li>
+<li>È la zona con più borseggiatori: zaino davanti, telefono mai sul tavolo dei bar all'aperto.</li>
+<li>Sulla Rambla i locali costano di più: per mangiare spostati di una via, per esempio su Rambla de Catalunya.</li>
+</ul></details>
+<details><summary>⛪ Barri Gòtic</summary><ul>
+<li>La Cattedrale chiede spalle e ginocchia coperte: porta una felpa leggera.</li>
+<li>Plaça de Sant Felip Neri è un angolo tranquillo a due passi dalla Cattedrale, buono per una pausa.</li>
+<li>💧 Nelle piazze del quartiere trovi spesso fontanelle in ghisa: controlla la più vicina sull'app Fonts BCN.</li>
+</ul></details>
+<details><summary>🎶 El Born</summary><ul>
+<li>Santa Maria del Mar si visita con un ingresso a pagamento (circa 5 €). Il Mercat del Born, ex mercato coperto, è gratis.</li>
+<li>Le vie strette tra Carrer de Montcada e il Passeig del Born sono le più belle per passeggiare.</li>
+<li>💧 Il Parc de la Ciutadella, a 5 minuti, è un buon posto per una pausa e per cercare una fontanella sull'app.</li>
+</ul></details>
+<details><summary>🥘 Barceloneta e paella</summary><ul>
+<li>La paella è un piatto da pranzo e si cucina al momento: ordina appena ti siedi, ci vogliono circa 30 minuti.</li>
+<li>Diffida dei locali con foto delle paelle esposte e camerieri che ti chiamano dalla strada.</li>
+<li>Dopo pranzo bastano 5 minuti per arrivare in spiaggia.</li>
+<li>💧 Prima di sederti a pranzo riempi la borraccia: nei locali l'acqua in bottiglia si paga.</li>
+</ul></details>
+<details><summary>🏗️ Sagrada Família</summary><ul>
+<li>Senza biglietto la si gode benissimo da fuori: la Facciata della Natività è la più dettagliata.</li>
+<li>Per la foto intera vai nella Plaça de Gaudí, dall'altra parte del laghetto.</li>
+<li>Anche qui attenzione ai borseggiatori, soprattutto tra la folla davanti all'ingresso.</li>
+<li>💧 Le due piazze attorno alla basilica hanno panchine all'ombra: buone per una pausa. Per l'acqua, cerca la fontanella più vicina sull'app.</li>
+</ul></details>
+<details><summary>🏠 Passeig de Gràcia</summary><ul>
+<li>Casa Batlló e La Pedrera si vedono bene da fuori. Guarda anche le panchine-lampione in ceramica lungo il viale.</li>
+<li>Per mangiare spendendo poco spostati nelle vie laterali o verso Gràcia.</li>
+<li>Da qui all'aeroporto calcola circa un'ora: parti da Plaça Catalunya entro le 17:45.</li>
+</ul></details>
+<details><summary>💧 Acqua e fontanelle</summary><ul>
+<li>L'acqua delle fontanelle pubbliche è potabile: porta una borraccia e risparmi sulle bottigliette.</li>
+<li>Per trovare la fontanella più vicina c'è l'app ufficiale del Comune, «Fonts BCN».</li>
+<li>Le fontane decorative non sono da bere: usa solo quelle con il rubinetto o il pulsante.</li>
+</ul></details>
+<details><summary>📋 In generale</summary><ul>
+<li>Italia e Spagna hanno lo stesso fuso orario.</li>
+<li>Controlla orari e prezzi dei locali qualche giorno prima: possono cambiare.</li>
+</ul></details>
+</div>
 <footer>Itinerario per due persone, 28/10/2026.</footer>
 </section>
 </main>
@@ -557,7 +622,11 @@ var D=[
 ["Can Plaça","Colazione: su Rambla de Catalunya, a un passo da Plaça Catalunya. 4,7 stelle, aperto dalle 7:30. Resta su caffè e dolce o bocadillo per stare sotto i 15 €.","Can Plaça Rambla de Catalunya 8 Barcelona"],
 ["Can Ros","Pranzo con paella: risi e paella a Barceloneta. 4,4 stelle, arròs negre circa 17,50 € a testa, paella di pesce poco di più. Mercoledì 13:00–15:30.","Restaurant Can Ros Barceloneta Barcelona"],
 ["Can Solé","Pranzo con paella: aperto dal 1903, tra i risi più rinomati. 4,3 stelle, circa 25–35 € a testa. Mercoledì 13:00–16:00.","Can Solé Sant Carles 4 Barcelona"],
-["Bar Bodega Can Ros","Cena anticipata: tapas e panini da quartiere a Gràcia. 4,4 stelle, fascia economica. Metro L4 da Joanic per tornare in centro.","Bar Bodega Can Ros Roger de Flor 303 Barcelona"]
+["Bar Bodega Can Ros","Cena anticipata: tapas e panini da quartiere a Gràcia. 4,4 stelle, fascia economica. Metro L4 da Joanic per tornare in centro.","Bar Bodega Can Ros Roger de Flor 303 Barcelona"],
+["Can Vilaró","Colazione: bar di mercato a Sant Antoni, fascia di prezzo più bassa. 4,4 stelle, mercoledì 8:30–15:30.","Can Vilaró Comte Borrell 61 Barcelona"],
+["Can Majó","Pranzo con paella sul lungomare di Barceloneta. 4,4 stelle, piatti intorno ai 21 €. Mercoledì 13:00–22:30.","Can Majó Barceloneta Barcelona"],
+["Can Codina","Cena anticipata: tapas a Gràcia dal 1931. 4,3 stelle, circa 15 € con due o tre tapas. Mercoledì 12:00–24:00.","Can Codina Torrent de l'Olla 20 Barcelona"],
+["Can Paixano","Cena anticipata: bar del cava in piedi vicino al Born. 4,6 stelle, circa 8 €. Mercoledì 12:00–22:00.","Can Paixano Reina Cristina 7 Barcelona"]
 ];
 var F=[[770,330,"C"],[947,448,"P"],[938,430,"P"],[739,143,"D"]];
 var svg=document.querySelector(".stage>svg"),mapEl=document.querySelector(".stage"),info=document.getElementById("info"),sc=document.getElementById("sc");
