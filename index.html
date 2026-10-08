@@ -293,8 +293,6 @@ tr.tot td{border-top:2px solid var(--c2)}
 .tabbar label:active{transform:scale(.9)}
 .tabbar label::before{background:linear-gradient(135deg,var(--c3),var(--c2))}
 .tabbar label::after{content:"";position:absolute;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:2px solid var(--c2);opacity:0;pointer-events:none}
-body:has(#t-itinerario:checked) label[for=t-itinerario]::before,body:has(#t-mappa:checked) label[for=t-mappa]::before,body:has(#t-mangiare:checked) label[for=t-mangiare]::before,body:has(#t-costi:checked) label[for=t-costi]::before,body:has(#t-assaggiare:checked) label[for=t-assaggiare]::before,body:has(#t-consigli:checked) label[for=t-consigli]::before{animation:tabPop .5s cubic-bezier(.3,1.5,.5,1) both}
-body:has(#t-itinerario:checked) label[for=t-itinerario]::after,body:has(#t-mappa:checked) label[for=t-mappa]::after,body:has(#t-mangiare:checked) label[for=t-mangiare]::after,body:has(#t-costi:checked) label[for=t-costi]::after,body:has(#t-assaggiare:checked) label[for=t-assaggiare]::after,body:has(#t-consigli:checked) label[for=t-consigli]::after{animation:tabRing .7s ease-out both}
 body:has(#t-itinerario:checked) label[for=t-itinerario] span,body:has(#t-mappa:checked) label[for=t-mappa] span,body:has(#t-mangiare:checked) label[for=t-mangiare] span,body:has(#t-costi:checked) label[for=t-costi] span,body:has(#t-assaggiare:checked) label[for=t-assaggiare] span,body:has(#t-consigli:checked) label[for=t-consigli] span{animation:tabTxt .45s .08s ease both}
 body:has(#t-itinerario:checked) label[for=t-itinerario],body:has(#t-mappa:checked) label[for=t-mappa],body:has(#t-mangiare:checked) label[for=t-mangiare],body:has(#t-costi:checked) label[for=t-costi],body:has(#t-assaggiare:checked) label[for=t-assaggiare],body:has(#t-consigli:checked) label[for=t-consigli]{transform:translateY(-3px)}
 @keyframes tabPop{0%{opacity:0;transform:scale(.4)}100%{opacity:1;transform:scale(1)}}
@@ -303,7 +301,6 @@ body:has(#t-itinerario:checked) label[for=t-itinerario],body:has(#t-mappa:checke
 .tabbar{transition:box-shadow .4s ease}
 body:has(.tabr:checked) .tabbar{box-shadow:0 10px 30px color-mix(in srgb,var(--c3) 18%,rgba(0,0,0,.08)),0 2px 0 color-mix(in srgb,var(--c2) 25%,transparent),inset 0 1px 0 rgba(255,255,255,.4)}
 /* ingresso a cascata del contenuto */
-body:has(#t-itinerario:checked) #itinerario>*,body:has(#t-mappa:checked) #mappa>*,body:has(#t-mangiare:checked) #mangiare>*,body:has(#t-costi:checked) #costi>*,body:has(#t-assaggiare:checked) #assaggiare>*,body:has(#t-consigli:checked) #consigli>*{animation:panIn .55s ease both}
 .blk>*:nth-child(2){animation-delay:.06s!important}.blk>*:nth-child(3){animation-delay:.12s!important}.blk>*:nth-child(4){animation-delay:.18s!important}.blk>*:nth-child(5){animation-delay:.24s!important}.blk>*:nth-child(n+6){animation-delay:.3s!important}
 @keyframes panIn{0%{opacity:0;transform:translateY(14px);filter:blur(4px)}100%{opacity:1;transform:none;filter:none}}
 @media (prefers-reduced-motion:reduce){.tabbar label::before,.tabbar label::after,.tabbar span,.blk>*{animation:none!important}}
@@ -317,6 +314,35 @@ body:has(#t-itinerario:checked) #itinerario>*,body:has(#t-mappa:checked) #mappa>
 .zones ul{margin:0;padding:0 16px 12px 34px}
 .zones li{margin:7px 0}
 .zones details[open] ul{animation:fadeUp .35s ease both}
+
+/* sfondo continuo, niente bande */
+html{background:var(--bg);min-height:100%}
+:root{padding-bottom:0!important}
+body{min-height:100dvh}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .stage{background:#1b1c22}}
+/* titolo più piccolo */
+.hero h1{font-size:clamp(1.75rem,7vw,2.6rem)}
+/* animazioni più divertenti */
+.tabbar label::after{width:6px;height:6px;margin:-3px 0 0 -3px;border:0;border-radius:50%;background:transparent;box-shadow:0 -24px 0 var(--c2),21px -12px 0 var(--c3),21px 12px 0 var(--c2),0 24px 0 var(--c3),-21px 12px 0 var(--c2),-21px -12px 0 var(--c3),12px -21px 0 #ffc857,-12px 21px 0 #ffc857}
+body:has(#t-itinerario:checked) label[for=t-itinerario]::before,body:has(#t-mappa:checked) label[for=t-mappa]::before,body:has(#t-mangiare:checked) label[for=t-mangiare]::before,body:has(#t-costi:checked) label[for=t-costi]::before,body:has(#t-assaggiare:checked) label[for=t-assaggiare]::before,body:has(#t-consigli:checked) label[for=t-consigli]::before{animation:jelly .7s cubic-bezier(.3,1.6,.5,1) both}
+body:has(#t-itinerario:checked) label[for=t-itinerario]::after,body:has(#t-mappa:checked) label[for=t-mappa]::after,body:has(#t-mangiare:checked) label[for=t-mangiare]::after,body:has(#t-costi:checked) label[for=t-costi]::after,body:has(#t-assaggiare:checked) label[for=t-assaggiare]::after,body:has(#t-consigli:checked) label[for=t-consigli]::after{animation:burst .65s ease-out both}
+@keyframes jelly{0%{opacity:0;transform:scale(.3)}40%{opacity:1;transform:scale(1.18,.86)}60%{transform:scale(.92,1.08)}80%{transform:scale(1.04,.97)}100%{opacity:1;transform:none}}
+@keyframes burst{0%{opacity:1;transform:scale(.2) rotate(0)}70%{opacity:1}100%{opacity:0;transform:scale(1.5) rotate(40deg)}}
+@keyframes emSpin{0%{transform:translateY(0) rotate(0) scale(1)}35%{transform:translateY(-16px) rotate(200deg) scale(1.5)}70%{transform:translateY(2px) rotate(360deg) scale(.9)}100%{transform:none}}
+@keyframes emUnfold{0%{transform:scale(.2,1)}30%{transform:translateY(-14px) scale(1.6,1.2) rotate(-8deg)}60%{transform:translateY(2px) scale(.9) rotate(6deg)}100%{transform:none}}
+@keyframes emBob{0%{transform:none}25%{transform:translateY(-18px) rotate(-15deg) scale(1.4)}50%{transform:translateY(0) rotate(12deg) scale(1.1,.85)}70%{transform:translateY(-6px) rotate(-6deg)}100%{transform:none}}
+@keyframes emFlip{0%{transform:perspective(80px) rotateY(0)}40%{transform:perspective(80px) translateY(-16px) rotateY(360deg) scale(1.5)}70%{transform:perspective(80px) translateY(2px) rotateY(540deg) scale(.95)}100%{transform:perspective(80px) rotateY(720deg)}}
+@keyframes emJiggle{0%,100%{transform:none}15%{transform:translateY(-12px) scale(1.4,1.1)}35%{transform:scale(1.5,.65)}55%{transform:scale(.8,1.3)}75%{transform:scale(1.15,.9)}}
+@keyframes emGlow{0%{transform:scale(.6);filter:drop-shadow(0 0 0 #ffd54a)}30%{transform:translateY(-14px) scale(1.6) rotate(-12deg);filter:drop-shadow(0 0 14px #ffd54a)}55%{transform:rotate(10deg) scale(1.1)}75%{transform:rotate(-6deg)}100%{transform:none;filter:drop-shadow(0 0 4px #ffd54a)}}
+@keyframes idleWiggle{0%,86%,100%{transform:none}89%{transform:rotate(-14deg) scale(1.1)}92%{transform:rotate(12deg) scale(1.1)}95%{transform:rotate(-6deg)}}
+body:has(#t-itinerario:checked) label[for=t-itinerario] .em,body:has(#t-mappa:checked) label[for=t-mappa] .em,body:has(#t-mangiare:checked) label[for=t-mangiare] .em,body:has(#t-costi:checked) label[for=t-costi] .em,body:has(#t-assaggiare:checked) label[for=t-assaggiare] .em,body:has(#t-consigli:checked) label[for=t-consigli] .em{animation:var(--emA) .9s cubic-bezier(.3,1.4,.5,1) both,idleWiggle 4.5s 1.2s ease-in-out infinite}
+.em-spin{--emA:emSpin}.em-unfold{--emA:emUnfold}.em-bob{--emA:emBob}.em-flip{--emA:emFlip}.em-jiggle{--emA:emJiggle}.em-glow{--emA:emGlow}
+body:has(#t-itinerario:checked) #itinerario>*,body:has(#t-mappa:checked) #mappa>*,body:has(#t-mangiare:checked) #mangiare>*,body:has(#t-costi:checked) #costi>*,body:has(#t-assaggiare:checked) #assaggiare>*,body:has(#t-consigli:checked) #consigli>*{animation:popIn .6s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes popIn{0%{opacity:0;transform:translateY(26px) scale(.94) rotate(-1.5deg)}60%{opacity:1;transform:translateY(-4px) scale(1.01) rotate(.4deg)}100%{opacity:1;transform:none}}
+.blk{transition:opacity .35s ease,transform .5s cubic-bezier(.3,1.5,.5,1),visibility 0s linear .35s;transform:translateY(18px) scale(.97)}
+.zones details[open] summary{animation:jelly .5s cubic-bezier(.3,1.6,.5,1) both}
+.dish>div:active,.zones summary:active,.eat li:active{transform:scale(.97)}
+@media (prefers-reduced-motion:reduce){.tabbar .em,.tabbar label::before,.tabbar label::after,.blk>*,.zones summary{animation:none!important}}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
