@@ -296,7 +296,7 @@ tr.tot td{border-top:2px solid var(--c2)}
 .tabbar label::before{background:linear-gradient(135deg,var(--c3),var(--c2))}
 .tabbar label::after{content:"";position:absolute;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:2px solid var(--c2);opacity:0;pointer-events:none}
 body:has(#t-itinerario:checked) label[for=t-itinerario] span,body:has(#t-mappa:checked) label[for=t-mappa] span,body:has(#t-mangiare:checked) label[for=t-mangiare] span,body:has(#t-costi:checked) label[for=t-costi] span,body:has(#t-assaggiare:checked) label[for=t-assaggiare] span,body:has(#t-consigli:checked) label[for=t-consigli] span{animation:tabTxt .45s .08s ease both}
-body:has(#t-itinerario:checked) label[for=t-itinerario],body:has(#t-mappa:checked) label[for=t-mappa],body:has(#t-mangiare:checked) label[for=t-mangiare],body:has(#t-costi:checked) label[for=t-costi],body:has(#t-assaggiare:checked) label[for=t-assaggiare],body:has(#t-consigli:checked) label[for=t-consigli]{transform:translateY(-3px)}
+
 @keyframes tabPop{0%{opacity:0;transform:scale(.4)}100%{opacity:1;transform:scale(1)}}
 @keyframes tabRing{0%{opacity:.8;transform:scale(.5)}100%{opacity:0;transform:scale(1.9)}}
 @keyframes tabTxt{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:none}}
@@ -375,6 +375,30 @@ html:not(.js) .dmbtn{}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 html,body,.blk,.tabbar,.stage{transition:background-color .5s ease,color .5s ease}
 html:not(.js) .stage{height:auto;aspect-ratio:880/1222}
+
+/* barra delle schede centrata */
+.tabbar{grid-template-columns:repeat(6,1fr)!important;gap:2px}
+.tabbar label{transform:none}
+.tabbar label::before{inset:2px;border-radius:17px;transform-origin:50% 50%}
+.tabbar label:active{transform:scale(.92)}
+body:has(#t-itinerario:checked) label[for=t-itinerario],body:has(#t-mappa:checked) label[for=t-mappa],body:has(#t-mangiare:checked) label[for=t-mangiare],body:has(#t-costi:checked) label[for=t-costi],body:has(#t-assaggiare:checked) label[for=t-assaggiare],body:has(#t-consigli:checked) label[for=t-consigli]{transform:none}
+/* interruttore stile iPhone */
+.iosw{position:fixed;z-index:60;top:calc(26px + env(safe-area-inset-top,0px));right:calc(max(10px,(100% - 760px)/2) + 16px);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.iosw .trk{position:relative;display:block;width:58px;height:32px;border-radius:16px;background:color-mix(in srgb,var(--ink) 16%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--ink) 10%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:background .35s ease}
+.iosw .ic{position:absolute;top:50%;font-size:.85rem;font-weight:400;line-height:1;transform:translateY(-50%);transition:opacity .3s,transform .5s cubic-bezier(.3,1.6,.5,1)}
+.iosw .sun{right:7px}.iosw .moon{left:7px;opacity:0;transform:translateY(-50%) scale(.4) rotate(-90deg)}
+.iosw .knob{position:absolute;top:2px;left:2px;width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.18),0 1px 1px rgba(0,0,0,.12);transition:transform .45s cubic-bezier(.3,1.5,.5,1),width .2s ease}
+.iosw:active .knob{width:34px}
+:root:has(#dm:checked) .iosw .trk{background:linear-gradient(135deg,var(--c3),var(--c2))}
+:root:has(#dm:checked) .iosw .knob{transform:translateX(26px)}
+:root:has(#dm:checked) .iosw:active .knob{transform:translateX(20px)}
+:root:has(#dm:checked) .iosw .moon{opacity:1;transform:translateY(-50%) scale(1) rotate(0)}
+:root:has(#dm:checked) .iosw .sun{opacity:0;transform:translateY(-50%) scale(.4) rotate(90deg)}
+body:has(.dmin:focus-visible) .iosw .trk{outline:2px solid var(--c2);outline-offset:3px}
+.appbar{position:fixed;z-index:55;top:calc(12px + env(safe-area-inset-top,0px));left:max(10px,calc((100% - 760px)/2));right:max(10px,calc((100% - 760px)/2));height:40px;display:flex;align-items:center;padding:0 16px;font:700 .9rem Manrope,system-ui,sans-serif;color:var(--mute);pointer-events:none}
+.appt{background:linear-gradient(90deg,var(--c3),var(--c2));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.iosw{top:calc(16px + env(safe-area-inset-top,0px))!important;right:calc(max(10px,(100% - 760px)/2) + 6px)!important}
+.blk{top:calc(58px + env(safe-area-inset-top,0px))!important}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
@@ -664,7 +688,9 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <footer>Itinerario per due persone, 28/10/2026.</footer>
 </section>
 </main>
-<nav class="tabbar" aria-label="Sezioni"><label for="t-itinerario"><b class="em em-spin" aria-hidden="true">🕗</b><span>Giorno</span></label><label for="t-mappa"><b class="em em-unfold" aria-hidden="true">🗺️</b><span>Mappa</span></label><label for="t-mangiare"><b class="em em-bob" aria-hidden="true">🥘</b><span>Mangiare</span></label><label for="t-costi"><b class="em em-flip" aria-hidden="true">💶</b><span>Costi</span></label><label for="t-assaggiare"><b class="em em-jiggle" aria-hidden="true">🍮</b><span>Assaggi</span></label><label for="t-consigli"><b class="em em-glow" aria-hidden="true">💡</b><span>Consigli</span></label><label for="dm" class="dmbtn" title="Modalità chiara/scura"><b class="sun" aria-hidden="true">☀️</b><b class="moon" aria-hidden="true">🌙</b><span class="vh">Modalità scura</span></label></nav>
+<div class="appbar"><span class="appt">Barcellona · 28 ottobre</span></div>
+<label for="dm" class="iosw" title="Modalità chiara/scura"><span class="trk"><b class="ic sun" aria-hidden="true">☀️</b><b class="ic moon" aria-hidden="true">🌙</b><i class="knob"></i></span><span class="vh">Modalità scura</span></label>
+<nav class="tabbar" aria-label="Sezioni"><label for="t-itinerario"><b class="em em-spin" aria-hidden="true">🕗</b><span>Giorno</span></label><label for="t-mappa"><b class="em em-unfold" aria-hidden="true">🗺️</b><span>Mappa</span></label><label for="t-mangiare"><b class="em em-bob" aria-hidden="true">🥘</b><span>Mangiare</span></label><label for="t-costi"><b class="em em-flip" aria-hidden="true">💶</b><span>Costi</span></label><label for="t-assaggiare"><b class="em em-jiggle" aria-hidden="true">🍮</b><span>Assaggi</span></label><label for="t-consigli"><b class="em em-glow" aria-hidden="true">💡</b><span>Consigli</span></label></nav>
 <script>
 (function(){
 document.documentElement.classList.add("js");
