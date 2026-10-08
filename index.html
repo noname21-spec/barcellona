@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icon-192.png">
-<script>try{var t=localStorage.getItem("bcn-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<script>try{var d=new Date().toISOString().slice(0,10);if(localStorage.getItem("bcn-splash")===d)document.documentElement.classList.add("nosplash");else localStorage.setItem("bcn-splash",d)}catch(e){}try{var t=localStorage.getItem("bcn-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <title>Barcellona in un giorno – 28 ottobre 2026</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
@@ -463,6 +463,53 @@ html:not(.js) .arc,.arc.done{stroke-dasharray:var(--len) 100}
 tr.grp td{background:var(--surf2)!important}
 .wheelwrap::before{display:none}
 .blk{-webkit-backdrop-filter:blur(26px) saturate(150%);backdrop-filter:blur(26px) saturate(150%)}
+
+/* ---- impaginazione in alto (web app) ---- */
+html,body{width:100%;overscroll-behavior:none}
+body::before{inset:0!important;animation:none!important;background-size:140% 140%!important}
+.blk{overflow-x:hidden}
+.hero::before{inset:0 0 0!important}
+.appbar{top:0!important;left:0!important;right:0!important;height:calc(52px + env(safe-area-inset-top,0px))!important;padding:env(safe-area-inset-top,0px) max(26px,calc((100% - 760px)/2 + 16px)) 0!important;background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);border-bottom:1px solid color-mix(in srgb,var(--ink) 8%,transparent)}
+.iosw{top:calc(10px + env(safe-area-inset-top,0px))!important;right:max(16px,calc((100% - 760px)/2 + 6px))!important}
+.blk{top:calc(62px + env(safe-area-inset-top,0px))!important}
+html.nosplash #splash{display:none}
+/* ---- Portami lì ---- */
+.go{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:7px 14px;border-radius:999px;background:linear-gradient(135deg,var(--c3),var(--c2));color:#fff!important;font:700 .85rem Manrope,system-ui,sans-serif;text-decoration:none;box-shadow:0 4px 12px color-mix(in srgb,var(--c3) 30%,transparent);transition:transform .15s}
+.go:active{transform:scale(.94)}
+.go.sm{margin:4px 0 0;padding:3px 10px;font-size:.74rem;background:color-mix(in srgb,var(--c2) 16%,transparent);color:var(--c3)!important;box-shadow:none;vertical-align:1px}
+/* ---- meteo ---- */
+.meteo{display:flex;gap:12px;align-items:flex-start;margin:0 0 16px;padding:12px 14px;border-radius:16px;background:var(--surf);border:1px solid color-mix(in srgb,var(--ink) 9%,transparent)}
+.meteo .mi{font-size:1.8rem;line-height:1}
+.meteo div{display:flex;flex-direction:column;gap:2px;font-size:.9rem}
+.meteo div span{color:var(--mute)}
+.meteo.rain{border-color:color-mix(in srgb,#3a7bd5 45%,transparent)}
+/* ---- lista ---- */
+.checklist{margin:0 0 16px;padding:12px 14px;border-radius:16px;background:var(--surf);border:1px solid color-mix(in srgb,var(--ink) 9%,transparent)}
+.checklist h3{margin:0 0 6px;font-size:1rem;display:flex;justify-content:space-between;align-items:center}
+.checklist small{font-weight:700;color:var(--c3)}
+.checklist ul{list-style:none;margin:0;padding:0}
+.checklist li{border-top:1px solid color-mix(in srgb,var(--ink) 7%,transparent)}
+.checklist li:first-child{border-top:0}
+.checklist label{display:flex;gap:12px;align-items:center;padding:9px 0;cursor:pointer}
+.checklist input{appearance:none;-webkit-appearance:none;flex:none;width:24px;height:24px;margin:0;border-radius:50%;border:2px solid color-mix(in srgb,var(--ink) 25%,transparent);display:grid;place-items:center;transition:background .25s,border-color .25s,transform .2s;cursor:pointer}
+.checklist input::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) scale(0);margin-top:-2px;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.checklist input:checked{background:linear-gradient(135deg,var(--c3),var(--c2));border-color:transparent;animation:jelly .5s cubic-bezier(.3,1.6,.5,1)}
+.checklist input:checked::after{transform:rotate(45deg) scale(1)}
+.checklist input:checked+span{color:var(--mute);text-decoration:line-through;text-decoration-color:var(--c2)}
+/* ---- spese ---- */
+.spese{margin:18px 0 6px;padding:14px;border-radius:16px;background:var(--surf);border:1px solid color-mix(in srgb,var(--ink) 9%,transparent)}
+.spese h3{margin:0 0 10px;font-size:1rem}.spese h3 small{color:var(--mute);font-weight:600}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px}
+.sgrid label{display:flex;flex-direction:column;gap:4px;font-size:.8rem;color:var(--mute);font-weight:600}
+.sgrid input{width:100%;padding:9px 10px;border-radius:12px;border:1px solid color-mix(in srgb,var(--ink) 14%,transparent);background:var(--bg);color:var(--ink);font:700 1rem Manrope,system-ui,sans-serif}
+.sgrid input:focus{outline:2px solid var(--c2);outline-offset:1px}
+.stot{margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.stot>div:first-child{display:flex;align-items:baseline;gap:8px}
+.stot b{font:800 1.5rem Manrope,system-ui,sans-serif}.stot span{color:var(--mute);font-size:.85rem}
+.sbar{height:10px;border-radius:5px;background:color-mix(in srgb,var(--ink) 8%,transparent);overflow:hidden}
+.sbar i{display:block;height:100%;width:0;border-radius:5px;background:linear-gradient(90deg,var(--c4),var(--c2));transition:width .5s cubic-bezier(.3,1.3,.5,1),background .3s}
+.sbar i.over{background:linear-gradient(90deg,var(--c2),var(--c3))}
+#sdiff.over{color:var(--c3);font-weight:700}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
@@ -483,71 +530,81 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <svg class="sky" viewBox="0 0 400 80" aria-hidden="true"><defs><linearGradient id="skyg" x1="0" x2="1"><stop offset="0" stop-color="#d7261e"/><stop offset="1" stop-color="#f5b800"/></linearGradient></defs><polygon points="22,80 22,40 29,8 36,40 36,80"/><polygon points="40,80 40,30 48,0 56,30 56,80"/><polygon points="60,80 60,38 67,10 74,38 74,80"/><polygon points="78,80 78,34 85,4 92,34 92,80"/><polygon points="96,80 96,44 103,16 110,44 110,80"/><rect x="26" y="50" width="80" height="30"/><path d="M200,80V60q40-30 80,0V80z"/><rect x="316" y="26" width="26" height="54" rx="13"/><rect x="352" y="52" width="8" height="28"/><path d="M366,80V64l8-10 8 10v16z"/><rect x="0" y="76" width="400" height="4"/></svg>
 </header>
 <div id="live" class="live" hidden></div>
+<div id="meteo" class="meteo"><span class="mi">🌤️</span><div><b>Meteo a fine ottobre</b><span>Di solito 20–21° di giorno e 14–15° la sera, con qualche giornata di pioggia. Le previsioni vere compaiono qui circa due settimane prima.</span></div></div>
 <h2 class="sec">Itinerario</h2>
 <ol>
 <li class="step air"><div class="t">7:45</div><div class="body">
 <h2>Atterraggio a El Prat</h2>
 <p>Ritiro bagagli (meglio solo bagaglio a mano) e uscita entro le 8:30.</p>
 <p class="meta">Metro L9 Sud dalla stazione Aeroport T1 o T2 fino a Zona Universitària (circa 32 minuti), poi L3 fino a Plaça Catalunya. In tutto circa 50 minuti. Serve il biglietto Aeroport: il T-casual non vale alle stazioni dell'aeroporto.</p>
+<a class="go" href="https://maps.apple.com/?daddr=Pla%C3%A7a%20de%20Catalunya%2C%20Barcelona&dirflg=r" target="_blank" rel="noopener"><span>🚇</span> Portami in centro</a>
 </div></li>
 
 <li class="step food"><div class="t">9:15</div><div class="body">
 <h2>Colazione in centro</h2>
 <p>Appena usciti dalla metro a Plaça Catalunya, a pochi passi.</p>
 <div class="eat"><h3>Dove mangiare</h3><ul>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona">Can Plaça</a></b> – 4,7 ★. Su Rambla de Catalunya, il viale elegante parallelo alla Rambla turistica, a un passo da Plaça Catalunya. Mercoledì apre alle 7:30. Per stare sotto i 15 € resta su caffè e dolce o bocadillo: il listino non l'ho visto.</li>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Vilar%C3%B3%20Comte%20Borrell%2061%20Barcelona">Can Vilaró</a></b> – 4,4 ★. Bar di mercato a Sant Antoni, fascia di prezzo più bassa: colazione catalana al bancone di marmo, anche «di forchetta». Mercoledì 8:30–15:30. Circa 15 minuti a piedi da Plaça Catalunya.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona">Can Plaça</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,7 ★. Su Rambla de Catalunya, il viale elegante parallelo alla Rambla turistica, a un passo da Plaça Catalunya. Mercoledì apre alle 7:30. Per stare sotto i 15 € resta su caffè e dolce o bocadillo: il listino non l'ho visto.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Vilar%C3%B3%20Comte%20Borrell%2061%20Barcelona">Can Vilaró</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Can%20Vilar%C3%B3%20Comte%20Borrell%2061%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,4 ★. Bar di mercato a Sant Antoni, fascia di prezzo più bassa: colazione catalana al bancone di marmo, anche «di forchetta». Mercoledì 8:30–15:30. Circa 15 minuti a piedi da Plaça Catalunya.</li>
 </ul></div>
+<a class="go" href="https://maps.apple.com/?daddr=Can%20Pla%C3%A7a%2C%20Rambla%20de%20Catalunya%208%2C%20Barcelona&dirflg=w" target="_blank" rel="noopener"><span>🚶</span> Portami lì</a>
 </div></li>
 
 <li class="step walk"><div class="t">10:00</div><div class="body">
 <h2>Barri Gòtic</h2>
 <p>Cattedrale, Plaça Sant Jaume, Carrer del Bisbe con il suo ponte neogotico, poi Plaça Reial.</p>
 <p class="meta">Circa 1 ora e mezza. Le stradine sono il vero motivo della visita: non serve entrare ovunque.</p>
+<a class="go" href="https://maps.apple.com/?daddr=Catedral%20de%20Barcelona&dirflg=w" target="_blank" rel="noopener"><span>🚶</span> Portami lì</a>
 </div></li>
 
 <li class="step walk"><div class="t">11:30</div><div class="body">
 <h2>El Born</h2>
 <p>Santa Maria del Mar (la chiesa più bella della città, a mio parere vale l'ingresso), Carrer de Montcada e il Mercat del Born.</p>
+<a class="go" href="https://maps.apple.com/?daddr=Santa%20Maria%20del%20Mar%2C%20Barcelona&dirflg=w" target="_blank" rel="noopener"><span>🚶</span> Portami lì</a>
 </div></li>
 
 <li class="step food"><div class="t">13:00</div><div class="body">
 <h2>Pranzo con paella</h2>
 <p>Dal Born si arriva a Barceloneta a piedi. La paella si ordina per almeno due persone e si cucina al momento, circa 30 minuti: ordinala appena ti siedi.</p>
 <div class="eat"><h3>Dove mangiare</h3><ul>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Restaurant%20Can%20Ros%20Barceloneta%20Barcelona">Can Ros</a></b> – 4,4 ★. Locale di quartiere a Barceloneta specializzato in risi: l'arròs negre costa circa 17,50 € a testa, la paella di pesce poco di più. Mercoledì 13:00–15:30. Dal Born sono circa 15 minuti a piedi.</li>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Sol%C3%A9%20Sant%20Carles%204%20Barcelona">Can Solé</a></b> – 4,3 ★. Aperto dal 1903, tra i risi più rinomati della zona. Costa di più: circa 25–35 € a testa per la paella di pesce. Mercoledì 13:00–16:00.</li>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona">Can Plaça</a></b> – 4,7 ★. Se non vuoi spostarti: sta a Plaça Catalunya e le recensioni lodano la paella di pesce. Non ho trovato il prezzo.</li>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Maj%C3%B3%20Barceloneta%20Barcelona">Can Majó</a></b> – 4,4 ★. Paella e fideuà sul lungomare di Barceloneta, con terrazza sul mare. Più caro: i piatti principali sono intorno ai 21 €. Mercoledì 13:00–22:30.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Restaurant%20Can%20Ros%20Barceloneta%20Barcelona">Can Ros</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Restaurant%20Can%20Ros%20Barceloneta%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,4 ★. Locale di quartiere a Barceloneta specializzato in risi: l'arròs negre costa circa 17,50 € a testa, la paella di pesce poco di più. Mercoledì 13:00–15:30. Dal Born sono circa 15 minuti a piedi.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Sol%C3%A9%20Sant%20Carles%204%20Barcelona">Can Solé</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Can%20Sol%C3%A9%20Sant%20Carles%204%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,3 ★. Aperto dal 1903, tra i risi più rinomati della zona. Costa di più: circa 25–35 € a testa per la paella di pesce. Mercoledì 13:00–16:00.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona">Can Plaça</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,7 ★. Se non vuoi spostarti: sta a Plaça Catalunya e le recensioni lodano la paella di pesce. Non ho trovato il prezzo.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Maj%C3%B3%20Barceloneta%20Barcelona">Can Majó</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Can%20Maj%C3%B3%20Barceloneta%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,4 ★. Paella e fideuà sul lungomare di Barceloneta, con terrazza sul mare. Più caro: i piatti principali sono intorno ai 21 €. Mercoledì 13:00–22:30.</li>
 </ul></div>
+<a class="go" href="https://maps.apple.com/?daddr=Restaurant%20Can%20Ros%2C%20Barceloneta%2C%20Barcelona&dirflg=w" target="_blank" rel="noopener"><span>🚶</span> Portami lì</a>
 </div></li>
 
 <li class="step"><div class="t">14:15</div><div class="body">
 <h2>Sagrada Família</h2>
-<p>Metro da Jaume I (L4 + L5), circa 20 minuti. Entra alle 15:00 e conta 1 ora e un quarto.</p>
-<p class="meta"><b>Prenota il biglietto online per fascia oraria prima di partire</b>, altrimenti rischi di restare fuori. Se il budget è stretto, anche solo l'esterno e il parco di fronte valgono la tappa.</p>
+<p>Metro da Jaume I (L4 + L5), circa 20 minuti. Visita da fuori, circa 45 minuti: la Facciata della Natività, il giro intorno alla basilica e la foto intera dalla Plaça de Gaudí, dall'altra parte del laghetto.</p>
+<p class="meta">I biglietti per l'interno non sono disponibili. Da fuori è comunque spettacolare, ed è gratis.</p>
+<a class="go" href="https://maps.apple.com/?daddr=Sagrada%20Fam%C3%ADlia%2C%20Barcelona&dirflg=r" target="_blank" rel="noopener"><span>🚇</span> Portami lì</a>
 </div></li>
 
-<li class="step walk"><div class="t">16:30</div><div class="body">
+<li class="step walk"><div class="t">15:30</div><div class="body">
 <h2>Passeig de Gràcia</h2>
 <p>Metro L2 fino a Passeig de Gràcia. Guarda da fuori Casa Batlló e La Pedrera, poi scendi a piedi verso Plaça Catalunya (circa 15 minuti).</p>
 <p class="meta">Il sole tramonta intorno alle 17:50: prima delle 18 hai ancora luce.</p>
+<a class="go" href="https://maps.apple.com/?daddr=Casa%20Batll%C3%B3%2C%20Barcelona&dirflg=r" target="_blank" rel="noopener"><span>🚇</span> Portami lì</a>
 </div></li>
 
-<li class="step food"><div class="t">17:00</div><div class="body">
+<li class="step food"><div class="t">16:30</div><div class="body">
 <h2>Cena anticipata</h2>
 <p>Mangia qui, non in aeroporto: i prezzi sono più bassi e il cibo migliore. Tieni un occhio sull'orologio.</p>
 <div class="eat"><h3>Dove mangiare</h3><ul>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bar%20Bodega%20Can%20Ros%20Roger%20de%20Flor%20303%20Barcelona">Bar Bodega Can Ros</a></b> – 4,4 ★. Tapas e panini da quartiere a Gràcia, fascia economica (meno di 20 € a testa per il Comune di Barcellona). Con un panino e una tapa dovresti stare sotto i 15 €, ma non ho visto il listino. Per tornare in centro: metro L4 da Joanic fino a Urquinaona, poi pochi minuti a piedi fino a Plaça Catalunya. Mercoledì aperto tutto il giorno.</li>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Codina%20Torrent%20de%20l%27Olla%2020%20Barcelona">Can Codina</a></b> – 4,3 ★. Bar di tapas a Gràcia aperto dal 1931, tavoli di marmo e birre artigianali. Fascia media: con due o tre tapas resti intorno ai 15 €. Mercoledì 12:00–24:00. Circa 10 minuti a piedi da Passeig de Gràcia.</li>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Paixano%20Reina%20Cristina%207%20Barcelona">Can Paixano</a></b> – 4,6 ★. Il bar del cava, in piedi: panino e un paio di calici con circa 8 €. Mercoledì 12:00–22:00. È vicino al Born: da Passeig de Gràcia ci vogliono circa 15 minuti in metro (L4 fino a Barceloneta).</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bar%20Bodega%20Can%20Ros%20Roger%20de%20Flor%20303%20Barcelona">Bar Bodega Can Ros</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Bar%20Bodega%20Can%20Ros%20Roger%20de%20Flor%20303%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,4 ★. Tapas e panini da quartiere a Gràcia, fascia economica (meno di 20 € a testa per il Comune di Barcellona). Con un panino e una tapa dovresti stare sotto i 15 €, ma non ho visto il listino. Per tornare in centro: metro L4 da Joanic fino a Urquinaona, poi pochi minuti a piedi fino a Plaça Catalunya. Mercoledì aperto tutto il giorno.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Codina%20Torrent%20de%20l%27Olla%2020%20Barcelona">Can Codina</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Can%20Codina%20Torrent%20de%20l%27Olla%2020%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,3 ★. Bar di tapas a Gràcia aperto dal 1931, tavoli di marmo e birre artigianali. Fascia media: con due o tre tapas resti intorno ai 15 €. Mercoledì 12:00–24:00. Circa 10 minuti a piedi da Passeig de Gràcia.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Paixano%20Reina%20Cristina%207%20Barcelona">Can Paixano</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Can%20Paixano%20Reina%20Cristina%207%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,6 ★. Il bar del cava, in piedi: panino e un paio di calici con circa 8 €. Mercoledì 12:00–22:00. È vicino al Born: da Passeig de Gràcia ci vogliono circa 15 minuti in metro (L4 fino a Barceloneta).</li>
 </ul></div>
+<a class="go" href="https://maps.apple.com/?daddr=Bar%20Bodega%20Can%20Ros%2C%20Roger%20de%20Flor%20303%2C%20Barcelona&dirflg=r" target="_blank" rel="noopener"><span>🚇</span> Portami lì</a>
 </div></li>
 
 <li class="step air"><div class="t">17:45</div><div class="body">
 <h2>Ritorno all'aeroporto</h2>
 <p>Metro L3 da Catalunya a Zona Universitària, poi L9 Sud fino a Aeroport T1 o T2: circa 50 minuti, arrivo verso le 18:35.</p>
 <p class="meta">Check-in e controlli con calma entro le 19:15. Decollo alle 21:20: hai circa due ore di margine.</p>
+<a class="go" href="https://maps.apple.com/?daddr=Aeroport%20de%20Barcelona-El%20Prat&dirflg=r" target="_blank" rel="noopener"><span>🚇</span> Portami in aeroporto</a>
 </div></li>
 </ol>
 </section>
@@ -655,19 +712,19 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <h2 class="sec">Dove mangiare</h2>
 <div id="mgrid">
 <div class="eat"><h3>9:15 · Colazione in centro</h3><ul>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona">Can Plaça</a></b> – 4,7 ★. Su Rambla de Catalunya, il viale elegante parallelo alla Rambla turistica, a un passo da Plaça Catalunya. Mercoledì apre alle 7:30. Per stare sotto i 15 € resta su caffè e dolce o bocadillo: il listino non l'ho visto.</li>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Vilar%C3%B3%20Comte%20Borrell%2061%20Barcelona">Can Vilaró</a></b> – 4,4 ★. Bar di mercato a Sant Antoni, fascia di prezzo più bassa: colazione catalana al bancone di marmo, anche «di forchetta». Mercoledì 8:30–15:30. Circa 15 minuti a piedi da Plaça Catalunya.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona">Can Plaça</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,7 ★. Su Rambla de Catalunya, il viale elegante parallelo alla Rambla turistica, a un passo da Plaça Catalunya. Mercoledì apre alle 7:30. Per stare sotto i 15 € resta su caffè e dolce o bocadillo: il listino non l'ho visto.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Vilar%C3%B3%20Comte%20Borrell%2061%20Barcelona">Can Vilaró</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Can%20Vilar%C3%B3%20Comte%20Borrell%2061%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,4 ★. Bar di mercato a Sant Antoni, fascia di prezzo più bassa: colazione catalana al bancone di marmo, anche «di forchetta». Mercoledì 8:30–15:30. Circa 15 minuti a piedi da Plaça Catalunya.</li>
 </ul></div>
 <div class="eat"><h3>13:00 · Pranzo con paella</h3><ul>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Restaurant%20Can%20Ros%20Barceloneta%20Barcelona">Can Ros</a></b> – 4,4 ★. Locale di quartiere a Barceloneta specializzato in risi: l'arròs negre costa circa 17,50 € a testa, la paella di pesce poco di più. Mercoledì 13:00–15:30. Dal Born sono circa 15 minuti a piedi.</li>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Sol%C3%A9%20Sant%20Carles%204%20Barcelona">Can Solé</a></b> – 4,3 ★. Aperto dal 1903, tra i risi più rinomati della zona. Costa di più: circa 25–35 € a testa per la paella di pesce. Mercoledì 13:00–16:00.</li>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona">Can Plaça</a></b> – 4,7 ★. Se non vuoi spostarti: sta a Plaça Catalunya e le recensioni lodano la paella di pesce. Non ho trovato il prezzo.</li>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Maj%C3%B3%20Barceloneta%20Barcelona">Can Majó</a></b> – 4,4 ★. Paella e fideuà sul lungomare di Barceloneta, con terrazza sul mare. Più caro: i piatti principali sono intorno ai 21 €. Mercoledì 13:00–22:30.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Restaurant%20Can%20Ros%20Barceloneta%20Barcelona">Can Ros</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Restaurant%20Can%20Ros%20Barceloneta%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,4 ★. Locale di quartiere a Barceloneta specializzato in risi: l'arròs negre costa circa 17,50 € a testa, la paella di pesce poco di più. Mercoledì 13:00–15:30. Dal Born sono circa 15 minuti a piedi.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Sol%C3%A9%20Sant%20Carles%204%20Barcelona">Can Solé</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Can%20Sol%C3%A9%20Sant%20Carles%204%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,3 ★. Aperto dal 1903, tra i risi più rinomati della zona. Costa di più: circa 25–35 € a testa per la paella di pesce. Mercoledì 13:00–16:00.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona">Can Plaça</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Can%20Pla%C3%A7a%20Rambla%20de%20Catalunya%208%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,7 ★. Se non vuoi spostarti: sta a Plaça Catalunya e le recensioni lodano la paella di pesce. Non ho trovato il prezzo.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Maj%C3%B3%20Barceloneta%20Barcelona">Can Majó</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Can%20Maj%C3%B3%20Barceloneta%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,4 ★. Paella e fideuà sul lungomare di Barceloneta, con terrazza sul mare. Più caro: i piatti principali sono intorno ai 21 €. Mercoledì 13:00–22:30.</li>
 </ul></div>
-<div class="eat"><h3>17:00 · Cena anticipata</h3><ul>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bar%20Bodega%20Can%20Ros%20Roger%20de%20Flor%20303%20Barcelona">Bar Bodega Can Ros</a></b> – 4,4 ★. Tapas e panini da quartiere a Gràcia, fascia economica (meno di 20 € a testa per il Comune di Barcellona). Con un panino e una tapa dovresti stare sotto i 15 €, ma non ho visto il listino. Per tornare in centro: metro L4 da Joanic fino a Urquinaona, poi pochi minuti a piedi fino a Plaça Catalunya. Mercoledì aperto tutto il giorno.</li>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Codina%20Torrent%20de%20l%27Olla%2020%20Barcelona">Can Codina</a></b> – 4,3 ★. Bar di tapas a Gràcia aperto dal 1931, tavoli di marmo e birre artigianali. Fascia media: con due o tre tapas resti intorno ai 15 €. Mercoledì 12:00–24:00. Circa 10 minuti a piedi da Passeig de Gràcia.</li>
-<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Paixano%20Reina%20Cristina%207%20Barcelona">Can Paixano</a></b> – 4,6 ★. Il bar del cava, in piedi: panino e un paio di calici con circa 8 €. Mercoledì 12:00–22:00. È vicino al Born: da Passeig de Gràcia ci vogliono circa 15 minuti in metro (L4 fino a Barceloneta).</li>
+<div class="eat"><h3>16:30 · Cena anticipata</h3><ul>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bar%20Bodega%20Can%20Ros%20Roger%20de%20Flor%20303%20Barcelona">Bar Bodega Can Ros</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Bar%20Bodega%20Can%20Ros%20Roger%20de%20Flor%20303%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,4 ★. Tapas e panini da quartiere a Gràcia, fascia economica (meno di 20 € a testa per il Comune di Barcellona). Con un panino e una tapa dovresti stare sotto i 15 €, ma non ho visto il listino. Per tornare in centro: metro L4 da Joanic fino a Urquinaona, poi pochi minuti a piedi fino a Plaça Catalunya. Mercoledì aperto tutto il giorno.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Codina%20Torrent%20de%20l%27Olla%2020%20Barcelona">Can Codina</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Can%20Codina%20Torrent%20de%20l%27Olla%2020%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,3 ★. Bar di tapas a Gràcia aperto dal 1931, tavoli di marmo e birre artigianali. Fascia media: con due o tre tapas resti intorno ai 15 €. Mercoledì 12:00–24:00. Circa 10 minuti a piedi da Passeig de Gràcia.</li>
+<li><b><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Can%20Paixano%20Reina%20Cristina%207%20Barcelona">Can Paixano</a></b> <a class="go sm" href="https://maps.apple.com/?daddr=Can%20Paixano%20Reina%20Cristina%207%20Barcelona&dirflg=w" target="_blank" rel="noopener" aria-label="Indicazioni">↗︎ Portami lì</a> – 4,6 ★. Il bar del cava, in piedi: panino e un paio di calici con circa 8 €. Mercoledì 12:00–22:00. È vicino al Born: da Passeig de Gràcia ci vogliono circa 15 minuti in metro (L4 fino a Barceloneta).</li>
 </ul></div>
 </div>
 </section>
@@ -690,6 +747,16 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <p class="meta">Voli esclusi. Colazione e cena restano sotto i 15 € a persona. Per la paella ho contato circa 22 € a testa da Can Ros; da Can Solé sono 25–35 €. Sono stime da prezzi recenti, da verificare. Il biglietto Aeroport costa 5,90 € a tratta secondo le guide del 2026 (fonti più vecchie dicono 5,50 €) e comprende i cambi di linea. Per le corse in città basta un T-casual da 10 corse condiviso tra voi due.</p>
 <div style="height:30px"></div>
 
+<div class="spese"><h3>💳 Spese reali <small>in due</small></h3>
+<div class="sgrid">
+<label><span>Trasporti</span><input type="number" inputmode="decimal" min="0" step="0.5" data-s="tr" placeholder="0"></label>
+<label><span>Colazione</span><input type="number" inputmode="decimal" min="0" step="0.5" data-s="co" placeholder="0"></label>
+<label><span>Pranzo</span><input type="number" inputmode="decimal" min="0" step="0.5" data-s="pr" placeholder="0"></label>
+<label><span>Cena</span><input type="number" inputmode="decimal" min="0" step="0.5" data-s="ce" placeholder="0"></label>
+<label><span>Extra</span><input type="number" inputmode="decimal" min="0" step="0.5" data-s="ex" placeholder="0"></label>
+</div>
+<div class="stot"><div><b id="stot">0 €</b><span>spesi finora</span></div><div class="sbar"><i id="sbar"></i></div><span id="sdiff">Stima: 133 € in due</span></div>
+</div>
 </section>
 <section class="blk" id="assaggiare">
 <h2 class="sec">Da assaggiare</h2>
@@ -703,6 +770,8 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </section>
 <section class="blk" id="consigli">
 <h2 class="sec">Consigli per zona</h2>
+<div class="checklist"><h3>✅ Prima di partire <small id="ckn"></small></h3><ul><li><label><input type="checkbox" data-k="0"><span>Carta d'identità o passaporto</span></label></li><li><label><input type="checkbox" data-k="1"><span>Carte d'imbarco di andata e ritorno</span></label></li><li><label><input type="checkbox" data-k="2"><span>Borraccia vuota (da riempire alle fontanelle)</span></label></li><li><label><input type="checkbox" data-k="3"><span>App Fonts BCN installata</span></label></li><li><label><input type="checkbox" data-k="4"><span>Power bank e cavo</span></label></li><li><label><input type="checkbox" data-k="5"><span>Un po' di contanti</span></label></li><li><label><input type="checkbox" data-k="6"><span>Scarpe comode</span></label></li><li><label><input type="checkbox" data-k="7"><span>Felpa leggera (per la Cattedrale e la sera)</span></label></li><li><label><input type="checkbox" data-k="8"><span>Aprire l'app con internet prima di partire, per averla offline</span></label></li></ul></div>
+
 <div class="zones">
 <details open><summary>✈️ Aeroporto e metro</summary><ul>
 <li>Il biglietto per la L9 Sud è il «Bitllet Aeroport»: lo compri alle macchinette della stazione in aeroporto. Il T-casual non vale per uscire dalle stazioni dell'aeroporto.</li>
@@ -768,8 +837,8 @@ var D=[
 ["9:15 · Plaça Catalunya e colazione","Esci a Plaça Catalunya: Can Plaça per la colazione è a pochi passi. Poi a piedi verso il Gòtic.","Plaça de Catalunya Barcelona"],
 ["10:00 · Barri Gòtic","A piedi dalla colazione, circa 10 minuti. Cattedrale, Plaça Sant Jaume e Plaça Reial.","Barri Gòtic Barcelona"],
 ["11:30 · El Born e pranzo","A piedi dal Gòtic passando da Jaume I, circa 10 minuti. Pranzo verso le 13:00.","El Born Barcelona"],
-["15:00 · Sagrada Família","Dal Born verso le 14:15: metro L4 da Jaume I a Verdaguer (4 fermate), poi L5 fino a Sagrada Família. Circa 20 minuti.","Sagrada Família Barcelona"],
-["16:30 · Passeig de Gràcia e cena","Metro L2 da Sagrada Família a Passeig de Gràcia, 3 fermate (Monumental, Tetuan, Passeig de Gràcia). Cena verso le 17:00.","Passeig de Gràcia Barcelona"],
+["14:15 · Sagrada Família","Dal Born: metro L4 da Jaume I a Verdaguer (4 fermate), poi L5 fino a Sagrada Família, circa 20 minuti. Visita da fuori fino alle 15:15.","Sagrada Família Barcelona"],
+["15:30 · Passeig de Gràcia e cena","Metro L2 da Sagrada Família a Passeig de Gràcia, 3 fermate (Monumental, Tetuan, Passeig de Gràcia). Cena verso le 16:30, con calma prima dell'aeroporto.","Passeig de Gràcia Barcelona"],
 ["17:45 · Ritorno in aeroporto","Da Plaça Catalunya metro L3 fino a Zona Universitària (qui si cambia), poi L9 Sud fino a Aeroport T1 o T2. Circa 50 minuti, arrivo verso le 18:35.","Zona Universitària metro Barcelona"],
 ["Can Plaça","Colazione: su Rambla de Catalunya, a un passo da Plaça Catalunya. 4,7 stelle, aperto dalle 7:30. Resta su caffè e dolce o bocadillo per stare sotto i 15 €.","Can Plaça Rambla de Catalunya 8 Barcelona"],
 ["Can Ros","Pranzo con paella: risi e paella a Barceloneta. 4,4 stelle, arròs negre circa 17,50 € a testa, paella di pesce poco di più. Mercoledì 13:00–15:30.","Restaurant Can Ros Barceloneta Barcelona"],
@@ -995,6 +1064,38 @@ if(tab.checked)setTimeout(draw,300);
 var arcs=document.querySelectorAll(".arc");
 document.getElementById("t-costi").addEventListener("change",function(){[].forEach.call(arcs,function(a){a.classList.remove("done")})});
 [].forEach.call(arcs,function(a){a.addEventListener("animationend",function(){a.classList.add("done")})});
+})();
+</script>
+<script>
+(function(){
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+/* lista */
+var cks=[].slice.call(document.querySelectorAll(".checklist input")),ckn=document.getElementById("ckn");
+var saved={};try{saved=JSON.parse(ls("bcn-check")||"{}")}catch(e){}
+function cnt(){var n=cks.filter(function(c){return c.checked}).length;ckn.textContent=n+"/"+cks.length+(n===cks.length?" 🎉":"")}
+cks.forEach(function(c){c.checked=!!saved[c.dataset.k];c.addEventListener("change",function(){saved[c.dataset.k]=c.checked;ls("bcn-check",JSON.stringify(saved));cnt()})});cnt();
+/* spese */
+var ins=[].slice.call(document.querySelectorAll(".sgrid input")),st=document.getElementById("stot"),sb=document.getElementById("sbar"),sd=document.getElementById("sdiff"),EST=133;
+var sv={};try{sv=JSON.parse(ls("bcn-spese")||"{}")}catch(e){}
+function eur(x){return (Math.round(x*100)/100).toLocaleString("it-IT",{maximumFractionDigits:2})+" €"}
+function tot(){var t=ins.reduce(function(a,i){return a+(parseFloat(String(i.value).replace(",","."))||0)},0);st.textContent=eur(t);
+sb.style.width=Math.min(100,t/EST*100)+"%";var over=t>EST;sb.classList.toggle("over",over);sd.classList.toggle("over",over);
+sd.textContent=t===0?"Stima: 133 € in due":over?"Sopra la stima di "+eur(t-EST):"Restano "+eur(EST-t)+" rispetto alla stima di 133 €"}
+ins.forEach(function(i){if(sv[i.dataset.s])i.value=sv[i.dataset.s];i.addEventListener("input",function(){sv[i.dataset.s]=i.value;ls("bcn-spese",JSON.stringify(sv));tot()})});tot();
+/* meteo */
+var me=document.getElementById("meteo");
+if(me&&window.fetch){
+fetch("https://api.open-meteo.com/v1/forecast?latitude=41.39&longitude=2.17&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Europe%2FMadrid&start_date=2026-10-28&end_date=2026-10-28").then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
+var c=d.daily.weathercode[0],mx=Math.round(d.daily.temperature_2m_max[0]),mn=Math.round(d.daily.temperature_2m_min[0]),pp=d.daily.precipitation_probability_max[0];
+if(c==null||mx==null)return;
+var ic=c===0?"☀️":c<=2?"🌤️":c===3?"☁️":c<=48?"🌫️":c<=67?"🌧️":c<=77?"🌨️":c<=82?"🌦️":"⛈️",rain=pp>=50||(c>=51&&c<=82);
+me.classList.toggle("rain",rain);
+me.innerHTML='<span class="mi"></span><div><b></b><span></span></div>';
+me.querySelector(".mi").textContent=ic;
+me.querySelector("b").textContent="Previsioni per il 28 ottobre: "+mx+"° / "+mn+"°";
+me.querySelector("div span").textContent=(pp!=null?"Probabilità di pioggia "+pp+"%. ":"")+(rain?"Porta un ombrello. Al coperto: Mercat de Santa Caterina e Mercat del Born, l'interno di Santa Maria del Mar, El Nacional su Passeig de Gràcia.":"Giornata buona per camminare.");
+}).catch(function(){});
+}
 })();
 </script>
 </body>
