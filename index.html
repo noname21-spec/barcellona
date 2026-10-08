@@ -743,6 +743,12 @@ html,body,.blk,.tabbar,.appbar{touch-action:pan-x pan-y}
 input,select,textarea{font-size:16px!important}
 *{-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+
+/* mappa scura in modalità dark */
+.bgmap{transition:filter .5s ease}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .stage .bgmap{filter:invert(1) hue-rotate(180deg) brightness(.82) contrast(.92) saturate(.75)!important}}
+:root[data-theme="dark"] .stage .bgmap,:root:has(#dm:checked) .stage .bgmap{filter:invert(1) hue-rotate(180deg) brightness(.82) contrast(.92) saturate(.75)!important}
+:root[data-theme="light"] .stage .bgmap{filter:saturate(.35)!important}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
