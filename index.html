@@ -15,8 +15,9 @@
 <script>try{var t=localStorage.getItem("bcn-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <script>(function(){try{var sa=navigator.standalone===true||matchMedia("(display-mode: standalone)").matches;if(!sa)return;var r=document.documentElement;r.classList.add("sa");function f(){var p=innerHeight>=innerWidth,sh=p?Math.max(screen.height,screen.width):Math.min(screen.height,screen.width);var h=Math.max(innerHeight,document.documentElement.clientHeight||0);if(sh>h&&sh-h<80)h=sh;r.style.setProperty("--apph",h+"px")}f();addEventListener("resize",f);addEventListener("orientationchange",function(){setTimeout(f,300)})}catch(e){}})();</script>
 <script>(function(){try{var h=Math.max(screen.height,screen.width),r=h>=926?55:h>=852?55:h>=844?47:h>=812?44:h>=736?0:39;if(r)document.documentElement.style.setProperty("--scr",r+"px")}catch(e){}})();</script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" media="print" onload="this.media='all'">
 <title>Barcellona in un giorno – 28 ottobre 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&display=swap">
 <style>
 :root{--bg:#e7e6e2;--b1:#b9c1c7;--b2:#dccfbc;--b3:#a9b3ba;--glass:rgba(255,255,255,.5);--glassb:rgba(255,255,255,.7);--paper:#fafaf8;--inset:rgba(0,0,0,.045);--land:#e3e3df;--ink:#141416;--mute:#5a5a57;--line:#c9c9c3;--blue:#34495e;--sun:#17171a;--onsun:#f5f5f2;--brick:#b0503a;--sea:#5c7a70;--food:#c9a227;--eat:rgba(0,0,0,.05);--hero:#141416;--heroink:#f5f5f2;box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -828,6 +829,8 @@ body.tbmin .tabbar label .em{animation:hop .5s cubic-bezier(.3,1.6,.5,1) both!im
 @keyframes emJiggle{0%,100%{transform:none}20%{transform:scale(1.45,.6) translate3d(0,6px,0)}40%{transform:scale(.75,1.35) translate3d(0,-10px,0)}60%{transform:scale(1.15,.9)}80%{transform:scale(.95,1.05)}}
 @keyframes emGlow{0%{transform:scale(.6);opacity:.4}15%{opacity:1}25%{opacity:.3}35%{opacity:1;transform:scale(1.4)}45%{opacity:.5}55%{opacity:1;transform:scale(1.2) rotate(-8deg)}100%{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.tbind,.blk,.blk>*{animation:none!important;transition:none!important}}
+.arc{stroke-dasharray:var(--len) 100}
+@keyframes arcIn{0%{stroke-dasharray:0 100;opacity:0}12%{opacity:1}100%{stroke-dasharray:var(--len) 100;opacity:1}}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
