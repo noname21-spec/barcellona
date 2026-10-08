@@ -14,6 +14,7 @@
 <link rel="icon" type="image/png" href="icon-192.png?v=3">
 <script>try{var t=localStorage.getItem("bcn-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <script>(function(){try{var sa=navigator.standalone===true||matchMedia("(display-mode: standalone)").matches;if(!sa)return;var r=document.documentElement;r.classList.add("sa");function f(){var p=innerHeight>=innerWidth,sh=p?Math.max(screen.height,screen.width):Math.min(screen.height,screen.width);var h=Math.max(innerHeight,document.documentElement.clientHeight||0);if(sh>h&&sh-h<80)h=sh;r.style.setProperty("--apph",h+"px")}f();addEventListener("resize",f);addEventListener("orientationchange",function(){setTimeout(f,300)})}catch(e){}})();</script>
+<script>(function(){try{var h=Math.max(screen.height,screen.width),r=h>=926?55:h>=852?55:h>=844?47:h>=812?44:h>=736?0:39;if(r)document.documentElement.style.setProperty("--scr",r+"px")}catch(e){}})();</script>
 <title>Barcellona in un giorno – 28 ottobre 2026</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
@@ -700,6 +701,17 @@ html.sa body.tbmin .blk{height:calc(var(--apph) - 62px - env(safe-area-inset-top
 .snk .sz{display:block;color:var(--c3);font-weight:700;font-size:.78rem;margin-top:2px}
 .snk p{margin:6px 0;font-size:.9rem}
 .snk small{color:var(--mute);font-size:.8rem}
+
+/* angoli concentrici con quelli dello schermo dell'iPhone */
+:root{--scr:44px;--r1:max(22px,calc(var(--scr) - 10px));--r2:max(16px,calc(var(--scr) - 28px));--r3:max(12px,calc(var(--scr) - 38px))}
+.blk{border-radius:var(--r1)!important}
+.tabbar{border-radius:var(--r1)!important}
+.tabbar label,.tabbar label::before{border-radius:max(16px,calc(var(--r1) - 7px))!important}
+body.tbmin .tabbar,body.tbmin .tabbar label::before{border-radius:50%!important}
+.eat,#mgrid .eat,.blk .dish div,.zones details,.checklist,.spese,.voli,.live,.meteo,.shots,.snk,.wheelwrap,.stage,.donut+.dleg+table,#costi table,.blk .tips{border-radius:var(--r2)!important}
+.voli fieldset,.tip,.lgp.legend{border-radius:var(--r3)!important}
+#costi table{overflow:hidden;border-collapse:separate;border-spacing:0}
+.map.fs .stage{border-radius:0!important}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
