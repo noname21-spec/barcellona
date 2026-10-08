@@ -8,16 +8,17 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Barcellona">
-<meta name="theme-color" content="#5b5bd6">
+<meta name="theme-color" content="#d7261e">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icon-192.png">
+<script>try{var t=localStorage.getItem("bcn-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <title>Barcellona in un giorno – 28 ottobre 2026</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
 :root{--bg:#e7e6e2;--b1:#b9c1c7;--b2:#dccfbc;--b3:#a9b3ba;--glass:rgba(255,255,255,.5);--glassb:rgba(255,255,255,.7);--paper:#fafaf8;--inset:rgba(0,0,0,.045);--land:#e3e3df;--ink:#141416;--mute:#5a5a57;--line:#c9c9c3;--blue:#34495e;--sun:#17171a;--onsun:#f5f5f2;--brick:#b0503a;--sea:#5c7a70;--food:#c9a227;--eat:rgba(0,0,0,.05);--hero:#141416;--heroink:#f5f5f2;box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c0d0f;--b1:#2a3037;--b2:#3b352d;--b3:#1f282f;--glass:rgba(255,255,255,.07);--glassb:rgba(255,255,255,.14);--paper:#17181a;--inset:rgba(255,255,255,.06);--land:#191b1e;--ink:#f1f1ee;--mute:#a4a4a0;--line:#34363a;--blue:#a9bccd;--sun:#f1f1ee;--onsun:#111;--brick:#e08a73;--sea:#7fb0a1;--food:#d9b94a;--eat:rgba(255,255,255,.06);--hero:#f1f1ee;--heroink:#111}}
-:root[data-theme="dark"]{--bg:#0c0d0f;--b1:#2a3037;--b2:#3b352d;--b3:#1f282f;--glass:rgba(255,255,255,.07);--glassb:rgba(255,255,255,.14);--paper:#17181a;--inset:rgba(255,255,255,.06);--land:#191b1e;--ink:#f1f1ee;--mute:#a4a4a0;--line:#34363a;--blue:#a9bccd;--sun:#f1f1ee;--onsun:#111;--brick:#e08a73;--sea:#7fb0a1;--food:#d9b94a;--eat:rgba(255,255,255,.06);--hero:#f1f1ee;--heroink:#111}
+:root[data-theme="dark"],:root:has(#dm:checked){--bg:#0c0d0f;--b1:#2a3037;--b2:#3b352d;--b3:#1f282f;--glass:rgba(255,255,255,.07);--glassb:rgba(255,255,255,.14);--paper:#17181a;--inset:rgba(255,255,255,.06);--land:#191b1e;--ink:#f1f1ee;--mute:#a4a4a0;--line:#34363a;--blue:#a9bccd;--sun:#f1f1ee;--onsun:#111;--brick:#e08a73;--sea:#7fb0a1;--food:#d9b94a;--eat:rgba(255,255,255,.06);--hero:#f1f1ee;--heroink:#111}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 Manrope,system-ui,sans-serif}
 h1,h2,h3,.t{font-family:Manrope,system-ui,sans-serif}
@@ -108,6 +109,7 @@ html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.blk,.nav a{transition:none}}
 body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 12% 8%,var(--b1) 0,transparent 45%),radial-gradient(circle at 90% 32%,var(--b2) 0,transparent 42%),radial-gradient(circle at 25% 85%,var(--b3) 0,transparent 45%)}
 .bgmap{filter:saturate(.35)}
+:root[data-theme="dark"] .bgmap,:root:has(#dm:checked) .bgmap{filter:saturate(.3) brightness(.7)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .bgmap{filter:saturate(.3) brightness(.7)}}
 .map{position:relative}
 .pin{transform-box:fill-box;transform-origin:center;transform:scale(calc(var(--u,1)*.2857));transition:transform .15s}
@@ -156,7 +158,7 @@ body.fsmap{overflow:hidden}
 
 :root{--c1:#1fb5a8;--c2:#ff6f59;--c3:#7a5cf5;--c4:#f5b02e;--c5:#3a9bff;--pin:#5b43d6;--acc:var(--c3);--blue:#3f56d6;--glass:rgba(255,255,255,.42);--glassb:rgba(255,255,255,.72);--bg:#eceef6;--eat:color-mix(in srgb,#f5b02e 20%,transparent)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--c1:#3dd6c6;--c2:#ff8a6b;--c3:#9b8bff;--c4:#ffc857;--c5:#5aa9ff;--pin:#8d7bff;--blue:#a9bcff;--glass:rgba(255,255,255,.07);--glassb:rgba(255,255,255,.16);--bg:#0a0b10;--eat:color-mix(in srgb,#ffc857 14%,transparent)}}
-:root[data-theme="dark"]{--c1:#3dd6c6;--c2:#ff8a6b;--c3:#9b8bff;--c4:#ffc857;--c5:#5aa9ff;--pin:#8d7bff;--blue:#a9bcff;--glass:rgba(255,255,255,.07);--glassb:rgba(255,255,255,.16);--bg:#0a0b10;--eat:color-mix(in srgb,#ffc857 14%,transparent)}
+:root[data-theme="dark"],:root:has(#dm:checked){--c1:#3dd6c6;--c2:#ff8a6b;--c3:#9b8bff;--c4:#ffc857;--c5:#5aa9ff;--pin:#8d7bff;--blue:#a9bcff;--glass:rgba(255,255,255,.07);--glassb:rgba(255,255,255,.16);--bg:#0a0b10;--eat:color-mix(in srgb,#ffc857 14%,transparent)}
 #itinerario{--acc:var(--c3)}#mappa{--acc:var(--c5)}#mangiare{--acc:var(--c2)}#costi{--acc:var(--c4)}#assaggiare{--acc:var(--c1)}#consigli{--acc:var(--c3)}
 @keyframes up{from{opacity:0;transform:translateY(14px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -233,7 +235,7 @@ html:not(.js) #itinerario .step{scroll-snap-align:center;padding:14px 12px}
 /* palette ridotta */
 :root{--c1:#5b5bd6;--c2:#d9775f;--c3:#5b5bd6;--c4:#d9775f;--c5:#7b7be8;--pin:#5b5bd6;--blue:#4a4ac4;--bg:#eceef3}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--c1:#9a9aff;--c2:#ef9179;--c3:#9a9aff;--c4:#ef9179;--c5:#b3b3ff;--pin:#8d8dff;--blue:#b3b3ff;--bg:#0b0b10}}
-:root[data-theme="dark"]{--c1:#9a9aff;--c2:#ef9179;--c3:#9a9aff;--c4:#ef9179;--c5:#b3b3ff;--pin:#8d8dff;--blue:#b3b3ff;--bg:#0b0b10}
+:root[data-theme="dark"],:root:has(#dm:checked){--c1:#9a9aff;--c2:#ef9179;--c3:#9a9aff;--c4:#ef9179;--c5:#b3b3ff;--pin:#8d8dff;--blue:#b3b3ff;--bg:#0b0b10}
 #itinerario,#mappa,#mangiare,#costi,#assaggiare,#consigli{--acc:var(--c3)}
 body::before{background:radial-gradient(45% 35% at 12% 10%,color-mix(in srgb,var(--c3) 30%,transparent),transparent 70%),radial-gradient(40% 32% at 90% 80%,color-mix(in srgb,var(--c2) 18%,transparent),transparent 70%),radial-gradient(40% 30% at 85% 15%,color-mix(in srgb,var(--c5) 18%,transparent),transparent 70%)}
 .hero h1{background:linear-gradient(100deg,var(--ink),var(--c3));-webkit-background-clip:text;background-clip:text}
@@ -320,6 +322,7 @@ html{background:var(--bg);min-height:100%}
 :root{padding-bottom:0!important}
 body{min-height:100dvh}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .stage{background:#1b1c22}}
+:root[data-theme="dark"] .stage,:root:has(#dm:checked) .stage{background:#1b1c22}
 /* titolo più piccolo */
 .hero h1{font-size:clamp(1.75rem,7vw,2.6rem)}
 /* animazioni più divertenti */
@@ -343,11 +346,41 @@ body:has(#t-itinerario:checked) #itinerario>*,body:has(#t-mappa:checked) #mappa>
 .zones details[open] summary{animation:jelly .5s cubic-bezier(.3,1.6,.5,1) both}
 .dish>div:active,.zones summary:active,.eat li:active{transform:scale(.97)}
 @media (prefers-reduced-motion:reduce){.tabbar .em,.tabbar label::before,.tabbar label::after,.blk>*,.zones summary{animation:none!important}}
+
+/* palette Spagna: rosso, arancio, giallo */
+:root{--c1:#d7261e;--c2:#f08a1c;--c3:#d7261e;--c4:#f5b800;--c5:#ec5a1a;--pin:#d7261e;--blue:#b3261e;--food:#f5b800;--bg:#fbf3ec;--land:#efe6de}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--c1:#ff6a4d;--c2:#ffa03c;--c3:#ff5a4a;--c4:#ffd23f;--c5:#ff8a3d;--pin:#ff5a4a;--blue:#ffb199;--food:#ffd23f;--bg:#120a08;--land:#1b1512;--ink:#fbf1ec;--mute:#c7b3aa;--line:#3b2c26;--paper:#1e1512;--glass:rgba(255,255,255,.06);--glassb:rgba(255,255,255,.13)}}
+:root[data-theme="dark"],:root:has(#dm:checked){--c1:#ff6a4d;--c2:#ffa03c;--c3:#ff5a4a;--c4:#ffd23f;--c5:#ff8a3d;--pin:#ff5a4a;--blue:#ffb199;--food:#ffd23f;--bg:#120a08;--land:#1b1512;--ink:#fbf1ec;--mute:#c7b3aa;--line:#3b2c26;--paper:#1e1512;--glass:rgba(255,255,255,.06);--glassb:rgba(255,255,255,.13)}
+body::before{background:radial-gradient(45% 35% at 10% 8%,color-mix(in srgb,var(--c3) 26%,transparent),transparent 70%),radial-gradient(42% 34% at 92% 85%,color-mix(in srgb,var(--c4) 30%,transparent),transparent 70%),radial-gradient(38% 30% at 88% 18%,color-mix(in srgb,var(--c2) 22%,transparent),transparent 70%)}
+.hero h1{background:linear-gradient(100deg,var(--c3),var(--c5) 55%,var(--c2))!important;-webkit-background-clip:text!important;background-clip:text!important}
+.bar i:nth-child(odd){background:var(--c3)!important}.bar i:nth-child(even){background:var(--c4)!important}
+.blk h2.sec::after{background:linear-gradient(90deg,var(--c3),var(--c2),var(--c4))}
+.tabbar label::before{background:linear-gradient(135deg,var(--c3),var(--c2))}
+.wbox .ctl button{background:linear-gradient(135deg,var(--c3),var(--c2))}
+.wheelwrap::after{border-top-color:var(--c3);border-bottom-color:var(--c4)}
+tr.tot td{border-top-color:var(--c2)}
+.tabbar label::after{box-shadow:0 -24px 0 var(--c3),21px -12px 0 var(--c4),21px 12px 0 var(--c2),0 24px 0 var(--c3),-21px 12px 0 var(--c4),-21px -12px 0 var(--c2),12px -21px 0 var(--c4),-12px 21px 0 var(--c3)}
+/* pulsante modalità scura nella barra */
+.dmin{position:fixed;opacity:0;pointer-events:none;width:1px;height:1px}
+.tabbar{grid-template-columns:repeat(6,1fr) 40px}
+.dmbtn{position:relative;display:grid;place-items:center;cursor:pointer;border-radius:16px;margin:4px 0 4px 2px;background:color-mix(in srgb,var(--ink) 7%,transparent);transition:background .4s,transform .15s;-webkit-tap-highlight-color:transparent}
+.dmbtn:active{transform:scale(.88)}
+.dmbtn b{grid-area:1/1;font-size:1.1rem;font-weight:400;transition:transform .6s cubic-bezier(.3,1.6,.5,1),opacity .35s}
+.dmbtn .moon{opacity:0;transform:rotate(-120deg) scale(.3)}
+:root:has(#dm:checked) .dmbtn .sun{opacity:0;transform:rotate(120deg) scale(.3)}
+:root:has(#dm:checked) .dmbtn .moon{opacity:1;transform:none}
+:root:has(#dm:checked) .dmbtn{background:color-mix(in srgb,var(--c4) 18%,transparent)}
+html:not(.js) .dmbtn{}
+.dmin:focus-visible+main~.tabbar .dmbtn,body:has(.dmin:focus-visible) .dmbtn{outline:2px solid var(--c2);outline-offset:2px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+html,body,.blk,.tabbar,.stage{transition:background-color .5s ease,color .5s ease}
+html:not(.js) .stage{height:auto;aspect-ratio:880/1222}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
 <body>
 <input class="tabr" type="radio" name="tab" id="t-itinerario" checked><input class="tabr" type="radio" name="tab" id="t-mappa"><input class="tabr" type="radio" name="tab" id="t-mangiare"><input class="tabr" type="radio" name="tab" id="t-costi"><input class="tabr" type="radio" name="tab" id="t-assaggiare"><input class="tabr" type="radio" name="tab" id="t-consigli">
+<input class="dmin" type="checkbox" id="dm" aria-label="Modalità scura">
 <main>
 
 <section class="blk" id="itinerario">
@@ -358,7 +391,7 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <i style="flex:90;background:var(--c2)"></i><i style="flex:225;background:var(--c5)"></i><i style="flex:75;background:var(--c4)"></i><i style="flex:135;background:var(--c1)"></i><i style="flex:90;background:var(--c3)"></i><i style="flex:200;background:var(--c2)"></i>
 </div>
 <div class="ends"><span>7:45 atterraggio</span><span>21:20 decollo</span></div>
-<svg class="sky" viewBox="0 0 400 80" aria-hidden="true"><defs><linearGradient id="skyg" x1="0" x2="1"><stop offset="0" stop-color="#5b5bd6"/><stop offset="1" stop-color="#d9775f"/></linearGradient></defs><polygon points="22,80 22,40 29,8 36,40 36,80"/><polygon points="40,80 40,30 48,0 56,30 56,80"/><polygon points="60,80 60,38 67,10 74,38 74,80"/><polygon points="78,80 78,34 85,4 92,34 92,80"/><polygon points="96,80 96,44 103,16 110,44 110,80"/><rect x="26" y="50" width="80" height="30"/><path d="M200,80V60q40-30 80,0V80z"/><rect x="316" y="26" width="26" height="54" rx="13"/><rect x="352" y="52" width="8" height="28"/><path d="M366,80V64l8-10 8 10v16z"/><rect x="0" y="76" width="400" height="4"/></svg>
+<svg class="sky" viewBox="0 0 400 80" aria-hidden="true"><defs><linearGradient id="skyg" x1="0" x2="1"><stop offset="0" stop-color="#d7261e"/><stop offset="1" stop-color="#f5b800"/></linearGradient></defs><polygon points="22,80 22,40 29,8 36,40 36,80"/><polygon points="40,80 40,30 48,0 56,30 56,80"/><polygon points="60,80 60,38 67,10 74,38 74,80"/><polygon points="78,80 78,34 85,4 92,34 92,80"/><polygon points="96,80 96,44 103,16 110,44 110,80"/><rect x="26" y="50" width="80" height="30"/><path d="M200,80V60q40-30 80,0V80z"/><rect x="316" y="26" width="26" height="54" rx="13"/><rect x="352" y="52" width="8" height="28"/><path d="M366,80V64l8-10 8 10v16z"/><rect x="0" y="76" width="400" height="4"/></svg>
 </header>
 <h2 class="sec">Itinerario</h2>
 <ol>
@@ -631,7 +664,7 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <footer>Itinerario per due persone, 28/10/2026.</footer>
 </section>
 </main>
-<nav class="tabbar" aria-label="Sezioni"><label for="t-itinerario"><b class="em em-spin" aria-hidden="true">🕗</b><span>Giorno</span></label><label for="t-mappa"><b class="em em-unfold" aria-hidden="true">🗺️</b><span>Mappa</span></label><label for="t-mangiare"><b class="em em-bob" aria-hidden="true">🥘</b><span>Mangiare</span></label><label for="t-costi"><b class="em em-flip" aria-hidden="true">💶</b><span>Costi</span></label><label for="t-assaggiare"><b class="em em-jiggle" aria-hidden="true">🍮</b><span>Assaggi</span></label><label for="t-consigli"><b class="em em-glow" aria-hidden="true">💡</b><span>Consigli</span></label></nav>
+<nav class="tabbar" aria-label="Sezioni"><label for="t-itinerario"><b class="em em-spin" aria-hidden="true">🕗</b><span>Giorno</span></label><label for="t-mappa"><b class="em em-unfold" aria-hidden="true">🗺️</b><span>Mappa</span></label><label for="t-mangiare"><b class="em em-bob" aria-hidden="true">🥘</b><span>Mangiare</span></label><label for="t-costi"><b class="em em-flip" aria-hidden="true">💶</b><span>Costi</span></label><label for="t-assaggiare"><b class="em em-jiggle" aria-hidden="true">🍮</b><span>Assaggi</span></label><label for="t-consigli"><b class="em em-glow" aria-hidden="true">💡</b><span>Consigli</span></label><label for="dm" class="dmbtn" title="Modalità chiara/scura"><b class="sun" aria-hidden="true">☀️</b><b class="moon" aria-hidden="true">🌙</b><span class="vh">Modalità scura</span></label></nav>
 <script>
 (function(){
 document.documentElement.classList.add("js");
@@ -805,5 +838,15 @@ document.body.classList.add("js-wheel");upd();
 })();
 </script>
 <script>try{if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(function(r){r.update()}).catch(function(){});var _r=false;navigator.serviceWorker.addEventListener("controllerchange",function(){if(_r)return;_r=true;location.reload()})}catch(e){}</script>
+<script>
+(function(){
+var cb=document.getElementById("dm"),root=document.documentElement,mq=matchMedia("(prefers-color-scheme: dark)"),meta=document.querySelector('meta[name="theme-color"]');
+function cur(){var t=root.getAttribute("data-theme");return t?t==="dark":mq.matches}
+function sync(){cb.checked=cur();if(meta)meta.setAttribute("content",cb.checked?"#1a0f0c":"#d7261e")}
+cb.addEventListener("change",function(){var t=cb.checked?"dark":"light";root.setAttribute("data-theme",t);try{localStorage.setItem("bcn-theme",t)}catch(e){}sync()});
+try{mq.addEventListener("change",function(){if(!root.getAttribute("data-theme"))sync()})}catch(e){}
+sync();
+})();
+</script>
 </body>
 </html>
