@@ -17,7 +17,7 @@
 <script>(function(){try{var h=Math.max(screen.height,screen.width),r=h>=926?55:h>=852?55:h>=844?47:h>=812?44:h>=736?0:39;if(r)document.documentElement.style.setProperty("--scr",r+"px")}catch(e){}})();</script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <title>Barcellona in un giorno – 28 ottobre 2026</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&display=swap">
 <style>
 :root{--bg:#e7e6e2;--b1:#b9c1c7;--b2:#dccfbc;--b3:#a9b3ba;--glass:rgba(255,255,255,.5);--glassb:rgba(255,255,255,.7);--paper:#fafaf8;--inset:rgba(0,0,0,.045);--land:#e3e3df;--ink:#141416;--mute:#5a5a57;--line:#c9c9c3;--blue:#34495e;--sun:#17171a;--onsun:#f5f5f2;--brick:#b0503a;--sea:#5c7a70;--food:#c9a227;--eat:rgba(0,0,0,.05);--hero:#141416;--heroink:#f5f5f2;box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c0d0f;--b1:#2a3037;--b2:#3b352d;--b3:#1f282f;--glass:rgba(255,255,255,.07);--glassb:rgba(255,255,255,.14);--paper:#17181a;--inset:rgba(255,255,255,.06);--land:#191b1e;--ink:#f1f1ee;--mute:#a4a4a0;--line:#34363a;--blue:#a9bccd;--sun:#f1f1ee;--onsun:#111;--brick:#e08a73;--sea:#7fb0a1;--food:#d9b94a;--eat:rgba(255,255,255,.06);--hero:#f1f1ee;--heroink:#111}}
@@ -774,6 +774,60 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #lmap.dk .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.88) saturate(.55)}
 #lmap .leaflet-tile-pane{transition:filter .5s ease}
 #lmap:not(.dk) .leaflet-tile-pane{filter:saturate(.75) contrast(.96)}
+
+/* ================= PRESTAZIONI ================= */
+/* niente sfocature annidate: il vetro dei riquadri interni resta, ma senza ricalcolare la sfocatura */
+.eat,#mgrid .eat,.blk .dish div,.zones details,.checklist,.spese,.voli,.live,.meteo,.shots,.snk,.wheelwrap,#costi table,.blk .tips{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.blk{contain:layout paint style;will-change:auto}
+.blk:not(:has(+ *)){}
+.zones details,.snk,.shots li,#mgrid .eat,.blk .dish>div,.fras li,.checklist li{content-visibility:auto;contain-intrinsic-size:auto 90px}
+/* animazioni continue in pausa quando non si vedono */
+body:not(:has(#t-itinerario:checked)) .sky *,body:not(:has(#t-itinerario:checked)) .live .dot{animation-play-state:paused!important}
+#splash::before{inset:-48px!important;animation:spPan2 2.4s linear both!important;will-change:transform}
+@keyframes spPan2{from{transform:translate3d(0,0,0)}to{transform:translate3d(48px,48px,0)}}
+/* animazioni solo con transform e opacità (più leggere) */
+@keyframes up{from{opacity:0;transform:translate3d(0,14px,0)}to{opacity:1;transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translate3d(0,8px,0)}to{opacity:1;transform:none}}
+@keyframes revealIn{from{opacity:0;transform:translate3d(0,16px,0) scale(.98)}to{opacity:1;transform:none}}
+/* ================= NUOVE ANIMAZIONI DEI body:has(#t-itinerario:checked) #itinerario>*,body:has(#t-mappa:checked) #mappa>*,body:has(#t-mangiare:checked) #mangiare>*,body:has(#t-costi:checked) #costi>*,body:has(#t-assaggiare:checked) #assaggiare>*,body:has(#t-consigli:checked) #consigli>*NELLI ================= */
+.blk{transition:opacity .32s ease,visibility 0s linear .32s,bottom .45s ease,height .45s ease!important;transform:none!important}
+body:has(#t-itinerario:checked) #itinerario,body:has(#t-mappa:checked) #mappa,body:has(#t-mangiare:checked) #mangiare,body:has(#t-costi:checked) #costi,body:has(#t-assaggiare:checked) #assaggiare,body:has(#t-consigli:checked) #consigli{transition:opacity .32s ease,visibility 0s,bottom .45s ease,height .45s ease!important}
+body.dir-r body:has(#t-itinerario:checked) #itinerario,body:has(#t-mappa:checked) #mappa,body:has(#t-mangiare:checked) #mangiare,body:has(#t-costi:checked) #costi,body:has(#t-assaggiare:checked) #assaggiare,body:has(#t-consigli:checked) #consigli{animation:slideInR .55s cubic-bezier(.22,1.2,.36,1) both}
+body.dir-l body:has(#t-itinerario:checked) #itinerario,body:has(#t-mappa:checked) #mappa,body:has(#t-mangiare:checked) #mangiare,body:has(#t-costi:checked) #costi,body:has(#t-assaggiare:checked) #assaggiare,body:has(#t-consigli:checked) #consigli{animation:slideInL .55s cubic-bezier(.22,1.2,.36,1) both}
+@keyframes slideInR{from{opacity:0;transform:translate3d(42px,0,0) scale(.97)}to{opacity:1;transform:none}}
+@keyframes slideInL{from{opacity:0;transform:translate3d(-42px,0,0) scale(.97)}to{opacity:1;transform:none}}
+body:has(#t-itinerario:checked) #itinerario>*,body:has(#t-mappa:checked) #mappa>*,body:has(#t-mangiare:checked) #mangiare>*,body:has(#t-costi:checked) #costi>*,body:has(#t-assaggiare:checked) #assaggiare>*,body:has(#t-consigli:checked) #consigli>*{animation:riseIn .6s cubic-bezier(.2,1.25,.4,1) both!important}
+@keyframes riseIn{0%{opacity:0;transform:translate3d(0,22px,0) scale(.96)}100%{opacity:1;transform:none}}
+.blk>*:nth-child(2){animation-delay:.05s!important}.blk>*:nth-child(3){animation-delay:.1s!important}.blk>*:nth-child(4){animation-delay:.15s!important}.blk>*:nth-child(5){animation-delay:.2s!important}.blk>*:nth-child(n+6){animation-delay:.25s!important}
+/* ================= BARRA: INDICATORE LIQUIDO ================= */
+body:has(#t-itinerario:checked) .tabbar{--ti:0}body:has(#t-mappa:checked) .tabbar{--ti:1}body:has(#t-mangiare:checked) .tabbar{--ti:2}body:has(#t-costi:checked) .tabbar{--ti:3}body:has(#t-assaggiare:checked) .tabbar{--ti:4}body:has(#t-consigli:checked) .tabbar{--ti:5}
+.tbind{position:absolute;z-index:0;top:7px;bottom:7px;left:calc(7px + var(--ti,0) * ((100% - 24px) / 6 + 2px));width:calc((100% - 24px) / 6);border-radius:max(16px,calc(var(--r1) - 7px));background:linear-gradient(135deg,var(--c3),var(--c2));box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 8px 18px color-mix(in srgb,var(--c3) 40%,transparent);transition:left .55s cubic-bezier(.3,1.35,.45,1),width .4s ease,border-radius .4s ease,top .4s ease,bottom .4s ease;will-change:left,transform;pointer-events:none}
+.tabbar.moving .tbind{animation:stretch .55s cubic-bezier(.3,1.2,.5,1)}
+@keyframes stretch{0%{transform:scale(1,1)}30%{transform:scale(1.35,.82)}60%{transform:scale(.92,1.08)}100%{transform:none}}
+.tbind::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.55),transparent 55%);opacity:.7}
+.tabbar label{z-index:1}
+.tabbar label::before{opacity:0!important;animation:none!important}
+body.tbmin .tbind{left:5px!important;top:5px;bottom:5px;width:calc(100% - 10px);border-radius:50%}
+body.tbmin .tabbar label::before{opacity:0!important}
+/* etichetta attiva: salto del nome */
+body:has(#t-itinerario:checked) label[for=t-itinerario] span,body:has(#t-mappa:checked) label[for=t-mappa] span,body:has(#t-mangiare:checked) label[for=t-mangiare] span,body:has(#t-costi:checked) label[for=t-costi] span,body:has(#t-assaggiare:checked) label[for=t-assaggiare] span,body:has(#t-consigli:checked) label[for=t-consigli] span{animation:lblPop .5s cubic-bezier(.3,1.6,.5,1) both!important}
+@keyframes lblPop{0%{opacity:0;transform:translate3d(0,8px,0) scale(.7)}100%{opacity:1;transform:none}}
+/* scintille più ricche */
+body:has(#t-itinerario:checked) label[for=t-itinerario]::after,body:has(#t-mappa:checked) label[for=t-mappa]::after,body:has(#t-mangiare:checked) label[for=t-mangiare]::after,body:has(#t-costi:checked) label[for=t-costi]::after,body:has(#t-assaggiare:checked) label[for=t-assaggiare]::after,body:has(#t-consigli:checked) label[for=t-consigli]::after{animation:sparkle .7s ease-out both!important}
+@keyframes sparkle{0%{opacity:1;transform:scale(.2) rotate(0)}60%{opacity:1}100%{opacity:0;transform:scale(1.7) rotate(-35deg)}}
+/* condensa/espandi: l'emoji fa un salto */
+body.tbmin .tabbar label .em{animation:hop .5s cubic-bezier(.3,1.6,.5,1) both!important}
+@keyframes hop{0%{transform:scale(.4) rotate(-30deg)}100%{transform:none}}
+.tabbar.opening{animation:barOpen .55s cubic-bezier(.3,1.3,.5,1)}
+@keyframes barOpen{0%{transform:scale(.9,1.05)}60%{transform:scale(1.02,.98)}100%{transform:none}}
+/* nuove emoji animate */
+@keyframes emSpin{0%{transform:rotate(0)}20%{transform:rotate(-25deg) scale(1.3)}40%{transform:rotate(25deg) scale(1.3)}60%{transform:rotate(-12deg) scale(1.15)}80%{transform:rotate(8deg)}100%{transform:none}}
+@keyframes emUnfold{0%{transform:perspective(60px) rotateY(90deg) scale(.6)}55%{transform:perspective(60px) rotateY(-20deg) scale(1.35)}100%{transform:none}}
+@keyframes emBob{0%,100%{transform:none}15%{transform:translate3d(-3px,0,0) rotate(-8deg) scale(1.2)}30%{transform:translate3d(3px,-4px,0) rotate(8deg) scale(1.25)}45%{transform:translate3d(-3px,-8px,0) rotate(-6deg) scale(1.25)}60%{transform:translate3d(2px,-2px,0) rotate(4deg)}}
+@keyframes emFlip{0%{transform:translate3d(0,0,0) rotateX(0)}45%{transform:translate3d(0,-18px,0) rotateX(540deg) scale(1.3)}75%{transform:translate3d(0,2px,0) rotateX(720deg) scale(.95)}100%{transform:rotateX(720deg)}}
+@keyframes emJiggle{0%,100%{transform:none}20%{transform:scale(1.45,.6) translate3d(0,6px,0)}40%{transform:scale(.75,1.35) translate3d(0,-10px,0)}60%{transform:scale(1.15,.9)}80%{transform:scale(.95,1.05)}}
+@keyframes emGlow{0%{transform:scale(.6);opacity:.4}15%{opacity:1}25%{opacity:.3}35%{opacity:1;transform:scale(1.4)}45%{opacity:.5}55%{opacity:1;transform:scale(1.2) rotate(-8deg)}100%{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.tbind,.blk,.blk>*{animation:none!important;transition:none!important}}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
@@ -1157,7 +1211,7 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </main>
 <div class="appbar"><span class="appt">Barcellona <b>· 28 ottobre</b></span></div>
 <label for="dm" class="iosw" title="Modalità chiara/scura"><span class="trk"><b class="ic sun" aria-hidden="true">☀️</b><b class="ic moon" aria-hidden="true">🌙</b><i class="knob"></i></span><span class="vh">Modalità scura</span></label>
-<nav class="tabbar" aria-label="Sezioni"><label for="t-itinerario"><b class="em em-spin" aria-hidden="true">🕗</b><span>Giorno</span></label><label for="t-mappa"><b class="em em-unfold" aria-hidden="true">🗺️</b><span>Mappa</span></label><label for="t-mangiare"><b class="em em-bob" aria-hidden="true">🥘</b><span>Mangiare</span></label><label for="t-costi"><b class="em em-flip" aria-hidden="true">💶</b><span>Costi</span></label><label for="t-assaggiare"><b class="em em-jiggle" aria-hidden="true">🍮</b><span>Assaggi</span></label><label for="t-consigli"><b class="em em-glow" aria-hidden="true">💡</b><span>Consigli</span></label><i class="tbdots" aria-hidden="true">⋯</i></nav>
+<nav class="tabbar" aria-label="Sezioni"><i class="tbind" aria-hidden="true"></i><label for="t-itinerario"><b class="em em-spin" aria-hidden="true">🕗</b><span>Giorno</span></label><label for="t-mappa"><b class="em em-unfold" aria-hidden="true">🗺️</b><span>Mappa</span></label><label for="t-mangiare"><b class="em em-bob" aria-hidden="true">🥘</b><span>Mangiare</span></label><label for="t-costi"><b class="em em-flip" aria-hidden="true">💶</b><span>Costi</span></label><label for="t-assaggiare"><b class="em em-jiggle" aria-hidden="true">🍮</b><span>Assaggi</span></label><label for="t-consigli"><b class="em em-glow" aria-hidden="true">💡</b><span>Consigli</span></label><i class="tbdots" aria-hidden="true">⋯</i></nav>
 <script>
 (function(){
 document.documentElement.classList.add("js");
@@ -1500,7 +1554,7 @@ var NAME={L9:"Metro L9 Sud|Aeroporto ⇄ Zona Universitària, circa 32 minuti",L
 var map,tiles,lines=[],gFood,gPh,ok=false,root=document.documentElement,mq=matchMedia("(prefers-color-scheme: dark)");
 function dark(){var t=root.getAttribute("data-theme");var cb=document.getElementById("dm");if(cb&&cb.checked)return true;return t?t==="dark":mq.matches}
 function tileUrl(){return "https://tile.openstreetmap.org/{z}/{x}/{y}.png"}
-function setTiles(){if(!map)return;if(tiles)map.removeLayer(tiles);tiles=L.tileLayer(tileUrl(),{maxZoom:19,attribution:'© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>',crossOrigin:true}).addTo(map);el.classList.toggle("dk",dark());
+function setTiles(){if(!map)return;if(tiles)map.removeLayer(tiles);tiles=L.tileLayer(tileUrl(),{maxZoom:19,keepBuffer:1,updateWhenZooming:false,attribution:'© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>',crossOrigin:true}).addTo(map);el.classList.toggle("dk",dark());
 tiles.on("tileload",function(){ok=true})}
 function icon(cls,txt,sz){return L.divIcon({className:"lmk "+cls,html:"<span>"+txt+"</span>",iconSize:[sz,sz],iconAnchor:[sz/2,sz/2]})}
 function pick(i,m){try{window.BCNmap.show(i)}catch(e){}}
@@ -1541,6 +1595,14 @@ var len=p.getTotalLength();p.style.strokeDasharray=len+" "+len;var a=p.animate([
 function fallback(){try{map.remove()}catch(e){}map=null;el.hidden=true;stage.classList.remove("lm")}
 function load(){var sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js";sc.onload=init;sc.onerror=function(){};document.head.appendChild(sc)}
 if(document.readyState==="complete")load();else addEventListener("load",load);
+})();
+</script>
+<script>
+(function(){
+var rs=[].slice.call(document.querySelectorAll(".tabr")),bar=document.querySelector(".tabbar"),cur=0,body=document.body,t1,t2;
+rs.forEach(function(r,i){if(r.checked)cur=i;r.addEventListener("change",function(){if(!r.checked)return;body.classList.remove("dir-r","dir-l");body.classList.add(i>=cur?"dir-r":"dir-l");cur=i;
+bar.classList.remove("moving");void bar.offsetWidth;bar.classList.add("moving");clearTimeout(t1);t1=setTimeout(function(){bar.classList.remove("moving")},600)})});
+var wasMin=false;new MutationObserver(function(){var m=body.classList.contains("tbmin");if(m===wasMin)return;wasMin=m;if(!m){bar.classList.remove("opening");void bar.offsetWidth;bar.classList.add("opening");clearTimeout(t2);t2=setTimeout(function(){bar.classList.remove("opening")},600)}}).observe(body,{attributes:true,attributeFilter:["class"],attributeOldValue:false});
 })();
 </script>
 </body>
