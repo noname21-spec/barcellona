@@ -510,6 +510,31 @@ html.nosplash #splash{display:none}
 .sbar i{display:block;height:100%;width:0;border-radius:5px;background:linear-gradient(90deg,var(--c4),var(--c2));transition:width .5s cubic-bezier(.3,1.3,.5,1),background .3s}
 .sbar i.over{background:linear-gradient(90deg,var(--c2),var(--c3))}
 #sdiff.over{color:var(--c3);font-weight:700}
+#costi td:not(:first-child),#costi th:not(:first-child){white-space:nowrap}
+#costi table{table-layout:auto}
+#costi td,#costi th{padding:9px 10px}
+tr.tot td{font-size:1.05rem!important}
+tr.tot td:not(:first-child){font-size:1.1rem!important;color:var(--c3)}
+
+.fh{margin:0 16px 6px;color:var(--mute);font-size:.85rem}
+.fras{list-style:none!important;padding:0 12px 12px!important}
+.fras li{display:flex;flex-direction:column;gap:5px;padding:9px 4px;margin:0!important;border-top:1px solid color-mix(in srgb,var(--ink) 7%,transparent)}
+.fras li:first-child{border-top:0}
+.fras .it{font-size:.8rem;color:var(--mute);font-weight:600}
+.say{text-align:left;font:600 .95rem Manrope,system-ui,sans-serif;color:var(--ink);background:color-mix(in srgb,var(--c2) 10%,transparent);border:0;border-radius:12px;padding:7px 11px;cursor:pointer;transition:transform .15s,background .2s}
+.say small{display:block;color:var(--c3);font-weight:600;font-size:.76rem;margin-top:2px}
+.say:active,.say.on{transform:scale(.97);background:color-mix(in srgb,var(--c2) 26%,transparent)}
+.call{display:inline-block;margin-right:6px;padding:3px 10px;border-radius:999px;background:linear-gradient(135deg,var(--c3),var(--c2));color:#fff!important;font-weight:800;text-decoration:none}
+.who{display:flex;align-items:center;gap:8px;margin:0 0 10px}
+.who input{flex:1;min-width:0;padding:8px 10px;border-radius:12px;border:1px solid color-mix(in srgb,var(--ink) 14%,transparent);background:var(--bg);color:var(--ink);font:700 .9rem Manrope,system-ui,sans-serif}
+.who span{color:var(--mute);font-weight:700}
+.sv{display:flex;flex-direction:column;gap:4px}
+.payer{align-self:flex-start;border:0;border-radius:999px;padding:3px 9px;font:600 .74rem Manrope,system-ui,sans-serif;color:var(--mute);background:color-mix(in srgb,var(--ink) 7%,transparent);cursor:pointer;transition:background .2s,transform .15s}
+.payer b{color:var(--c3)}
+.payer.b{background:color-mix(in srgb,var(--c4) 22%,transparent)}
+.payer:active{transform:scale(.92)}
+.split{margin-top:4px;padding:9px 12px;border-radius:12px;background:color-mix(in srgb,var(--c4) 16%,transparent);font-weight:700;font-size:.92rem}
+.split:empty{display:none}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
@@ -734,28 +759,29 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <table>
 <tr><th>Voce</th><th>A persona</th><th>In due</th></tr>
 <tr class="grp"><td colspan="3">Trasporti</td></tr>
-<tr><td>Metro L9 Sud, biglietto Aeroport andata e ritorno</td><td>11,80 €</td><td>23,60 €</td></tr>
-<tr><td>Metro in città, 4 corse (T-casual da 10 condiviso)</td><td>5,70 €</td><td>11,35 €</td></tr>
+<tr><td>Metro L9 Sud, a/r</td><td>11,80 €</td><td>23,60 €</td></tr>
+<tr><td>Metro in città, 4 corse</td><td>5,70 €</td><td>11,35 €</td></tr>
 <tr class="grp"><td colspan="3">Attrazioni</td></tr>
-<tr><td>Santa Maria del Mar (facoltativo)</td><td>5 €</td><td>10 €</td></tr>
+<tr><td>Santa Maria del Mar*</td><td>5 €</td><td>10 €</td></tr>
 <tr class="grp"><td colspan="3">Cibo</td></tr>
 <tr><td>Colazione</td><td>7 €</td><td>14 €</td></tr>
 <tr><td>Pranzo con paella</td><td>22 €</td><td>44 €</td></tr>
 <tr><td>Cena anticipata</td><td>15 €</td><td>30 €</td></tr>
 <tr class="tot"><td>Totale</td><td>66,50 €</td><td>132,95 €</td></tr>
 </table>
-<p class="meta">Voli esclusi. Colazione e cena restano sotto i 15 € a persona. Per la paella ho contato circa 22 € a testa da Can Ros; da Can Solé sono 25–35 €. Sono stime da prezzi recenti, da verificare. Il biglietto Aeroport costa 5,90 € a tratta secondo le guide del 2026 (fonti più vecchie dicono 5,50 €) e comprende i cambi di linea. Per le corse in città basta un T-casual da 10 corse condiviso tra voi due.</p>
+<p class="meta">* Facoltativo. Voli esclusi. Colazione e cena restano sotto i 15 € a persona. Per la paella ho contato circa 22 € a testa da Can Ros; da Can Solé sono 25–35 €. Sono stime da prezzi recenti, da verificare. Il biglietto Aeroport costa 5,90 € a tratta secondo le guide del 2026 (fonti più vecchie dicono 5,50 €) e comprende i cambi di linea. Per le corse in città basta un T-casual da 10 corse condiviso tra voi due.</p>
 <div style="height:30px"></div>
 
 <div class="spese"><h3>💳 Spese reali <small>in due</small></h3>
+<div class="who"><input type="text" id="pa" placeholder="Io" maxlength="14" aria-label="Nome persona 1"><span>&amp;</span><input type="text" id="pb" placeholder="Compagno/a" maxlength="14" aria-label="Nome persona 2"></div>
 <div class="sgrid">
-<label><span>Trasporti</span><input type="number" inputmode="decimal" min="0" step="0.5" data-s="tr" placeholder="0"></label>
-<label><span>Colazione</span><input type="number" inputmode="decimal" min="0" step="0.5" data-s="co" placeholder="0"></label>
-<label><span>Pranzo</span><input type="number" inputmode="decimal" min="0" step="0.5" data-s="pr" placeholder="0"></label>
-<label><span>Cena</span><input type="number" inputmode="decimal" min="0" step="0.5" data-s="ce" placeholder="0"></label>
-<label><span>Extra</span><input type="number" inputmode="decimal" min="0" step="0.5" data-s="ex" placeholder="0"></label>
+<div class="sv"><label><span>Trasporti</span><input type="number" inputmode="decimal" min="0" step="0.5" data-s="tr" placeholder="0"></label><button type="button" class="payer" data-s="tr" aria-label="Chi ha pagato trasporti">paga: <b>Io</b></button></div>
+<div class="sv"><label><span>Colazione</span><input type="number" inputmode="decimal" min="0" step="0.5" data-s="co" placeholder="0"></label><button type="button" class="payer" data-s="co" aria-label="Chi ha pagato colazione">paga: <b>Io</b></button></div>
+<div class="sv"><label><span>Pranzo</span><input type="number" inputmode="decimal" min="0" step="0.5" data-s="pr" placeholder="0"></label><button type="button" class="payer" data-s="pr" aria-label="Chi ha pagato pranzo">paga: <b>Io</b></button></div>
+<div class="sv"><label><span>Cena</span><input type="number" inputmode="decimal" min="0" step="0.5" data-s="ce" placeholder="0"></label><button type="button" class="payer" data-s="ce" aria-label="Chi ha pagato cena">paga: <b>Io</b></button></div>
+<div class="sv"><label><span>Extra</span><input type="number" inputmode="decimal" min="0" step="0.5" data-s="ex" placeholder="0"></label><button type="button" class="payer" data-s="ex" aria-label="Chi ha pagato extra">paga: <b>Io</b></button></div>
 </div>
-<div class="stot"><div><b id="stot">0 €</b><span>spesi finora</span></div><div class="sbar"><i id="sbar"></i></div><span id="sdiff">Stima: 133 € in due</span></div>
+<div class="stot"><div><b id="stot">0 €</b><span>spesi finora</span></div><div class="sbar"><i id="sbar"></i></div><span id="sdiff">Stima: 133 € in due</span><div id="split" class="split"></div></div>
 </div>
 </section>
 <section class="blk" id="assaggiare">
@@ -815,6 +841,12 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <li>L'acqua delle fontanelle pubbliche è potabile: porta una borraccia e risparmi sulle bottigliette.</li>
 <li>Per trovare la fontanella più vicina c'è l'app ufficiale del Comune, «Fonts BCN».</li>
 <li>Le fontane decorative non sono da bere: usa solo quelle con il rubinetto o il pulsante.</li>
+</ul></details>
+<details><summary>🗣️ Frasi utili</summary><p class="fh">Prima riga in spagnolo, seconda in catalano con la pronuncia. Tocca una frase per sentirla.</p><ul class="fras"><li><span class="it">Ciao / Buongiorno</span><button type="button" class="say" data-l="es-ES" data-t="Hola / Buenos días">🇪🇸 Hola / Buenos días</button><button type="button" class="say" data-l="ca-ES" data-t="Hola / Bon dia">🔊 Hola / Bon dia <small>bon DI-a</small></button></li><li><span class="it">Un tavolo per due, per favore</span><button type="button" class="say" data-l="es-ES" data-t="Una mesa para dos, por favor">🇪🇸 Una mesa para dos, por favor</button><button type="button" class="say" data-l="ca-ES" data-t="Una taula per a dos, si us plau">🔊 Una taula per a dos, si us plau <small>U-na TAU-la pe-ra dos, sis PLAU</small></button></li><li><span class="it">Una paella per due</span><button type="button" class="say" data-l="es-ES" data-t="Una paella para dos">🇪🇸 Una paella para dos</button><button type="button" class="say" data-l="ca-ES" data-t="Una paella per a dos">🔊 Una paella per a dos <small>u-na pa-E-lla pe-ra dos</small></button></li><li><span class="it">Acqua del rubinetto, per favore</span><button type="button" class="say" data-l="es-ES" data-t="Agua del grifo, por favor">🇪🇸 Agua del grifo, por favor</button><button type="button" class="say" data-l="ca-ES" data-t="Aigua de l'aixeta, si us plau">🔊 Aigua de l'aixeta, si us plau <small>AI-gua de la-SCE-ta</small></button></li><li><span class="it">Il conto, per favore</span><button type="button" class="say" data-l="es-ES" data-t="La cuenta, por favor">🇪🇸 La cuenta, por favor</button><button type="button" class="say" data-l="ca-ES" data-t="El compte, si us plau">🔊 El compte, si us plau <small>el KOM-te, sis PLAU</small></button></li><li><span class="it">Posso pagare con la carta?</span><button type="button" class="say" data-l="es-ES" data-t="¿Puedo pagar con tarjeta?">🇪🇸 ¿Puedo pagar con tarjeta?</button><button type="button" class="say" data-l="ca-ES" data-t="Puc pagar amb targeta?">🔊 Puc pagar amb targeta? <small>puk pa-GA am tar-GE-ta</small></button></li><li><span class="it">Quanto costa?</span><button type="button" class="say" data-l="es-ES" data-t="¿Cuánto cuesta?">🇪🇸 ¿Cuánto cuesta?</button><button type="button" class="say" data-l="ca-ES" data-t="Quant costa?">🔊 Quant costa? <small>kuan KOS-ta</small></button></li><li><span class="it">Dov'è la metro?</span><button type="button" class="say" data-l="es-ES" data-t="¿Dónde está el metro?">🇪🇸 ¿Dónde está el metro?</button><button type="button" class="say" data-l="ca-ES" data-t="On és el metro?">🔊 On és el metro? <small>on es el ME-tro</small></button></li><li><span class="it">Grazie mille!</span><button type="button" class="say" data-l="es-ES" data-t="¡Muchas gracias!">🇪🇸 ¡Muchas gracias!</button><button type="button" class="say" data-l="ca-ES" data-t="Moltes gràcies!">🔊 Moltes gràcies! <small>MOL-tes GRA-si-es</small></button></li></ul></details>
+<details><summary>📞 Numeri utili</summary><ul>
+<li><a class="call" href="tel:112">📞 112</a> Emergenze: ambulanza, polizia, vigili del fuoco. Gratis, anche senza credito.</li>
+<li><a class="call" href="tel:+34900701149">📞 900 701 149</a> TMB, assistenza metro e bus, tutti i giorni 8:00–21:00. Per gli oggetti persi c'è anche l'ufficio online di TMB.</li>
+<li>🇮🇹 Consolato Generale d'Italia a Barcellona: <a href="https://consbarcellona.esteri.it" target="_blank" rel="noopener">consbarcellona.esteri.it</a>, per documenti persi o rubati.</li>
 </ul></details>
 <details><summary>📋 In generale</summary><ul>
 <li>Italia e Spagna hanno lo stesso fuso orario.</li>
@@ -1081,7 +1113,22 @@ function eur(x){return (Math.round(x*100)/100).toLocaleString("it-IT",{maximumFr
 function tot(){var t=ins.reduce(function(a,i){return a+(parseFloat(String(i.value).replace(",","."))||0)},0);st.textContent=eur(t);
 sb.style.width=Math.min(100,t/EST*100)+"%";var over=t>EST;sb.classList.toggle("over",over);sd.classList.toggle("over",over);
 sd.textContent=t===0?"Stima: 133 € in due":over?"Sopra la stima di "+eur(t-EST):"Restano "+eur(EST-t)+" rispetto alla stima di 133 €"}
-ins.forEach(function(i){if(sv[i.dataset.s])i.value=sv[i.dataset.s];i.addEventListener("input",function(){sv[i.dataset.s]=i.value;ls("bcn-spese",JSON.stringify(sv));tot()})});tot();
+ins.forEach(function(i){if(sv[i.dataset.s])i.value=sv[i.dataset.s];i.addEventListener("input",function(){sv[i.dataset.s]=i.value;ls("bcn-spese",JSON.stringify(sv));tot()})});
+var pa=document.getElementById("pa"),pb=document.getElementById("pb"),sp=document.getElementById("split"),pays=[].slice.call(document.querySelectorAll(".payer"));
+sv.pay=sv.pay||{};pa.value=sv.na||"";pb.value=sv.nb||"";
+function nm(x){return x?(pb.value.trim()||"Compagno/a"):(pa.value.trim()||"Io")}
+function drawPay(){pays.forEach(function(b){var w=sv.pay[b.dataset.s]?1:0;b.classList.toggle("b",!!w);b.querySelector("b").textContent=nm(w)})}
+function split(){var A=0,B=0;ins.forEach(function(i){var v=parseFloat(String(i.value).replace(",","."))||0;if(sv.pay[i.dataset.s])B+=v;else A+=v});var d=(A-B)/2;
+sp.textContent=(A+B)===0?"":Math.abs(d)<0.01?"Siete pari 🤝":(d>0?nm(1)+" deve "+eur(d)+" a "+nm(0):nm(0)+" deve "+eur(-d)+" a "+nm(1))}
+pays.forEach(function(b){b.addEventListener("click",function(){sv.pay[b.dataset.s]=sv.pay[b.dataset.s]?0:1;ls("bcn-spese",JSON.stringify(sv));drawPay();split()})});
+[pa,pb].forEach(function(x){x.addEventListener("input",function(){sv.na=pa.value;sv.nb=pb.value;ls("bcn-spese",JSON.stringify(sv));drawPay();split()})});
+var _tot=tot;tot=function(){_tot();split()};
+ins.forEach(function(i){i.addEventListener("input",split)});
+drawPay();tot();
+/* frasario */
+[].forEach.call(document.querySelectorAll(".say"),function(b){b.addEventListener("click",function(){
+try{var u=new SpeechSynthesisUtterance(b.dataset.t);u.lang=b.dataset.l;u.rate=.9;speechSynthesis.cancel();speechSynthesis.speak(u);b.classList.add("on");u.onend=function(){b.classList.remove("on")};setTimeout(function(){b.classList.remove("on")},3000)}catch(e){}
+})});
 /* meteo */
 var me=document.getElementById("meteo");
 if(me&&window.fetch){
