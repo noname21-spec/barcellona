@@ -1083,6 +1083,12 @@ body:has(#t-itinerario:checked) .tabbar.moving label[for=t-itinerario],body:has(
 @keyframes tbFloatL{0%{transform:none}30%{transform:translate3d(0,-6px,0)}58%{transform:translate3d(0,1px,0)}78%{transform:translate3d(0,-2px,0)}100%{transform:none}}
 body.tbmin .tbind{border-radius:50%!important}
 @media (prefers-reduced-motion:reduce){.tabbar.moving .tbind{animation:none!important}}
+/* ===== un gradiente per ogni sezione, dal celeste al giallo ===== */
+@property --g1{syntax:"<color>";inherits:false;initial-value:#4fc3ec}
+@property --g2{syntax:"<color>";inherits:false;initial-value:#5fd0e3}
+body:has(#t-itinerario:checked) .tbind{--g1:#4fc3ec;--g2:#5fd0e3}body:has(#t-voli:checked) .tbind{--g1:#5fd0e3;--g2:#7bd9d0}body:has(#t-mappa:checked) .tbind{--g1:#7bd9d0;--g2:#a2e0b3}body:has(#t-mangiare:checked) .tbind{--g1:#a2e0b3;--g2:#cbe08e}body:has(#t-costi:checked) .tbind{--g1:#cbe08e;--g2:#ecd560}body:has(#t-consigli:checked) .tbind{--g1:#ecd560;--g2:#ffc928}
+.tbind{background:linear-gradient(135deg,var(--g1),var(--g2))!important;transition:left .55s cubic-bezier(.22,1,.36,1),width .4s ease,border-radius .4s ease,top .4s ease,bottom .4s ease,--g1 .55s ease,--g2 .55s ease!important;box-shadow:0 8px 22px -6px color-mix(in srgb,var(--g1) 75%,#036),0 4px 14px -4px color-mix(in srgb,var(--g2) 70%,transparent)!important}
+@keyframes tbFloat{0%{transform:none}30%{transform:translate3d(0,-6px,0)}58%{transform:translate3d(0,1px,0)}78%{transform:translate3d(0,-2px,0)}100%{transform:none}}
 </style>
 </head>
 <body>
