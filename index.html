@@ -8,10 +8,10 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Barcellona">
-<meta name="theme-color" content="#0f8c84">
+<meta name="theme-color" content="#0a8fb5">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=4">
-<link rel="icon" type="image/png" href="icon-192.png?v=4">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=5">
+<link rel="icon" type="image/png" href="icon-192.png?v=5">
 <script>try{var t=localStorage.getItem("bcn-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <script>(function(){try{var sa=navigator.standalone===true||matchMedia("(display-mode: standalone)").matches;if(!sa)return;var r=document.documentElement;r.classList.add("sa");function f(){var p=innerHeight>=innerWidth,sh=p?Math.max(screen.height,screen.width):Math.min(screen.height,screen.width);var h=Math.max(innerHeight,document.documentElement.clientHeight||0);if(sh>h&&sh-h<80)h=sh;r.style.setProperty("--apph",h+"px")}f();addEventListener("resize",f);addEventListener("orientationchange",function(){setTimeout(f,300)})}catch(e){}})();</script>
 <script>(function(){try{var h=Math.max(screen.height,screen.width),r=h>=926?55:h>=852?55:h>=844?47:h>=812?44:h>=736?0:39;if(r)document.documentElement.style.setProperty("--scr",r+"px")}catch(e){}})();</script>
@@ -541,9 +541,9 @@ tr.tot td:not(:first-child){font-size:1.1rem!important;color:var(--c3)}
 .split:empty{display:none}
 
 /* ===== colori Barça: blu e granata ===== */
-:root{--c1:#14a89a;--c2:#e9ae00;--c3:#0f8c84;--c4:#f2c84b;--c5:#22b3a4;--pin:#0f8c84;--blue:#0e7d76;--food:#e9ae00;--bg:#eef7f5;--land:#e1efec;--ink:#0e1f1d;--mute:#53706c;--line:#cde3de;--paper:#ffffff;--surf:#ffffff;--surf2:#eaf5f2;--glass:rgba(255,255,255,.55);--glassb:rgba(255,255,255,.8)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--c1:#33c7b6;--c2:#f2bf26;--c3:#1fae9f;--c4:#ffd866;--c5:#46cfbf;--pin:#2fc2b2;--blue:#8fe6da;--food:#f2bf26;--bg:#051412;--land:#0c1f1d;--ink:#eafaf7;--mute:#9cbcb7;--line:#1f3f3b;--paper:#0e2321;--glass:rgba(255,255,255,.06);--glassb:rgba(255,255,255,.12);--surf:#0f2523;--surf2:#143230}}
-:root[data-theme="dark"],:root:has(#dm:checked){--c1:#33c7b6;--c2:#f2bf26;--c3:#1fae9f;--c4:#ffd866;--c5:#46cfbf;--pin:#2fc2b2;--blue:#8fe6da;--food:#f2bf26;--bg:#051412;--land:#0c1f1d;--ink:#eafaf7;--mute:#9cbcb7;--line:#1f3f3b;--paper:#0e2321;--glass:rgba(255,255,255,.06);--glassb:rgba(255,255,255,.12);--surf:#0f2523;--surf2:#143230}
+:root{--c1:#1fb2cc;--c2:#ebb000;--c3:#0a8fb5;--c4:#f4cb4e;--c5:#35c1d6;--pin:#0a8fb5;--blue:#087fa3;--food:#ebb000;--bg:#eef7fa;--land:#e0eff4;--ink:#0d1d24;--mute:#4f6d78;--line:#cbe2ea;--paper:#ffffff;--surf:#ffffff;--surf2:#e8f4f8;--glass:rgba(255,255,255,.55);--glassb:rgba(255,255,255,.8)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--c1:#3cc6de;--c2:#f2bf26;--c3:#1eaacd;--c4:#ffd866;--c5:#55d0e2;--pin:#36bfdc;--blue:#93e2f0;--food:#f2bf26;--bg:#04121a;--land:#0b1d26;--ink:#eaf8fc;--mute:#9ab9c4;--line:#1d3b47;--paper:#0d212b;--glass:rgba(255,255,255,.06);--glassb:rgba(255,255,255,.12);--surf:#0e232d;--surf2:#13303c}}
+:root[data-theme="dark"],:root:has(#dm:checked){--c1:#3cc6de;--c2:#f2bf26;--c3:#1eaacd;--c4:#ffd866;--c5:#55d0e2;--pin:#36bfdc;--blue:#93e2f0;--food:#f2bf26;--bg:#04121a;--land:#0b1d26;--ink:#eaf8fc;--mute:#9ab9c4;--line:#1d3b47;--paper:#0d212b;--glass:rgba(255,255,255,.06);--glassb:rgba(255,255,255,.12);--surf:#0e232d;--surf2:#13303c}
 body::before{background:radial-gradient(48% 36% at 8% 6%,color-mix(in srgb,var(--c3) 24%,transparent),transparent 70%),radial-gradient(44% 36% at 94% 90%,color-mix(in srgb,var(--c2) 22%,transparent),transparent 70%),radial-gradient(36% 28% at 90% 16%,color-mix(in srgb,var(--c4) 16%,transparent),transparent 70%)!important}
 .bar i:nth-child(odd){background:var(--c3)!important}.bar i:nth-child(even){background:var(--c2)!important}
 .hero h1{background:linear-gradient(100deg,var(--c3),var(--c4) 55%,var(--c2))!important;-webkit-background-clip:text!important;background-clip:text!important}
@@ -718,8 +718,8 @@ body.tbmin .tabbar,body.tbmin .tabbar label::before{border-radius:50%!important}
 
 /* ===== vetro semi-opaco stile iOS 27 ===== */
 :root{--gl:rgba(255,255,255,.5);--gl2:rgba(255,255,255,.58);--edge:rgba(16,20,42,.12);--hi:rgba(255,255,255,.9);--hi2:rgba(255,255,255,.35);--glsh:rgba(16,20,42,.12)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--gl:rgba(10,38,36,.5);--gl2:rgba(14,46,43,.55);--edge:rgba(0,0,0,.5);--hi:rgba(255,255,255,.22);--hi2:rgba(255,255,255,.08);--glsh:rgba(0,0,0,.4)}}
-:root[data-theme="dark"],:root:has(#dm:checked){--gl:rgba(10,38,36,.5);--gl2:rgba(14,46,43,.55);--edge:rgba(0,0,0,.5);--hi:rgba(255,255,255,.22);--hi2:rgba(255,255,255,.08);--glsh:rgba(0,0,0,.4)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--gl:rgba(9,34,46,.5);--gl2:rgba(13,42,56,.55);--edge:rgba(0,0,0,.5);--hi:rgba(255,255,255,.22);--hi2:rgba(255,255,255,.08);--glsh:rgba(0,0,0,.4)}}
+:root[data-theme="dark"],:root:has(#dm:checked){--gl:rgba(9,34,46,.5);--gl2:rgba(13,42,56,.55);--edge:rgba(0,0,0,.5);--hi:rgba(255,255,255,.22);--hi2:rgba(255,255,255,.08);--glsh:rgba(0,0,0,.4)}
 body::before{background:radial-gradient(52% 40% at 6% 4%,color-mix(in srgb,var(--c3) 42%,transparent),transparent 70%),radial-gradient(48% 40% at 96% 92%,color-mix(in srgb,var(--c2) 38%,transparent),transparent 70%),radial-gradient(40% 32% at 92% 18%,color-mix(in srgb,var(--c4) 30%,transparent),transparent 70%),radial-gradient(36% 30% at 10% 70%,color-mix(in srgb,#f2c230 14%,transparent),transparent 70%)!important}
 .blk,.tabbar{background:linear-gradient(180deg,var(--hi2),transparent 38%),var(--gl)!important;-webkit-backdrop-filter:blur(30px) saturate(185%)!important;backdrop-filter:blur(30px) saturate(185%)!important;border:1px solid var(--edge)!important;box-shadow:inset 0 1px 0 var(--hi),inset 0 0 0 1px var(--hi2),0 18px 50px var(--glsh)!important}
 .blk.active,body:has(.tabr:checked) .tabbar{box-shadow:inset 0 1px 0 var(--hi),inset 0 0 0 1px var(--hi2),0 18px 50px var(--glsh)!important}
@@ -927,8 +927,8 @@ body:not(.scrolled) .wxi{animation-play-state:paused!important}
 body:has(#t-voli:checked) .em-fly{animation-name:emFly}
 @keyframes emFly{0%{opacity:0;transform:translate3d(-16px,12px,0) rotate(-8deg) scale(.5)}45%{opacity:1;transform:translate3d(10px,-14px,0) rotate(-22deg) scale(1.4)}70%{transform:translate3d(-2px,2px,0) rotate(4deg) scale(.95)}100%{transform:none}}
 :root{--gltb:rgba(255,255,255,.2)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--gltb:rgba(6,30,28,.3)}}
-:root[data-theme="dark"],:root:has(#dm:checked){--gltb:rgba(6,30,28,.3)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--gltb:rgba(5,26,36,.3)}}
+:root[data-theme="dark"],:root:has(#dm:checked){--gltb:rgba(5,26,36,.3)}
 .tabbar{background:linear-gradient(180deg,var(--hi2),transparent 55%),var(--gltb)!important;-webkit-backdrop-filter:blur(16px) saturate(210%) brightness(1.04)!important;backdrop-filter:blur(16px) saturate(210%) brightness(1.04)!important}
 .tabbar label{color:color-mix(in srgb,var(--ink) 72%,transparent)!important;text-shadow:0 1px 2px color-mix(in srgb,var(--bg) 70%,transparent)}
 .tabbar label span{font-weight:700}
@@ -1589,7 +1589,7 @@ document.body.classList.add("js-wheel");upd();
 (function(){
 var cb=document.getElementById("dm"),root=document.documentElement,mq=matchMedia("(prefers-color-scheme: dark)"),meta=document.querySelector('meta[name="theme-color"]');
 function cur(){var t=root.getAttribute("data-theme");return t?t==="dark":mq.matches}
-function sync(){cb.checked=cur();if(meta)meta.setAttribute("content",cb.checked?"#051412":"#0f8c84")}
+function sync(){cb.checked=cur();if(meta)meta.setAttribute("content",cb.checked?"#04121a":"#0a8fb5")}
 cb.addEventListener("change",function(){var t=cb.checked?"dark":"light";root.setAttribute("data-theme",t);try{localStorage.setItem("bcn-theme",t)}catch(e){}sync()});
 try{mq.addEventListener("change",function(){if(!root.getAttribute("data-theme"))sync()})}catch(e){}
 sync();
