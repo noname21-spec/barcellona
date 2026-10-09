@@ -1035,7 +1035,7 @@ body::before{background:radial-gradient(58% 44% at 4% 2%,color-mix(in srgb,var(-
 @keyframes tbGlow{0%{box-shadow:inset 0 1.5px 0 rgba(255,255,255,.75),0 0 0 0 color-mix(in srgb,var(--c4) 70%,transparent),0 0 0 0 color-mix(in srgb,var(--c1) 50%,transparent)}60%{box-shadow:inset 0 1.5px 0 rgba(255,255,255,.75),0 0 0 7px color-mix(in srgb,var(--c4) 0%,transparent),0 0 26px 6px color-mix(in srgb,var(--c1) 35%,transparent)}100%{box-shadow:inset 0 1.5px 0 rgba(255,255,255,.75),inset 0 -3px 8px rgba(0,70,95,.22),0 8px 22px color-mix(in srgb,var(--c3) 45%,transparent)}}
 body:has(#t-itinerario:checked) .tabbar label[for=t-itinerario]::before,body:has(#t-voli:checked) .tabbar label[for=t-voli]::before,body:has(#t-mappa:checked) .tabbar label[for=t-mappa]::before,body:has(#t-mangiare:checked) .tabbar label[for=t-mangiare]::before,body:has(#t-costi:checked) .tabbar label[for=t-costi]::before,body:has(#t-consigli:checked) .tabbar label[for=t-consigli]::before{opacity:1!important;inset:auto!important;left:50%!important;top:50%!important;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%!important;background:radial-gradient(circle,transparent 52%,rgba(255,255,255,.9) 54%,transparent 70%)!important;box-shadow:none!important;transform:scale(.4);animation:tbRipple .75s cubic-bezier(.22,1,.36,1) .05s both!important}
 @keyframes tbRipple{0%{opacity:.95;transform:scale(.4)}100%{opacity:0;transform:scale(1.55)}}
-body:has(#t-itinerario:checked) .tabbar label[for=t-itinerario],body:has(#t-voli:checked) .tabbar label[for=t-voli],body:has(#t-mappa:checked) .tabbar label[for=t-mappa],body:has(#t-mangiare:checked) .tabbar label[for=t-mangiare],body:has(#t-costi:checked) .tabbar label[for=t-costi],body:has(#t-consigli:checked) .tabbar label[for=t-consigli]{animation:tbJump .6s cubic-bezier(.22,1,.36,1) both}
+body:has(#t-itinerario:checked) .tabbar label[for=t-itinerario],body:has(#t-voli:checked) .tabbar label[for=t-voli],body:has(#t-mappa:checked) .tabbar label[for=t-mappa],body:has(#t-mangiare:checked) .tabbar label[for=t-mangiare],body:has(#t-costi:checked) .tabbar label[for=t-costi],body:has(#t-consigli:checked) .tabbar label[for=t-consigli]{}
 @keyframes tbJump{0%{transform:none}35%{transform:translate3d(0,-5px,0) scale(1.07)}100%{transform:none}}
 body:has(#t-itinerario:checked) .tabbar label[for=t-itinerario] .em,body:has(#t-voli:checked) .tabbar label[for=t-voli] .em,body:has(#t-mappa:checked) .tabbar label[for=t-mappa] .em,body:has(#t-mangiare:checked) .tabbar label[for=t-mangiare] .em,body:has(#t-costi:checked) .tabbar label[for=t-costi] .em,body:has(#t-consigli:checked) .tabbar label[for=t-consigli] .em{filter:drop-shadow(0 3px 6px rgba(0,60,80,.35)) drop-shadow(0 0 8px rgba(255,236,150,.55))!important}
 .tabbar label::after{box-shadow:0 -24px 0 #fff,21px -12px 0 var(--c4),21px 12px 0 var(--mint),0 24px 0 #fff,-21px 12px 0 var(--c4),-21px -12px 0 var(--c1),12px -21px 0 var(--mint),-12px 21px 0 var(--c4)!important}
@@ -1073,6 +1073,16 @@ body.tbmin .tbind{border-radius:50%!important;animation:none!important}
 .tabbar label span{text-shadow:none}
 @media (prefers-reduced-motion:reduce){.tbind,.tbind::before{animation:none!important}}
 body:has(#t-itinerario:checked) .tabbar label[for=t-itinerario] span,body:has(#t-voli:checked) .tabbar label[for=t-voli] span,body:has(#t-mappa:checked) .tabbar label[for=t-mappa] span,body:has(#t-mangiare:checked) .tabbar label[for=t-mangiare] span,body:has(#t-costi:checked) .tabbar label[for=t-costi] span,body:has(#t-consigli:checked) .tabbar label[for=t-consigli] span{text-shadow:0 1px 3px rgba(0,45,65,.45)!important}
+/* ===== selezione: gradiente celeste-giallo e galleggiamento ===== */
+.tbind{background:linear-gradient(135deg,#5ccfe8 0%,#8fdcd0 45%,#ffd23f 100%)!important;overflow:hidden;animation:none!important;transform:none}
+body:not(.tbmin) .tbind{border-radius:20px!important}
+.tbind::before,.tbind::after{display:none!important;animation:none!important}
+.tabbar.moving .tbind{animation:tbFloat 1s cubic-bezier(.37,0,.25,1)!important}
+@keyframes tbFloat{0%{transform:none;box-shadow:0 8px 22px -6px color-mix(in srgb,var(--c3) 70%,transparent),0 4px 14px -4px color-mix(in srgb,var(--c4) 60%,transparent)}30%{transform:translate3d(0,-6px,0);box-shadow:0 16px 26px -8px color-mix(in srgb,var(--c3) 55%,transparent),0 10px 18px -6px color-mix(in srgb,var(--c4) 45%,transparent)}58%{transform:translate3d(0,1px,0)}78%{transform:translate3d(0,-2px,0)}100%{transform:none;box-shadow:0 8px 22px -6px color-mix(in srgb,var(--c3) 70%,transparent),0 4px 14px -4px color-mix(in srgb,var(--c4) 60%,transparent)}}
+body:has(#t-itinerario:checked) .tabbar.moving label[for=t-itinerario],body:has(#t-voli:checked) .tabbar.moving label[for=t-voli],body:has(#t-mappa:checked) .tabbar.moving label[for=t-mappa],body:has(#t-mangiare:checked) .tabbar.moving label[for=t-mangiare],body:has(#t-costi:checked) .tabbar.moving label[for=t-costi],body:has(#t-consigli:checked) .tabbar.moving label[for=t-consigli]{animation:tbFloatL 1s cubic-bezier(.37,0,.25,1) both!important}
+@keyframes tbFloatL{0%{transform:none}30%{transform:translate3d(0,-6px,0)}58%{transform:translate3d(0,1px,0)}78%{transform:translate3d(0,-2px,0)}100%{transform:none}}
+body.tbmin .tbind{border-radius:50%!important}
+@media (prefers-reduced-motion:reduce){.tabbar.moving .tbind{animation:none!important}}
 </style>
 </head>
 <body>
@@ -1927,7 +1937,7 @@ if(document.readyState==="complete")load();else addEventListener("load",load);
 (function(){
 var rs=[].slice.call(document.querySelectorAll(".tabr")),bar=document.querySelector(".tabbar"),cur=0,body=document.body,t1,t2;
 rs.forEach(function(r,i){if(r.checked)cur=i;r.addEventListener("change",function(){if(!r.checked)return;body.classList.remove("dir-r","dir-l");body.classList.add(i>=cur?"dir-r":"dir-l");cur=i;
-bar.classList.remove("moving");void bar.offsetWidth;bar.classList.add("moving");clearTimeout(t1);t1=setTimeout(function(){bar.classList.remove("moving")},600)})});
+bar.classList.remove("moving");void bar.offsetWidth;bar.classList.add("moving");clearTimeout(t1);t1=setTimeout(function(){bar.classList.remove("moving")},1050)})});
 var wasMin=false;new MutationObserver(function(){var m=body.classList.contains("tbmin");if(m===wasMin)return;wasMin=m;if(!m){bar.classList.remove("opening");void bar.offsetWidth;bar.classList.add("opening");clearTimeout(t2);t2=setTimeout(function(){bar.classList.remove("opening")},600)}}).observe(body,{attributes:true,attributeFilter:["class"],attributeOldValue:false});
 })();
 </script>
