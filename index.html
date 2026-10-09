@@ -1044,6 +1044,19 @@ body:has(#t-itinerario:checked) .tabbar label[for=t-itinerario]::after,body:has(
 body.tbmin .tabbar label::before,body.tbmin .tabbar label::after{display:none!important}
 body.tbmin .tbind{animation:tbFlow 7s ease-in-out infinite alternate!important}
 @media (prefers-reduced-motion:reduce){.tbind,.tabbar label,.tabbar label::before,.tabbar label::after{animation:none!important}}
+/* ===== selezione: pulsante di vetro, senza cerchi ===== */
+.tabbar label::before,.tabbar label::after,body:has(#t-itinerario:checked) .tabbar label[for=t-itinerario]::before,body:has(#t-voli:checked) .tabbar label[for=t-voli]::before,body:has(#t-mappa:checked) .tabbar label[for=t-mappa]::before,body:has(#t-mangiare:checked) .tabbar label[for=t-mangiare]::before,body:has(#t-costi:checked) .tabbar label[for=t-costi]::before,body:has(#t-consigli:checked) .tabbar label[for=t-consigli]::before,body:has(#t-itinerario:checked) .tabbar label[for=t-itinerario]::after,body:has(#t-voli:checked) .tabbar label[for=t-voli]::after,body:has(#t-mappa:checked) .tabbar label[for=t-mappa]::after,body:has(#t-mangiare:checked) .tabbar label[for=t-mangiare]::after,body:has(#t-costi:checked) .tabbar label[for=t-costi]::after,body:has(#t-consigli:checked) .tabbar label[for=t-consigli]::after{display:none!important;animation:none!important}
+.tbind{background:linear-gradient(180deg,rgba(255,255,255,.34) 0%,rgba(255,255,255,.08) 48%,rgba(0,40,60,.06) 52%,rgba(0,40,60,.14) 100%),var(--grad)!important;background-size:100% 100%,170% 170%!important;border:1px solid rgba(255,255,255,.55);box-sizing:border-box;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.85),inset 0 -2px 3px rgba(0,60,85,.22),inset 0 0 14px rgba(255,255,255,.18),0 6px 16px color-mix(in srgb,var(--c3) 38%,transparent),0 2px 4px rgba(0,50,70,.15)!important;animation:tbFlow2 7s ease-in-out infinite alternate!important}
+.tbind::after{content:"";position:absolute;left:8%;right:8%;top:3px;height:44%;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0));opacity:.75!important;pointer-events:none}
+.tabbar.moving .tbind{animation:tbPress .55s cubic-bezier(.22,1,.36,1),tbHalo 1s ease-out,tbFlow2 7s ease-in-out infinite alternate!important}
+@keyframes tbFlow2{0%{background-position:0 0,0% 30%}100%{background-position:0 0,100% 70%}}
+@keyframes tbPress{0%{transform:scale(.9,.92);filter:brightness(.92)}45%{transform:scale(1.04,.98);filter:brightness(1.12) saturate(1.15)}100%{transform:none;filter:none}}
+@keyframes tbHalo{0%{box-shadow:inset 0 1.5px 0 rgba(255,255,255,.85),inset 0 -2px 3px rgba(0,60,85,.22),0 2px 6px color-mix(in srgb,var(--c3) 30%,transparent)}40%{box-shadow:inset 0 1.5px 0 rgba(255,255,255,.95),inset 0 -2px 3px rgba(0,60,85,.18),0 10px 28px color-mix(in srgb,var(--c1) 55%,transparent),0 0 22px color-mix(in srgb,var(--c4) 40%,transparent)}100%{box-shadow:inset 0 1.5px 0 rgba(255,255,255,.85),inset 0 -2px 3px rgba(0,60,85,.22),inset 0 0 14px rgba(255,255,255,.18),0 6px 16px color-mix(in srgb,var(--c3) 38%,transparent),0 2px 4px rgba(0,50,70,.15)}}
+.tabbar.moving .tbind::before{animation:sheen .9s cubic-bezier(.22,1,.36,1) .12s both!important}
+body.tbmin .tbind{animation:tbFlow2 7s ease-in-out infinite alternate!important}
+@media (prefers-reduced-motion:reduce){.tbind{animation:none!important}}
+body:not(.tbmin) .tbind{border-radius:20px!important}
+.tbind{background-size:100% 100%,125% 125%!important}
 </style>
 </head>
 <body>
