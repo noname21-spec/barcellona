@@ -1057,6 +1057,22 @@ body.tbmin .tbind{animation:tbFlow2 7s ease-in-out infinite alternate!important}
 @media (prefers-reduced-motion:reduce){.tbind{animation:none!important}}
 body:not(.tbmin) .tbind{border-radius:20px!important}
 .tbind{background-size:100% 100%,125% 125%!important}
+/* ===== selezione avanguardista: blob fluido con gradiente conico ===== */
+.tbind{background:none!important;border:0!important;overflow:hidden;isolation:isolate;box-shadow:0 8px 22px -6px color-mix(in srgb,var(--c3) 70%,transparent),0 4px 14px -4px color-mix(in srgb,var(--c4) 60%,transparent)!important;animation:tbBlob 6s ease-in-out infinite alternate!important;filter:none!important}
+body:not(.tbmin) .tbind{border-radius:42% 58% 55% 45% / 48% 42% 58% 52%!important}
+.tbind::before{content:""!important;position:absolute;inset:-60%!important;border-radius:0!important;background:conic-gradient(from 0deg,var(--c3),var(--c1),var(--mint),var(--c4),#ff9f1c,var(--c4),var(--mint),var(--c1),var(--c3))!important;background-size:auto!important;opacity:1!important;z-index:-1;animation:tbSpin 5s linear infinite!important}
+.tbind::after{content:""!important;position:absolute;inset:0!important;left:0!important;right:0!important;top:0!important;height:auto!important;border-radius:inherit!important;background:radial-gradient(circle,rgba(255,255,255,.35) 1px,transparent 1.4px) 0 0/6px 6px!important;opacity:.55!important;mix-blend-mode:soft-light}
+@keyframes tbSpin{to{transform:rotate(360deg)}}
+@keyframes tbBlob{0%{border-radius:42% 58% 55% 45% / 48% 42% 58% 52%}33%{border-radius:58% 42% 40% 60% / 40% 60% 45% 55%}66%{border-radius:48% 52% 62% 38% / 56% 44% 52% 48%}100%{border-radius:38% 62% 50% 50% / 50% 50% 40% 60%}}
+.tabbar.moving .tbind{animation:tbMorph .6s cubic-bezier(.22,1,.36,1),tbBlob 6s ease-in-out infinite alternate!important}
+.tabbar.moving .tbind::before{animation:tbSpin 5s linear infinite,tbFlash .6s ease-out!important}
+@keyframes tbMorph{0%{transform:scale(.55) rotate(-25deg);opacity:.4}60%{transform:scale(1.06) rotate(4deg);opacity:1}100%{transform:none}}
+@keyframes tbFlash{0%{filter:saturate(2) brightness(1.3)}100%{filter:none}}
+body.tbmin .tbind{border-radius:50%!important;animation:none!important}
+.tabbar label .em{transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.tabbar label span{text-shadow:none}
+@media (prefers-reduced-motion:reduce){.tbind,.tbind::before{animation:none!important}}
+body:has(#t-itinerario:checked) .tabbar label[for=t-itinerario] span,body:has(#t-voli:checked) .tabbar label[for=t-voli] span,body:has(#t-mappa:checked) .tabbar label[for=t-mappa] span,body:has(#t-mangiare:checked) .tabbar label[for=t-mangiare] span,body:has(#t-costi:checked) .tabbar label[for=t-costi] span,body:has(#t-consigli:checked) .tabbar label[for=t-consigli] span{text-shadow:0 1px 3px rgba(0,45,65,.45)!important}
 </style>
 </head>
 <body>
