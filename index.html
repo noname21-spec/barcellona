@@ -881,6 +881,46 @@ body.scrolled .appt{transform:translate3d(-2px,0,0) scale(.94);transform-origin:
 @keyframes wxSnow{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(12deg) translate3d(0,2px,0)}}
 body:not(.scrolled) .wxi{animation-play-state:paused!important}
 @media (prefers-reduced-motion:reduce){.wxi{animation:none!important}}
+/* voli: stato live */
+.vlinks{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.vch{font-size:.76rem;font-weight:700;color:var(--c3);text-decoration:none;padding:5px 10px;border-radius:999px;background:color-mix(in srgb,var(--c3) 10%,transparent);border:1px solid color-mix(in srgb,var(--c3) 22%,transparent);white-space:nowrap}
+.vch:active{transform:scale(.96)}
+.vch[hidden],.vlive[hidden],.vbtn[hidden],.vlnk[hidden]{display:none!important}
+.vlive{grid-column:1/-1;border-radius:12px;padding:9px 11px;background:color-mix(in srgb,var(--ink) 4%,transparent);border:1px solid color-mix(in srgb,var(--ink) 8%,transparent);display:grid;gap:5px;font-size:.84rem;animation:fadeUp .35s ease both}
+.vlive .vtop{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.vlive .vpill{font-size:.74rem;font-weight:800;padding:3px 9px;border-radius:999px;color:#fff;background:#1f9d55;display:inline-flex;align-items:center;gap:5px}
+.vlive .vpill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;animation:vblink 1.6s ease-in-out infinite}
+.vlive.warn .vpill{background:#d97706}.vlive.bad .vpill{background:#c81e3a}.vlive.idle .vpill{background:color-mix(in srgb,var(--ink) 45%,transparent)}
+.vlive.idle .vpill::before{animation:none}
+.vlive .vag{font-size:.7rem;color:var(--mute);font-weight:600}
+.vlive .vrow{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.vlive .vrow span{color:var(--mute);font-weight:600;font-size:.76rem}
+.vlive .vrow b{font-weight:800;text-align:right}
+.vlive s{color:var(--mute);font-weight:600;margin-right:4px}
+.vlive .vdl{color:#d97706;font-weight:800;margin-left:4px}
+.vlive .vchips{display:flex;flex-wrap:wrap;gap:5px}
+.vlive .vchips i{font-style:normal;font-size:.74rem;font-weight:800;padding:2px 8px;border-radius:8px;background:color-mix(in srgb,var(--c2) 14%,transparent);color:var(--ink)}
+.vlive .verr{color:var(--mute);font-weight:600;font-size:.8rem}
+@keyframes vblink{50%{opacity:.35}}
+.vbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
+.vbar:has(#vref[hidden]):has(#vupd:empty){display:none}
+.vbar small{color:var(--mute);font-size:.72rem;font-weight:600}
+.vbtn{font:800 .8rem Manrope,system-ui,sans-serif;color:#fff;border:0;border-radius:999px;padding:8px 14px;background:linear-gradient(135deg,var(--c3),var(--c2));cursor:pointer}
+.vbtn:active{transform:scale(.96)}.vbtn{white-space:nowrap;flex:none}.vkey ol{list-style:decimal!important}.vkey ol li{display:list-item!important;margin:0 0 3px}
+.vbtn:disabled{opacity:.55}
+.vkey{margin-top:10px;border-radius:14px;border:1px solid color-mix(in srgb,var(--ink) 9%,transparent);overflow:hidden}
+.vkey summary{cursor:pointer;list-style:none;padding:10px 12px;font-weight:800;font-size:.86rem;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.vkey summary::-webkit-details-marker{display:none}
+.vkey summary small{font-size:.72rem;font-weight:700;color:var(--mute)}
+.vkey.on summary small{color:#1f9d55}
+.vkey p,.vkey ol,.vkey .vknote{margin:0 12px 8px;font-size:.8rem;color:var(--mute);line-height:1.45}
+.vkey ol{padding-left:18px}
+.vkey a{color:var(--c3);font-weight:700}
+.vkey .vknote{display:block;font-size:.72rem}
+.vkrow{display:flex;gap:8px;margin:0 12px 8px}
+.vkrow input{flex:1;min-width:0;height:40px;box-sizing:border-box;padding:0 10px;border-radius:11px;border:1px solid color-mix(in srgb,var(--ink) 14%,transparent);background:var(--bg);color:var(--ink);font:600 16px Manrope,system-ui,sans-serif}
+.vlnk{background:none;border:0;color:#c81e3a;font:700 .78rem Manrope,system-ui,sans-serif;margin:0 12px 10px;padding:0;cursor:pointer}
+.vkey[open]>*:not(summary){animation:fadeUp .3s ease both}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
@@ -936,15 +976,25 @@ footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 <label><span>Numero volo</span><input type="text" data-v="a_num" placeholder="es. FR1234" autocapitalize="characters" maxlength="10"></label>
 <label><span>Apertura imbarco</span><input type="time" data-v="a_imb"></label>
 <label><span>Partenza</span><input type="time" data-v="a_dep"></label>
-<a class="vst" data-f="a_num" target="_blank" rel="noopener" hidden>Stato del volo ↗︎</a>
+<div class="vlive" data-l="a" hidden></div>
+<div class="vlinks"><a class="vch" href="https://www.bologna-airport.it/voli/vola-da-bologna/voli-in-tempo-reale/?idC=62178#section-departures" target="_blank" rel="noopener">🛫 Partenze Bologna ↗︎</a><a class="vch" href="https://www.aena.es/es/infovuelos.html" target="_blank" rel="noopener">🛬 Arrivi Barcellona ↗︎</a><a class="vst vch" data-f="a_num" target="_blank" rel="noopener" hidden>Flightradar24 ↗︎</a></div>
 </fieldset>
 <fieldset><legend><span class="iata">BCN</span><i class="pl">✈︎</i><span class="iata">BLQ</span> Ritorno</legend>
 <label><span>Numero volo</span><input type="text" data-v="r_num" placeholder="es. FR1235" autocapitalize="characters" maxlength="10"></label>
 <label><span>Apertura imbarco</span><input type="time" data-v="r_imb" placeholder="20:40"></label>
 <label><span>Partenza</span><input type="time" data-v="r_dep" value="21:20"></label>
-<a class="vst" data-f="r_num" target="_blank" rel="noopener" hidden>Stato del volo ↗︎</a>
+<div class="vlive" data-l="r" hidden></div>
+<div class="vlinks"><a class="vch" href="https://www.aena.es/es/infovuelos.html" target="_blank" rel="noopener">🛫 Partenze Barcellona ↗︎</a><a class="vch" href="https://www.bologna-airport.it/voli/vola-da-bologna/voli-in-tempo-reale/?idC=62178#section-arrivals" target="_blank" rel="noopener">🛬 Arrivi Bologna ↗︎</a><a class="vst vch" data-f="r_num" target="_blank" rel="noopener" hidden>Flightradar24 ↗︎</a></div>
 </fieldset>
 </div>
+<div class="vbar"><button type="button" id="vref" class="vbtn" hidden>↻ Aggiorna stato</button><small id="vupd"></small></div>
+<details class="vkey" id="vkey"><summary><span>📡 Stato live dei voli</span><small id="vks">Non collegato</small></summary>
+<p>Gli aeroporti di Bologna e Barcellona non danno i loro dati alle app esterne: i pulsanti qui sopra aprono le loro pagine ufficiali. Per vedere ritardi, gate, terminal e nastro bagagli direttamente qui, collega il servizio gratuito AeroDataBox (piano Basic gratuito, con un numero limitato di richieste al mese).</p>
+<ol><li>Crea un account su <a href="https://rapidapi.com/aedbx-aedbx/api/aerodatabox" target="_blank" rel="noopener">RapidAPI · AeroDataBox ↗︎</a> e attiva il piano <b>Basic</b> gratuito.</li><li>Copia la tua chiave <b>X-RapidAPI-Key</b> e incollala qui sotto.</li></ol>
+<div class="vkrow"><input type="password" id="vkin" placeholder="Incolla la chiave" autocomplete="off" autocapitalize="off" spellcheck="false"><button type="button" class="vbtn" id="vkok">Collega</button></div>
+<small class="vknote">La chiave resta solo su questo telefono, non finisce nel sito pubblicato. Nel giorno del viaggio l'app aggiorna da sola ogni 10 minuti intorno ai voli.</small>
+<button type="button" class="vlnk" id="vkdel" hidden>Scollega</button>
+</details>
 </div>
 
 <div id="meteo" class="meteo"><span class="mi">🌤️</span><div><b>Meteo a fine ottobre</b><span>Di solito 20–21° di giorno e 14–15° la sera, con qualche giornata di pioggia. Le previsioni vere compaiono qui circa due settimane prima.</span></div></div>
@@ -1480,16 +1530,16 @@ var i=-1;T.forEach(function(s,k){if(n.m>=s.m)i=k});
 steps.forEach(function(li,k){li.classList.toggle("now",k===i)});
 [].forEach.call(document.querySelectorAll(".wi"),function(w,k){w.classList.toggle("now",k===i)});
 if(i!==last){last=i;var wi=document.querySelectorAll(".wi")[Math.max(0,i)];if(wi&&first){first=false;try{wi.click()}catch(e){}}}
-var VV=window.BCNVOLI||{},rnum=VV.r_num?" "+VV.r_num:"",rimb=VV.r_imb,rdep=VV.r_dep||"21:20";function mm(x){var a=String(x).split(":");return +a[0]*60+ +a[1]}
-if(rimb&&n.m>=DEP+40&&n.m<mm(rimb)){set("alert","Imbarco del volo"+rnum+" alle "+rimb,"Tra "+fm(mm(rimb)-n.m)+". Decollo alle "+rdep+".");return}
-if(n.m>=DEP+70){set("calm","Buon volo"+rnum+"! ✈️","Il decollo è alle "+rdep+(rimb?", imbarco dalle "+rimb:"")+".");return}
-if(n.m>=DEP){set("alert","È ora di andare in aeroporto","Metro L3 da Catalunya, poi L9 Sud. Decollo alle 21:20.");return}
+var VV=window.BCNVOLI||{},rnum=VV.r_num?" "+VV.r_num:"",rimb=VV.r_imb,rdep=VV.r_dep||"21:20";var LV=(window.BCNLIVE||{}).r;if(LV&&(LV.dR||LV.dS))rdep=LV.dR||LV.dS;var gt=LV&&LV.gate?" · Gate "+LV.gate:"";if(LV&&LV.st==="Canceled"){set("alert","Volo"+rnum+" cancellato","Controlla subito l'app o il sito della compagnia aerea.");return}function mm(x){var a=String(x).split(":");return +a[0]*60+ +a[1]}
+if(rimb&&n.m>=DEP+40&&n.m<mm(rimb)){set("alert","Imbarco del volo"+rnum+" alle "+rimb,"Tra "+fm(mm(rimb)-n.m)+". Decollo alle "+rdep+gt+".");return}
+if(n.m>=DEP+70){set("calm","Buon volo"+rnum+"! ✈️","Il decollo è alle "+rdep+(rimb?", imbarco dalle "+rimb:"")+gt+".");return}
+if(n.m>=DEP){set("alert","È ora di andare in aeroporto","Metro L3 da Catalunya, poi L9 Sud. Decollo alle "+rdep+gt+".");return}
 if(DEP-n.m<=60){set("alert","Parti per l'aeroporto tra "+fm(DEP-n.m),"Da Plaça Catalunya alle 17:45: L3 fino a Zona Universitària, poi L9 Sud.");return}
 var nx=T[i+1];
 if(i<0){set("","Prima tappa: "+T[0].n,"Alle "+T[0].t+", tra "+fm(T[0].m-n.m));return}
 set("","Ora: "+T[i].n,nx?"Prossima: "+nx.n+" tra "+fm(nx.m-n.m):"");
 }
-tick();setInterval(tick,30000);window.addEventListener("voli",tick);
+tick();setInterval(tick,30000);window.addEventListener("voli",tick);window.addEventListener("vlive",tick);
 })();
 (function(){
 var svg=document.querySelector(".stage>svg"),tab=document.getElementById("t-mappa");if(!svg||!tab||!svg.animate)return;
@@ -1567,7 +1617,7 @@ me.querySelector("div span").textContent=(pp!=null?"Probabilità di pioggia "+pp
 <script>
 (function(){
 var V={};try{V=JSON.parse(localStorage.getItem("bcn-voli")||"{}")}catch(e){}
-var ins=[].slice.call(document.querySelectorAll(".voli input")),sv=document.getElementById("vsave"),t;
+var ins=[].slice.call(document.querySelectorAll(".voli input[data-v]")),sv=document.getElementById("vsave"),t;
 function links(){[].forEach.call(document.querySelectorAll(".vst"),function(a){var c=(V[a.dataset.f]||"").replace(/\s+/g,"").toLowerCase();a.hidden=!c;if(c)a.href="https://www.flightradar24.com/data/flights/"+encodeURIComponent(c)})}
 ins.forEach(function(i){var k=i.dataset.v;if(V[k]!=null)i.value=V[k];else if(i.value)V[k]=i.value;
 function save(){V[k]=k.indexOf("num")>0?i.value.toUpperCase():i.value;if(k.indexOf("num")>0&&i.value!==V[k])i.value=V[k];try{localStorage.setItem("bcn-voli",JSON.stringify(V))}catch(e){}sv.textContent="Salvato ✓";clearTimeout(t);t=setTimeout(function(){sv.textContent=""},1500);links();window.dispatchEvent(new Event("voli"))}
@@ -1575,6 +1625,78 @@ function save(){V[k]=k.indexOf("num")>0?i.value.toUpperCase():i.value;if(k.index
 function saveAll(){ins.forEach(function(i){V[i.dataset.v]=i.dataset.v.indexOf("num")>0?i.value.toUpperCase():i.value});try{localStorage.setItem("bcn-voli",JSON.stringify(V))}catch(e){}}
 addEventListener("pagehide",saveAll);document.addEventListener("visibilitychange",function(){if(document.hidden)saveAll()});
 links();window.BCNVOLI=V;window.dispatchEvent(new Event("voli"));
+})();
+</script>
+<script>
+(function(){
+var HOST="aerodatabox.p.rapidapi.com",DAY="2026-10-28",KK="bcn-adb-key",CK="bcn-vlive",UK="bcn-vlive-n";
+function g(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function p(k,v){try{v==null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}}
+var key=g(KK)||"",C={};try{C=JSON.parse(g(CK)||"{}")||{}}catch(e){}
+var box=document.getElementById("vkey"),kin=document.getElementById("vkin"),kok=document.getElementById("vkok"),kdel=document.getElementById("vkdel"),ks=document.getElementById("vks"),ref=document.getElementById("vref"),upd=document.getElementById("vupd");
+if(!box)return;
+var SIDES={a:{f:"a_num",dep:"BLQ",arr:"BCN"},r:{f:"r_num",dep:"BCN",arr:"BLQ"}},busy=false,timer;
+var ST={Expected:["In orario",""],Unknown:["Nessun dato","idle"],CanceledUncertain:["Da verificare","warn"],CheckIn:["Check-in aperto",""],Boarding:["Imbarco in corso",""],GateClosed:["Gate chiuso","warn"],Departed:["Decollato",""],EnRoute:["In volo",""],Approaching:["In avvicinamento",""],Delayed:["In ritardo","warn"],Arrived:["Atterrato",""],Canceled:["Cancellato","bad"],Diverted:["Dirottato","bad"]};
+function madrid(){var o={};new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Madrid",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date()).forEach(function(x){o[x.type]=x.value});return{d:o.year+"-"+o.month+"-"+o.day,mo:o.year+"-"+o.month}}
+function num(side){var V=window.BCNVOLI||{};return String(V[SIDES[side].f]||"").replace(/\s+/g,"").toUpperCase()}
+function hm(t){if(!t)return"";var x=typeof t==="string"?t:(t.local||"");var m=/[ T](\d{2}):(\d{2})/.exec(x);return m?m[1]+":"+m[2]:""}
+function ut(t,legacy){var x=t&&typeof t==="object"?t.utc:legacy;if(!x)return NaN;var z=String(x).replace(" ","T");if(!/(Z|[+-]\d\d:?\d\d)$/.test(z))z+="Z";return Date.parse(z)}
+function pick(list,side){if(!Array.isArray(list))list=list?[list]:[];var d=SIDES[side].dep;for(var i=0;i<list.length;i++){var f=list[i];if(f&&f.departure&&f.departure.airport&&f.departure.airport.iata===d)return f}return list[0]||null}
+function norm(f){if(!f)return null;var d=f.departure||{},a=f.arrival||{};
+var dS=hm(d.scheduledTime||d.scheduledTimeLocal),dR=hm(d.revisedTime||d.actualTimeLocal),dW=hm(d.runwayTime),aS=hm(a.scheduledTime||a.scheduledTimeLocal),aR=hm(a.revisedTime||a.actualTimeLocal),aW=hm(a.runwayTime);
+var dl=Math.round((ut(d.revisedTime,d.actualTimeUtc)-ut(d.scheduledTime,d.scheduledTimeUtc))/6e4),al=Math.round((ut(a.revisedTime,a.actualTimeUtc)-ut(a.scheduledTime,a.scheduledTimeUtc))/6e4);
+return{st:f.status||"Unknown",dS:dS,dR:dR,dW:dW,aS:aS,aR:aR,aW:aW,dl:isFinite(dl)?dl:0,al:isFinite(al)?al:0,dT:d.terminal||"",gate:d.gate||"",desk:d.checkInDesk||"",aT:a.terminal||"",aG:a.gate||"",belt:a.baggageBelt||"",air:(f.airline&&f.airline.name)||"",ac:(f.aircraft&&f.aircraft.model)||"",sDep:ut(d.scheduledTime,d.scheduledTimeUtc),sArr:ut(a.scheduledTime,a.scheduledTimeUtc)}}
+function esc(x){return String(x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function ago(t){var m=Math.round((Date.now()-t)/6e4);return m<1?"adesso":m<60?m+" min fa":Math.round(m/60)+" h fa"}
+function trow(lbl,s,r,w,dl){var now=w||r;var h=now&&now!==s?"<s>"+esc(s)+"</s>"+esc(now):esc(s||now||"—");if(dl>=5)h+='<span class="vdl">+'+dl+"′</span>";return'<div class="vrow"><span>'+lbl+"</span><b>"+h+"</b></div>"}
+function render(){
+var LIVE={};
+["a","r"].forEach(function(side){
+var el=document.querySelector('.vlive[data-l="'+side+'"]');if(!el)return;var n=num(side),c=C[n];
+if(!key||!n){el.hidden=true;return}
+el.hidden=false;
+if(!c){el.className="vlive idle";el.innerHTML='<div class="vtop"><span class="vpill">In attesa</span></div><div class="verr">Tocca “Aggiorna stato” per leggere i dati del volo '+esc(n)+".</div>";return}
+if(c.err){el.className="vlive idle";el.innerHTML='<div class="vtop"><span class="vpill">Non disponibile</span><span class="vag">'+ago(c.t)+'</span></div><div class="verr">'+esc(c.err)+"</div>";return}
+var d=c.d,s=ST[d.st]||[d.st,""],cls=s[1];if(!cls&&d.dl>=15&&/Expected|CheckIn|Boarding|GateClosed/.test(d.st)){cls="warn";s=["In ritardo","warn"]}
+LIVE[side]=d;
+var chips=[];if(d.dT)chips.push("Terminal "+d.dT);if(d.desk)chips.push("Check-in "+d.desk);if(d.gate)chips.push("Gate "+d.gate);if(d.belt)chips.push("Nastro bagagli "+d.belt);
+el.className="vlive "+cls;
+el.innerHTML='<div class="vtop"><span class="vpill">'+esc(s[0])+'</span><span class="vag">agg. '+ago(c.t)+"</span></div>"+trow("Partenza "+SIDES[side].dep,d.dS,d.dR,d.dW,d.dl)+trow("Arrivo "+SIDES[side].arr,d.aS,d.aR,d.aW,d.al)+(chips.length?'<div class="vchips">'+chips.map(function(x){return"<i>"+esc(x)+"</i>"}).join("")+"</div>":"")+(d.air||d.ac?'<div class="vag">'+esc([d.air,d.ac].filter(Boolean).join(" · "))+"</div>":"");
+});
+window.BCNLIVE=LIVE;try{window.dispatchEvent(new Event("vlive"))}catch(e){}
+var any=!!(key&&(num("a")||num("r")));ref.hidden=!any;
+var ts=["a","r"].map(function(x){var c=C[num(x)];return c&&c.t||0}),last=Math.max.apply(null,ts);
+var M=madrid(),used=0;try{var U=JSON.parse(g(UK)||"{}");used=U[M.mo]||0}catch(e){}
+upd.textContent=any&&last?"Ultimo aggiornamento "+ago(last)+(used?" · "+used+" richieste questo mese":""):"";
+box.classList.toggle("on",!!key);ks.textContent=key?"Collegato ✓":"Non collegato";kdel.hidden=!key;kin.placeholder=key?"Chiave salvata •••• "+key.slice(-4):"Incolla la chiave";
+}
+function count(){var M=madrid(),U={};try{U=JSON.parse(g(UK)||"{}")||{}}catch(e){}U[M.mo]=(U[M.mo]||0)+1;p(UK,JSON.stringify(U))}
+function load(side){var n=num(side);if(!n)return Promise.resolve();count();
+return fetch("https://"+HOST+"/flights/number/"+encodeURIComponent(n)+"/"+DAY+"?withAircraftImage=false&withLocation=false",{headers:{"x-rapidapi-key":key,"x-rapidapi-host":HOST}}).then(function(r){
+if(r.status===204||r.status===404)throw"Volo "+n+" non trovato per il 28 ottobre. Controlla il numero (es. FR1234).";
+if(r.status===401||r.status===403)throw"Chiave non valida o piano Basic non attivo su RapidAPI.";
+if(r.status===429)throw"Limite gratuito del mese raggiunto. Usa i pulsanti degli aeroporti qui sotto.";
+if(!r.ok)throw"Servizio non raggiungibile ("+r.status+"). Riprovo più tardi.";
+return r.json()}).then(function(j){var d=norm(pick(j,side));if(!d)throw"Nessun dato per il volo "+n+".";C[n]={t:Date.now(),d:d}},function(e){C[n]={t:Date.now(),err:typeof e==="string"?e:"Connessione assente. Riprovo più tardi."}}).then(function(){p(CK,JSON.stringify(C))})}
+function due(side){var n=num(side);if(!n)return false;var c=C[n];if(!c)return true;var age=Date.now()-c.t,M=madrid();
+if(M.d>DAY)return false;
+if(M.d<DAY)return age>12*36e5;
+var d=c.d,now=Date.now();
+if(d&&isFinite(d.sDep)&&isFinite(d.sArr)){if(/Arrived|Canceled/.test(d.st))return age>60*6e4;if(now>d.sDep-3*36e5&&now<d.sArr+36e5)return age>10*6e4;return age>60*6e4}
+return age>(c.err?30:10)*6e4}
+function visible(){var t=document.getElementById("t-itinerario");return !document.hidden&&(!t||t.checked)}
+function auto(force){if(!key||busy)return;if(!force&&!visible())return;var list=["a","r"].filter(function(x){return force||due(x)});if(!list.length){render();return}
+busy=true;ref.disabled=true;ref.textContent="↻ Aggiorno…";
+Promise.all(list.map(load)).then(function(){busy=false;ref.disabled=false;ref.textContent="↻ Aggiorna stato";render()})}
+ref.addEventListener("click",function(){var ts=["a","r"].map(function(x){var c=C[num(x)];return c&&c.t||0});if(Date.now()-Math.max.apply(null,ts)<6e4&&ts.every(Boolean)){render();return}auto(true)});
+kok.addEventListener("click",function(){var v=kin.value.trim();if(!v)return;key=v;p(KK,v);kin.value="";C={};p(CK,"{}");box.open=false;render();auto(true)});
+kin.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();kok.click()}});
+kdel.addEventListener("click",function(){key="";p(KK,null);C={};p(CK,"{}");render()});
+window.addEventListener("voli",function(){clearTimeout(timer);timer=setTimeout(function(){render();auto(false)},1200)});
+document.addEventListener("visibilitychange",function(){if(!document.hidden)auto(false)});
+[].forEach.call(document.querySelectorAll(".tabr"),function(r){r.addEventListener("change",function(){auto(false)})});
+setInterval(function(){render();auto(false)},60000);
+render();setTimeout(function(){auto(false)},1500);
 })();
 </script>
 <script>
