@@ -831,6 +831,13 @@ body.tbmin .tabbar label .em{animation:hop .5s cubic-bezier(.3,1.6,.5,1) both!im
 @media (prefers-reduced-motion:reduce){.tbind,.blk,.blk>*{animation:none!important;transition:none!important}}
 .arc{stroke-dasharray:var(--len) 100}
 @keyframes arcIn{0%{stroke-dasharray:0 100;opacity:0}12%{opacity:1}100%{stroke-dasharray:var(--len) 100;opacity:1}}
+
+/* niente rimbalzo: lo scorrimento si ferma in cima e in fondo */
+html,body{overscroll-behavior:none!important}
+.blk,.wheel,.stage,#lmap{overscroll-behavior:none!important}
+/* pannelli di altezza fissa: la barra galleggia sopra, niente movimenti mentre scorri */
+.blk,body.tbmin .blk{bottom:calc(12px + env(safe-area-inset-bottom,0px)*.45)!important;transition:opacity .32s ease,visibility 0s linear .32s!important;padding-bottom:calc(var(--tb) + 30px)!important;scroll-padding-bottom:calc(var(--tb) + 30px)}
+html.sa .blk,html.sa body.tbmin .blk{bottom:auto!important;height:calc(var(--apph) - 62px - env(safe-area-inset-top,0px) - 12px - env(safe-area-inset-bottom,0px)*.45)!important}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
@@ -1533,9 +1540,8 @@ var bar=document.querySelector(".tabbar");if(!bar)return;
 var body=document.body,last={},tm;
 function setMin(on){body.classList.toggle("tbmin",on)}
 [].forEach.call(document.querySelectorAll(".blk"),function(b){
-b.addEventListener("scroll",function(){var y=b.scrollTop,d=y-(last[b.id]||0);last[b.id]=y;
-if(y<40){setMin(false);return}
-if(d>6)setMin(true);else if(d<-10)setMin(false);},{passive:true});
+b.addEventListener("scroll",function(){var y=Math.max(0,Math.min(b.scrollTop,b.scrollHeight-b.clientHeight)),d=y-(last[b.id]||0);last[b.id]=y;
+if(Math.abs(d)>4&&!body.classList.contains("tbmin"))setMin(true);},{passive:true});
 });
 bar.addEventListener("click",function(e){if(body.classList.contains("tbmin")){e.preventDefault();e.stopPropagation();setMin(false)}},true);
 [].forEach.call(document.querySelectorAll(".tabr"),function(r){r.addEventListener("change",function(){setMin(false)})});
