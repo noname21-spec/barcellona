@@ -838,6 +838,24 @@ html,body{overscroll-behavior:none!important}
 /* pannelli di altezza fissa: la barra galleggia sopra, niente movimenti mentre scorri */
 .blk,body.tbmin .blk{bottom:calc(12px + env(safe-area-inset-bottom,0px)*.45)!important;transition:opacity .32s ease,visibility 0s linear .32s!important;padding-bottom:calc(var(--tb) + 30px)!important;scroll-padding-bottom:calc(var(--tb) + 30px)}
 html.sa .blk,html.sa body.tbmin .blk{bottom:auto!important;height:calc(var(--apph) - 62px - env(safe-area-inset-top,0px) - 12px - env(safe-area-inset-bottom,0px)*.45)!important}
+
+/* fumetti dei punti sulla mappa */
+.lglass .leaflet-popup-content-wrapper{background:linear-gradient(180deg,var(--hi2),transparent 45%),var(--gl2);-webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);color:var(--ink);border:1px solid var(--edge);border-radius:var(--r2);box-shadow:inset 0 1px 0 var(--hi),0 10px 28px var(--glsh)}
+.lglass .leaflet-popup-tip{background:var(--gl2);border:1px solid var(--edge)}
+.lglass .leaflet-popup-content{margin:12px 14px;font:500 13px/1.4 Manrope,system-ui,sans-serif}
+.lglass a.leaflet-popup-close-button{color:var(--mute);top:6px;right:6px}
+.lpop b{display:block;font-weight:800;font-size:14px;margin-right:14px}
+.lpop p{margin:6px 0 8px!important;color:var(--ink)}
+.lpa{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lpa .go.sm{margin:0}
+.lpm{font-weight:700;font-size:12px;color:var(--c3)!important;text-decoration:none}
+.leaflet-popup{animation:popUp .35s cubic-bezier(.3,1.5,.5,1)}
+@keyframes popUp{from{opacity:0;transform:translate3d(0,8px,0) scale(.9)}to{opacity:1;transform:none}}
+.lmk{cursor:pointer}
+.lmk span{transition:transform .2s cubic-bezier(.3,1.6,.5,1)}
+.lmk:active span{transform:scale(.85)}
+#lmap.far .lmk span{transform:scale(.8)}
+#lmap.far .lfd span,#lmap.far .lph span{transform:scale(.7)}
 footer{color:var(--mute);font-size:.88rem;margin-top:26px}
 </style>
 </head>
@@ -1364,7 +1382,7 @@ requestAnimationFrame(function(){requestAnimationFrame(home)});
 }
 fsb.addEventListener("click",function(){setFs(!isFs)});
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&isFs)setFs(false)});
-home();show(0);window.BCNmap={show:show};
+home();show(0);window.BCNmap={show:show,D:D};
 })();
 </script>
 <script>
@@ -1566,7 +1584,10 @@ function tileUrl(){return "https://tile.openstreetmap.org/{z}/{x}/{y}.png"}
 function setTiles(){if(!map)return;if(tiles)map.removeLayer(tiles);tiles=L.tileLayer(tileUrl(),{maxZoom:19,keepBuffer:1,updateWhenZooming:false,attribution:'© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>',crossOrigin:true}).addTo(map);el.classList.toggle("dk",dark());
 tiles.on("tileload",function(){ok=true})}
 function icon(cls,txt,sz){return L.divIcon({className:"lmk "+cls,html:"<span>"+txt+"</span>",iconSize:[sz,sz],iconAnchor:[sz/2,sz/2]})}
-function pick(i,m){try{window.BCNmap.show(i)}catch(e){}}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function pop(i){var d=(window.BCNmap&&window.BCNmap.D||[])[i];if(!d)return "";var q=encodeURIComponent(d[2]);
+return '<div class="lpop"><b>'+esc(d[0])+'</b><p>'+esc(d[1])+'</p><div class="lpa"><a class="go sm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+q+'&travelmode=walking">↗︎ Portami lì</a><a class="lpm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+q+'">Apri in Google Maps</a></div></div>'}
+function pick(i,m){try{window.BCNmap.show(i)}catch(e){}if(m){m.unbindPopup();m.bindPopup(pop(i),{className:"lglass",maxWidth:230,minWidth:180,autoPanPaddingTopLeft:[12,124],autoPanPaddingBottomRight:[64,64]}).openPopup()}}
 function bounds(){var b=L.latLngBounds([]);G.lines.L3.concat(G.lines.L2,G.lines.L4,G.lines.W1,[[41.3549,2.1296]]).forEach(function(p){b.extend(p)});return b}
 function init(){
 if(!window.L)return;
@@ -1576,12 +1597,12 @@ setTiles();
 Object.keys(G.lines).forEach(function(k){var walk=k[0]==="W";
 var halo=L.polyline(G.lines[k],{color:dark()?"#0a0d1c":"#ffffff",weight:walk?7:9,opacity:.75,interactive:false}).addTo(map);
 var pl=L.polyline(G.lines[k],{color:walk?"#6a2c8c":COL[k],weight:walk?4:6,opacity:.95,dashArray:walk?"1 10":null,lineCap:"round",lineJoin:"round"}).addTo(map);
-var t=NAME[k].split("|");pl.bindTooltip("<b>"+t[0]+"</b><br>"+t[1],{sticky:true,className:"ltip"});lines.push({k:k,pl:pl,halo:halo,walk:walk})});
+var t=NAME[k].split("|");pl.bindTooltip("<b>"+t[0]+"</b><br>"+t[1],{sticky:true,className:"ltip"});pl.on("click",function(e){pl.openTooltip(e.latlng)});lines.push({k:k,pl:pl,halo:halo,walk:walk})});
 G.st.forEach(function(s){var m=L.circleMarker([s[1],s[2]],{radius:s[3]?5:3.5,color:dark()?"#eef0ff":"#10142a",weight:2,fillColor:dark()?"#141832":"#ffffff",fillOpacity:1}).addTo(map);
-m.bindTooltip(s[0],{permanent:!!s[3],direction:"right",offset:[6,0],className:"lst"+(s[3]===2?" key":"")})});
-G.stops.forEach(function(s){L.marker([s[1],s[2]],{icon:icon("lpin",s[3],30),zIndexOffset:1000,keyboard:true,title:"Tappa "+s[3]}).addTo(map).on("click",function(){pick(s[0])})});
-gFood=L.layerGroup(G.food.map(function(s){return L.marker([s[1],s[2]],{icon:icon("lfd",s[3],24),zIndexOffset:500}).on("click",function(){pick(s[0])})}));
-gPh=L.layerGroup(G.ph.map(function(s){return L.marker([s[1],s[2]],{icon:icon("lph",s[3],28),zIndexOffset:600}).on("click",function(){pick(s[0])})}));
+m.bindTooltip(s[0],{permanent:!!s[3],direction:"right",offset:[6,0],className:"lst"+(s[3]===2?" key":"")});if(!s[3])m.on("click",function(){m.openTooltip()})});
+G.stops.forEach(function(s){var mk=L.marker([s[1],s[2]],{icon:icon("lpin",s[3],30),zIndexOffset:1000,keyboard:true,title:"Tappa "+s[3]}).addTo(map);mk.on("click",function(){pick(s[0],mk)})});
+gFood=L.layerGroup(G.food.map(function(s){var mk=L.marker([s[1],s[2]],{icon:icon("lfd",s[3],24),zIndexOffset:500});mk.on("click",function(){pick(s[0],mk)});return mk}));
+gPh=L.layerGroup(G.ph.map(function(s){var mk=L.marker([s[1],s[2]],{icon:icon("lph",s[3],28),zIndexOffset:600});mk.on("click",function(){pick(s[0],mk)});return mk}));
 map.fitBounds(bounds(),{padding:[24,24]});
 map.on("zoomend",function(){el.classList.toggle("far",map.getZoom()<13.5)});el.classList.toggle("far",map.getZoom()<13.5);
 var tg=document.getElementById("tg"),tp=document.getElementById("tp");
